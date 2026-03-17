@@ -1,5 +1,4 @@
 {% load static %}
-{% load widget_tweaks %}
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -10,10 +9,10 @@
 <meta name="description" content="Voiture - Automotive & Car Dealer HTML Template">
 <meta name="CreativeLayers" content="ATFN">
 <!-- css file -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <!-- Responsive stylesheet -->
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 <!-- Title -->
 <title>Voiture - Automotive & Car Dealer HTML Template</title>
 <!-- Favicon -->
@@ -54,12 +53,12 @@
     </div>
   </div>
   <!-- Sidebar Panel End -->
-  
+
   <!-- Main Header Nav -->
   <header class="header-nav menu_style_home_one home6_style transparent main-menu">
     <!-- Ace Responsive Menu -->
-    <nav> 
-      <div class="container"> 
+    <nav>
+      <div class="container">
         <!-- Menu Toggle btn-->
         <div class="menu-toggle">
           <button type="button" id="menu-btn">
@@ -93,7 +92,7 @@
           <li> <a href="#"><span class="title">Explore</span></a>
             <!-- Level Two-->
             <ul>
-              <li> <a href="#">User Info</a> 
+              <li> <a href="#">User Info</a>
                 <ul>
                   <li><a href="page-dashboard.html">Dashboard</a></li>
                   <li><a href="page-dashboard-profile.html">Profile</a></li>
@@ -109,7 +108,7 @@
           </li>
           <li> <a href="#"><span class="title">Listing</span></a>
             <ul>
-              <li> <a href="#">Listing Styles</a> 
+              <li> <a href="#">Listing Styles</a>
                 <ul>
                   <li><a href="page-list-v1.html">Listing v1</a></li>
                   <li><a href="page-list-v2.html">Listing v2</a></li>
@@ -120,14 +119,14 @@
                   <li><a href="page-list-v7.html">Listing v7</a></li>
                 </ul>
               </li>
-              <li> <a href="#">Listing Map</a> 
+              <li> <a href="#">Listing Map</a>
                 <ul>
                   <li><a href="page-list-v8.html">Map v1</a></li>
                   <li><a href="page-list-v9.html">Map v2</a></li>
                   <li><a href="page-list-v10.html">Map v3</a></li>
                 </ul>
               </li>
-              <li> <a href="#">Listing Single</a> 
+              <li> <a href="#">Listing Single</a>
                 <ul>
                   <li><a href="page-car-single-v1.html">Single V1</a></li>
                   <li><a href="page-car-single-v2.html">Single V2</a></li>
@@ -278,7 +277,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Main Header Nav For Mobile -->
   <div id="page" class="stylehome1 h0">
     <div class="mobile-menu">
@@ -405,7 +404,7 @@
       </ul>
     </nav>
   </div>
-  
+
   <!-- Home Design -->
   <section class="home-one home4_style bgc_home4_style bg-home4">
     <div class="container">
@@ -488,11 +487,10 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </section>
-  
+
   <!-- Features Listings -->
   <section class="feature_listing_home4_style pt0 pt120-md pb90">
     <div class="container">
@@ -563,145 +561,43 @@
         <div class="col-lg-12">
           <div class="home1_popular_listing home4_style">
             <div class="listing_item_3grid_slider dots_none">
+              {% for car in expensive_cars %}
               <div class="item">
                 <div class="car-listing home6_style">
                   <div class="thumb">
-                    <div class="tag">FEATURED</div>
-                    <img src="images/listing/1.jpg" alt="1.jpg">
-                    <div class="thmb_cntnt2">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-photo-camera mr3"></span> 22</a></li>
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-play-button mr3"></span> 3</a></li>
-                      </ul>
-                    </div>
-                    <div class="thmb_cntnt3">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-shuffle-arrows"></span></a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-heart"></span></a></li>
-                      </ul>
-                    </div>
+                    <div class="tag">{% if car.is_hot %}TOP SALE{% else %}FEATURED{% endif %}</div>
+                    {% if car.first_photo %}
+                    <img src="{{ car.first_photo.url }}" alt="{{ car.title }}">
+                    {% else %}
+                    <img src="{% static 'images/listing/1.jpg' %}" alt="{{ car.title }}">
+                    {% endif %}
                   </div>
                   <div class="details">
                     <div class="wrapper">
-                      <h6 class="title"><a href="page-car-single-v1.html">Volvo XC90 - 2020</a></h6>
+                      <h6 class="title"><a href="#">{{ car.brand.name }} {{ car.model_name }}</a></h6>
                     </div>
                     <div class="listing_footer">
-                      <h5 class="price text-thm4 float-none float-sm-start">$129</h5>
+                      <h5 class="price text-thm4 float-none float-sm-start">${{ car.discount_price|default:car.price }}</h5>
                       <ul class="mb0 text-start text-sm-end">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>77362</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>Diesel</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>Automatic</a></li>
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }}L</a></li>
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>{{ car.get_engine_type_display }}</a></li>
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>{{ car.get_transmission_type_display }}</a></li>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="car-listing home6_style">
-                  <div class="thumb">
-                    <div class="tag">FEATURED</div>
-                    <img src="images/listing/2.jpg" alt="2.jpg">
-                    <div class="thmb_cntnt2">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-photo-camera mr3"></span> 22</a></li>
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-play-button mr3"></span> 3</a></li>
-                      </ul>
-                    </div>
-                    <div class="thmb_cntnt3">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-shuffle-arrows"></span></a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-heart"></span></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="details">
-                    <div class="wrapper">
-                      <h6 class="title"><a href="page-car-single-v1.html">Mercedes-Benz S 560 - 2021</a></h6>
-                    </div>
-                    <div class="listing_footer">
-                      <h5 class="price text-thm4 float-none float-sm-start">$56</h5>
-                      <ul class="mb0 text-start text-sm-end">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>77362</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>Diesel</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>Automatic</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="car-listing home6_style">
-                  <div class="thumb">
-                    <div class="tag">FEATURED</div>
-                    <img src="images/listing/3.jpg" alt="3.jpg">
-                    <div class="thmb_cntnt2">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-photo-camera mr3"></span> 22</a></li>
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-play-button mr3"></span> 3</a></li>
-                      </ul>
-                    </div>
-                    <div class="thmb_cntnt3">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-shuffle-arrows"></span></a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-heart"></span></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="details">
-                    <div class="wrapper">
-                      <h6 class="title"><a href="page-car-single-v1.html">BMW M8 Gran Coupe Base - 2021</a></h6>
-                    </div>
-                    <div class="listing_footer">
-                      <h5 class="price text-thm4 float-none float-sm-start">$230</h5>
-                      <ul class="mb0 text-start text-sm-end">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>77362</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>Diesel</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>Automatic</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="car-listing home6_style">
-                  <div class="thumb">
-                    <div class="tag blue">SPECIAL</div>
-                    <img src="images/listing/4.jpg" alt="4.jpg">
-                    <div class="thmb_cntnt2">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-photo-camera mr3"></span> 22</a></li>
-                        <li class="list-inline-item"><a class="text-white" href="#"><span class="flaticon-play-button mr3"></span> 3</a></li>
-                      </ul>
-                    </div>
-                    <div class="thmb_cntnt3">
-                      <ul class="mb0">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-shuffle-arrows"></span></a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-heart"></span></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="details">
-                    <div class="wrapper">
-                      <h6 class="title"><a href="page-car-single-v1.html">Nıssan Qasqai - Sky Pack</a></h6>
-                    </div>
-                    <div class="listing_footer">
-                      <h5 class="price text-thm4 float-none float-sm-start">$478</h5>
-                      <ul class="mb0 text-start text-sm-end">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>77362</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>Diesel</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>Automatic</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {% empty %}
+              <div class="item"><p>Нет автомобилей для показа.</p></div>
+              {% endfor %}
             </div>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  
+
   <!-- We Are The Best -->
   <section class="we-are-best">
     <div class="container">
@@ -756,7 +652,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Our Popular Listing -->
   <section class="popular-listing pt0 pb110">
     <div class="container-fluid">
@@ -770,105 +666,46 @@
       <div class="col-lg-12">
         <div class="home1_popular_listing home4_style">
           <div class="listing_item_car_grid_slider ">
+            {% for car in popular_vehicles %}
             <div class="item">
               <div class="carlisting-popular-vehicles">
                 <div class="details text-center">
                   <div class="wrapper">
-                    <h5 class="price text-thm4">$56</h5>
-                    <h6 class="title"><a href="page-car-single-v1.html">Mercedes-Benz S 560 - 2021</a></h6>
+                    <h5 class="price text-thm4">${{ car.discount_price|default:car.price }}</h5>
+                    <h6 class="title"><a href="#">{{ car.brand.name }} {{ car.model_name }}</a></h6>
                     <div class="listign_review">
                       <ul>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#">4.7</a></li>
-                        <li class="list-inline-item">(684 reviews)</li>
+                        <li class="list-inline-item"><a href="#">{% if car.is_hot %}TOP SALE{% else %}Popular{% endif %}</a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="listing_footer">
                     <ul>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>77362</a></li>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>Diesel</a></li>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>Automatic</a></li>
+                      <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }}L</a></li>
+                      <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>{{ car.get_engine_type_display }}</a></li>
+                      <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>{{ car.get_transmission_type_display }}</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="thumb">
-                  <img class="img-fluid" src="images/item/1.png" alt="1.png">
+                  {% if car.first_photo %}
+                  <img class="img-fluid" src="{{ car.first_photo.url }}" alt="{{ car.title }}">
+                  {% else %}
+                  <img class="img-fluid" src="{% static 'images/item/1.png' %}" alt="{{ car.title }}">
+                  {% endif %}
                 </div>
               </div>
             </div>
-            <div class="item">
-              <div class="carlisting-popular-vehicles">
-                <div class="details text-center">
-                  <div class="wrapper">
-                    <h5 class="price text-thm4">$129</h5>
-                    <h6 class="title"><a href="page-car-single-v1.html">Volvo XC90 - 2020</a></h6>
-                    <div class="listign_review">
-                      <ul>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#">4.7</a></li>
-                        <li class="list-inline-item">(684 reviews)</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="listing_footer">
-                    <ul>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>77362</a></li>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>Diesel</a></li>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>Automatic</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="thumb">
-                  <img class="img-fluid" src="images/item/2.png" alt="2.png">
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="carlisting-popular-vehicles">
-                <div class="details text-center">
-                  <div class="wrapper">
-                    <h5 class="price text-thm4">$129</h5>
-                    <h6 class="title"><a href="page-car-single-v1.html">Volvo XC90 - 2020</a></h6>
-                    <div class="listign_review">
-                      <ul>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="list-inline-item"><a href="#">4.7</a></li>
-                        <li class="list-inline-item">(684 reviews)</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="listing_footer">
-                    <ul>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>77362</a></li>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>Diesel</a></li>
-                      <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>Automatic</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="thumb">
-                  <img class="img-fluid" src="images/item/3.png" alt="3.png">
-                </div>
-              </div>
-            </div>
+            {% empty %}
+            <div class="item"><p>Нет популярных автомобилей.</p></div>
+            {% endfor %}
           </div>
+        </div>
         </div>
       </div>
     </div>
   </section>
-  
+
   <!-- Swiper Slider Testimonials -->
   <section class="testimonials_home4_layouts">
     <div class="container">
@@ -1042,7 +879,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Our Partners -->
   <section class="our-partner pt100 pb80">
     <div class="container">
@@ -1082,7 +919,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Delivery Divider -->
   <section class="divider home4_style parallax" data-stellar-background-ratio="0.2">
     <div class="container">
@@ -1107,7 +944,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Our Footer -->
   <section class="footer_one home4_style pt50 pb25">
     <div class="container">
@@ -1190,26 +1027,26 @@
     </div>
   </section>
   <a class="scrollToHome" href="#"><i class="fas fa-arrow-up"></i></a> </div>
-<!-- Wrapper End --> 
-<script src="js/jquery-3.6.0.js"></script> 
-<script src="js/jquery-migrate-3.0.0.min.js"></script> 
-<script src="js/popper.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/bootstrap-select.min.js"></script>
-<script src="js/jquery.mmenu.all.js"></script> <script src="js/ace-responsive-menu.js"></script> 
-<script src="js/isotop.js"></script> 
-<script src="js/snackbar.min.js"></script> 
-<script src="js/simplebar.js"></script> 
-<script src="js/parallax.js"></script> 
-<script src="js/scrollto.js"></script> 
-<script src="js/jquery-scrolltofixed-min.js"></script> 
-<script src="js/jquery.counterup.js"></script> 
-<script src="js/wow.min.js"></script> 
-<script src="js/progressbar.js"></script> 
-<script src="js/slider.js"></script>
-<script src="js/timepicker.js"></script> 
-<script src="js/wow.min.js"></script> 
-<!-- Custom script for all pages --> 
-<script src="js/script.js"></script>
+<!-- Wrapper End -->
+<script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.0.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'js/jquery.mmenu.all.js' %}"></script>
+<script src="{% static 'js/ace-responsive-menu.js' %}"></script>
+<script src="{% static 'js/isotop.js' %}"></script>
+<script src="{% static 'js/snackbar.min.js' %}"></script>
+<script src="{% static 'js/simplebar.js' %}"></script>
+<script src="{% static 'js/parallax.js' %}"></script>
+<script src="{% static 'js/scrollto.js' %}"></script>
+<script src="{% static 'js/jquery-scrolltofixed-min.js' %}"></script>
+<script src="{% static 'js/jquery.counterup.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/progressbar.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/timepicker.js' %}"></script>
+<!-- Custom script for all pages -->
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
