@@ -4,7 +4,5 @@ from frontend.models import Car
 
 
 def index(request):
-    cars = Car.objects.select_related(
-        "brand", "engine_type", "transmission_type"
-    ).prefetch_related("images")
+    cars = Car.objects.select_related("brand")
     return render(request, "index4.html", {"cars": cars})

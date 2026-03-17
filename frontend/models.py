@@ -15,31 +15,20 @@ class Brand(models.Model):
         return self.name
 
 
-class EngineType(models.Model):
-    name = models.CharField("Тип двигателя", max_length=80, unique=True)
-
-    class Meta:
-        verbose_name = "Тип двигателя"
-        verbose_name_plural = "Типы двигателей"
-        ordering = ("name",)
-
-    def __str__(self):
-        return self.name
-
-
-class TransmissionType(models.Model):
-    name = models.CharField("Коробка передач", max_length=80, unique=True)
-
-    class Meta:
-        verbose_name = "Коробка передач"
-        verbose_name_plural = "Коробки передач"
-        ordering = ("name",)
-
-    def __str__(self):
-        return self.name
-
-
 class Car(models.Model):
+    class EngineType(models.TextChoices):
+        TURBO = "turbo", "Турбина"
+        ELECTRIC = "electric", "Электрический"
+        HYBRID = "hybrid", "Гибрид"
+        ATMOSPHERIC = "atmospheric", "Атмосферный"
+        DIESEL = "diesel", "Дизель"
+
+    class TransmissionType(models.TextChoices):
+        AUTOMATIC = "automatic", "Автомат"
+        MANUAL = "manual", "Механика"
+        ROBOT = "robot", "Робот"
+        CVT = "cvt", "Вариатор"
+
     title = models.CharField("Название", max_length=180)
     brand = models.ForeignKey(
         Brand,
@@ -48,11 +37,11 @@ class Car(models.Model):
         verbose_name="Бренд",
     )
     model_name = models.CharField("Название модели", max_length=180)
-    engine_type = models.ForeignKey(
-        EngineType,
-        on_delete=models.PROTECT,
-        related_name="cars",
-        verbose_name="Тип двигателя",
+    engine_type = models.CharField(
+        "Тип двигателя",
+        max_length=20,
+        choices=EngineType.choices,
+        default=EngineType.ATMOSPHERIC,
     )
     engine_volume = models.DecimalField(
         "Объем двигателя (л)",
@@ -60,12 +49,17 @@ class Car(models.Model):
         decimal_places=1,
         validators=[MinValueValidator(0.1)],
     )
-    transmission_type = models.ForeignKey(
-        TransmissionType,
-        on_delete=models.PROTECT,
-        related_name="cars",
-        verbose_name="Коробка передач",
+    transmission_type = models.CharField(
+        "Коробка передач",
+        max_length=20,
+        choices=TransmissionType.choices,
+        default=TransmissionType.AUTOMATIC,
     )
+    photo_1 = models.ImageField("Фото 1", upload_to="cars/", null=True, blank=True)
+    photo_2 = models.ImageField("Фото 2", upload_to="cars/", null=True, blank=True)
+    photo_3 = models.ImageField("Фото 3", upload_to="cars/", null=True, blank=True)
+    photo_4 = models.ImageField("Фото 4", upload_to="cars/", null=True, blank=True)
+    photo_5 = models.ImageField("Фото 5", upload_to="cars/", null=True, blank=True)
     price = models.DecimalField(
         "Цена",
         max_digits=12,
@@ -80,19 +74,10 @@ class Car(models.Model):
         null=True,
         blank=True,
     )
-    discount_until = models.DateField(
-        "Скидка до",
-        null=True,
-        blank=True,
-    )
+    discount_until = models.DateField("Скидка до", null=True, blank=True)
     is_hot = models.BooleanField("Горячий продукт", default=False)
     created_at = models.DateTimeField("Дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def clean(self):
-        super().clean()
-        if self.discount_price and self.discount_price > self.price:
-            raise ValidationError("Цена со скидкой не может быть больше основной цены.")
 
     class Meta:
         verbose_name = "Автомобиль"
@@ -102,30 +87,11 @@ class Car(models.Model):
     def __str__(self):
         return f"{self.brand.name} {self.model_name}"
 
-
-class CarImage(models.Model):
-    car = models.ForeignKey(
-        Car,
-        on_delete=models.CASCADE,
-        related_name="images",
-        verbose_name="Автомобиль",
-    )
-    image = models.ImageField("Фото", upload_to="cars/")
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        verbose_name = "Фото автомобиля"
-        verbose_name_plural = "Фото автомобилей"
-        ordering = ("created_at",)
-
-    def __str__(self):
-        return f"Фото: {self.car}"
-
     def clean(self):
         super().clean()
-        if not self.pk and self.car.images.count() >= 5:
-            raise ValidationError("Можно добавить не более 5 фото для одного автомобиля.")
+        if self.discount_price and self.discount_price > self.price:
+            raise ValidationError("Цена со скидкой не может быть больше основной цены.")
 
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super().save(*args, **kwargs)
+    @property
+    def first_photo(self):
+        return self.photo_1 or self.photo_2 or self.photo_3 or self.photo_4 or self.photo_5

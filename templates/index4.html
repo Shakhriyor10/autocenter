@@ -43,18 +43,16 @@
                 {% if car.is_hot %}
                   <div class="thmb_cntnt"><ul class="tag mb0"><li class="list-inline-item"><a href="#">HOT</a></li></ul></div>
                 {% endif %}
-                {% with first_image=car.images.first %}
-                  {% if first_image %}
-                    <img class="img-whp" src="{{ first_image.image.url }}" alt="{{ car.title }}">
+                {% if car.first_photo %}
+                    <img class="img-whp" src="{{ car.first_photo.url }}" alt="{{ car.title }}">
                   {% else %}
                     <img class="img-whp" src="{% static 'images/header-logo.svg' %}" alt="{{ car.title }}">
                   {% endif %}
-                {% endwith %}
               </div>
               <div class="details">
                 <h4>{{ car.title }}</h4>
                 <h5>{{ car.brand.name }} {{ car.model_name }}</h5>
-                <p>{{ car.engine_type.name }} • {{ car.engine_volume }} л • {{ car.transmission_type.name }}</p>
+                <p>{{ car.get_engine_type_display }} • {{ car.engine_volume }} л • {{ car.get_transmission_type_display }}</p>
                 <p>
                   {% if car.discount_price %}
                     <span style="text-decoration: line-through; opacity:.7;">${{ car.price }}</span>
