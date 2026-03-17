@@ -66,8 +66,33 @@ class Car(models.Model):
         related_name="cars",
         verbose_name="Коробка передач",
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    price = models.DecimalField(
+        "Цена",
+        max_digits=12,
+        decimal_places=2,
+        validators=[MinValueValidator(0)],
+    )
+    discount_price = models.DecimalField(
+        "Цена со скидкой",
+        max_digits=12,
+        decimal_places=2,
+        validators=[MinValueValidator(0)],
+        null=True,
+        blank=True,
+    )
+    discount_until = models.DateField(
+        "Скидка до",
+        null=True,
+        blank=True,
+    )
+    is_hot = models.BooleanField("Горячий продукт", default=False)
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def clean(self):
+        super().clean()
+        if self.discount_price and self.discount_price > self.price:
+            raise ValidationError("Цена со скидкой не может быть больше основной цены.")
 
     class Meta:
         verbose_name = "Автомобиль"

@@ -18,8 +18,13 @@ class CarAdmin(admin.ModelAdmin):
         "engine_type",
         "engine_volume",
         "transmission_type",
+        "price",
+        "discount_price",
+        "discount_until",
+        "is_hot",
+        "created_at",
     )
-    list_filter = ("brand", "engine_type", "transmission_type")
+    list_filter = ("brand", "engine_type", "transmission_type", "is_hot")
     search_fields = ("title", "model_name", "brand__name")
     inlines = (CarImageInline,)
 
