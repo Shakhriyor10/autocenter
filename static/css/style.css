@@ -17555,8 +17555,6 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   background-size: cover;
   background-position: center center;
   height: 850px;
-
-  /* ВОТ ЭТО ДОБАВЬ */
   clip-path: ellipse(100% 85% at 50% 15%);
 }
 .bg-home5{
@@ -17564,9 +17562,54 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   background-size: cover;
   background-position: center center;
   height: 850px;
-
-  /* ВОТ ЭТО ДОБАВЬ */
   clip-path: ellipse(100% 85% at 50% 15%);
+}
+.banner-carousel,
+.banner-carousel .carousel-inner,
+.banner-carousel .carousel-item,
+.banner-slide {
+  min-height: 850px;
+}
+.banner-slide {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  clip-path: ellipse(100% 85% at 50% 15%);
+}
+.banner-slide-default {
+  background-image: url("/static/images/home/2shine_red.jpg");
+}
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.45) 0%, rgba(17, 24, 39, 0.68) 100%);
+}
+.banner-content {
+  position: relative;
+  z-index: 2;
+}
+.banner-content .title,
+.banner-content .para {
+  color: #ffffff;
+}
+.banner-content .para {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.banner-indicators {
+  bottom: 70px;
+}
+.banner-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.banner-carousel .carousel-control-prev,
+.banner-carousel .carousel-control-next {
+  width: 8%;
 }
 .bg-home6{
   background-image: url(../images/home/6.jpg);
