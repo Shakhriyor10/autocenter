@@ -5010,7 +5010,7 @@ form.listing_page_v9{
   width: 100%;
 }
 .listing-home-bg{
-  background-image: url(../images/home/1.jpg);
+  background-image: url("/static/images/home/1.jpg");
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -17531,7 +17531,7 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   background-repeat: no-repeat;
 }
 .bg-home1{
-  background-image: url(../images/home/1.jpg);
+  background-image: url("/static/images/home/1.jpg");
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -17550,21 +17550,23 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   background-size: cover;
   background-position: center center;
 }
-.bg-home4{
-  background-image: url(../images/home/1.png);
-  -webkit-background-size: cover;
+.bg-home4 {
+  background-image: url("/static/images/home/1.jpg");
   background-size: cover;
   background-position: center center;
   height: 850px;
+
+  /* ВОТ ЭТО ДОБАВЬ */
+  clip-path: ellipse(100% 85% at 50% 15%);
 }
 .bg-home5{
-  background-image: url(../images/home/5.jpg);
-  background-attachment: fixed;
-  -webkit-background-size: cover;
+  background-image: url("/static/images/home/2shine_red.jpg");
   background-size: cover;
   background-position: center center;
-  background-repeat: no-repeat;
-  height: 900px;
+  height: 850px;
+
+  /* ВОТ ЭТО ДОБАВЬ */
+  clip-path: ellipse(100% 85% at 50% 15%);
 }
 .bg-home6{
   background-image: url(../images/home/6.jpg);
