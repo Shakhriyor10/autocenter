@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from frontend.models import Brand, Car
+from frontend.models import Banner, Brand, Car
+
+
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ("title", "sort_order", "is_active", "created_at")
+    list_filter = ("is_active",)
+    search_fields = ("title", "short_description")
+    list_editable = ("sort_order", "is_active")
 
 
 @admin.register(Car)
