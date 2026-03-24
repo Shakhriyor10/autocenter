@@ -15,6 +15,24 @@ class Brand(models.Model):
         return self.name
 
 
+class Banner(models.Model):
+    title = models.CharField("Название", max_length=200)
+    short_description = models.CharField("Короткое описание", max_length=255)
+    image = models.ImageField("Фото", upload_to="banners/")
+    sort_order = models.PositiveIntegerField("Порядок сортировки", default=0)
+    is_active = models.BooleanField("Активный", default=True)
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
+    updated_at = models.DateTimeField("Дата обновления", auto_now=True)
+
+    class Meta:
+        verbose_name = "Баннер"
+        verbose_name_plural = "Баннеры"
+        ordering = ("sort_order", "-created_at")
+
+    def __str__(self):
+        return self.title
+
+
 class Car(models.Model):
     class EngineType(models.TextChoices):
         TURBO = "turbo", "Турбина"

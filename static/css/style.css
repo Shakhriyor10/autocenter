@@ -17551,7 +17551,6 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   background-position: center center;
 }
 .bg-home4 {
-  background-image: url("/static/images/home/1.jpg");
   background-size: cover;
   background-position: center center;
   height: 850px;
@@ -17559,6 +17558,7 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   /* ВОТ ЭТО ДОБАВЬ */
   clip-path: ellipse(100% 85% at 50% 15%);
 }
+
 .bg-home5{
   background-image: url("/static/images/home/2shine_red.jpg");
   background-size: cover;

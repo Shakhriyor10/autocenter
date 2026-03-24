@@ -406,7 +406,8 @@
   </div>
 
   <!-- Home Design -->
-<section class="home-one home4_style bgc_home4_style bg-home4">
+<section class="home-one home4_style bgc_home4_style bg-home4"
+         style="background-image: url('{{ banner.image.url }}');">
   <div class="container">
     <div class="row posr">
       <div class="col-xl-11 col-xxl-10 m-auto">
@@ -416,9 +417,9 @@
               <span class="aminated-object1">
                 <img class="objects" src="images/home/title-bottom-border.svg" alt="">
               </span>
-              Search Less. Live More.
+              {{ banner.title|default:"Search Less. Live More." }}
             </h2>
-            <p class="para">We make finding the right car simple</p>
+            <p class="para">{{ banner.short_description|default:"We make finding the right car simple" }}</p>
           </div>
         </div> <!-- 🔥 ВОТ ЭТОГО НЕ ХВАТАЛО -->
       </div>
