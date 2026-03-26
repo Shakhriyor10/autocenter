@@ -407,7 +407,7 @@
 
   <!-- Home Design -->
 <section class="home-one home4_style bgc_home4_style bg-home4"
-         style="background-image: url('{% if banner %}{{ banner.image.url }}{% else %}{% static 'images/home/1.jpg' %}{% endif %}');">
+         style="background-image: url('{{ banner.image.url }}');">
   <div class="container">
     <div class="row posr">
       <div class="col-xl-11 col-xxl-10 m-auto">
@@ -459,7 +459,7 @@
                   </div>
                   <div class="details">
                     <div class="wrapper">
-                      <h6 class="title"><a href="{% url 'car_detail' car.id %}">{{ car.brand.name }} {{ car.model_name }}</a></h6>
+                      <h6 class="title"><a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a></h6>
                     </div>
                     <div class="listing_footer">
                       <h5 class="price text-thm4 float-none float-sm-start">${{ car.discount_price|default:car.price }}</h5>
@@ -565,7 +565,7 @@
                       ${{ car.discount_price|default:car.price }}
                     </h5>
                     <h6 class="title">
-                      <a href="{% url 'car_detail' car.id %}">{{ car.brand.name }} {{ car.model_name }}</a>
+                      <a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a>
                     </h6>
                     <div class="listign_review">
                       <ul>

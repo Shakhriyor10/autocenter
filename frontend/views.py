@@ -25,20 +25,25 @@ def index(request):
     )
 
 
-def car_detail(request, car_id):
-    car = get_object_or_404(Car.objects.select_related("brand"), pk=car_id)
-    car_banners = car.banners.filter(is_active=True)
+def car_detail(request, pk):
+    car = get_object_or_404(
+        Car.objects.select_related("brand").prefetch_related("colors"),
+        pk=pk,
+    )
+    color_images = [color for color in car.colors.all() if color.image]
 
-    gallery_photos = [
-        photo for photo in [car.photo_1, car.photo_2, car.photo_3, car.photo_4, car.photo_5] if photo
-    ]
+    main_photo = None
+    if color_images:
+        main_photo = color_images[0].image
+    elif car.first_photo:
+        main_photo = car.first_photo
 
     return render(
         request,
         "car_detail.html",
         {
             "car": car,
-            "car_banners": car_banners,
-            "gallery_photos": gallery_photos,
+            "color_images": color_images,
+            "main_photo": main_photo,
         },
     )

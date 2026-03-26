@@ -115,41 +115,44 @@ class Car(models.Model):
         return self.photo_1 or self.photo_2 or self.photo_3 or self.photo_4 or self.photo_5
 
 
-class CarBanner(models.Model):
-    class MediaType(models.TextChoices):
-        IMAGE = "image", "Изображение"
-        VIDEO = "video", "Видео"
-
+class CarColor(models.Model):
     car = models.ForeignKey(
         Car,
         on_delete=models.CASCADE,
-        related_name="banners",
+        related_name="colors",
         verbose_name="Автомобиль",
     )
-    media_type = models.CharField(
-        "Тип медиа",
-        max_length=10,
-        choices=MediaType.choices,
-        default=MediaType.IMAGE,
-    )
-    image = models.ImageField("Изображение", upload_to="car_banners/", null=True, blank=True)
-    video_url = models.URLField("Ссылка на видео", blank=True)
-    title = models.CharField("Заголовок", max_length=200, blank=True)
+    name = models.CharField("Название цвета", max_length=80, blank=True)
+    primary_color = models.CharField("Основной цвет (HEX)", max_length=7)
+    secondary_color = models.CharField("Второй цвет (HEX)", max_length=7, blank=True)
+    image = models.ImageField("Фото этого цвета", upload_to="cars/colors/")
     sort_order = models.PositiveIntegerField("Порядок", default=0)
-    is_active = models.BooleanField("Активный", default=True)
-    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
 
     class Meta:
-        verbose_name = "Баннер автомобиля"
-        verbose_name_plural = "Баннеры автомобилей"
-        ordering = ("sort_order", "-created_at")
+        verbose_name = "Цвет автомобиля"
+        verbose_name_plural = "Цвета автомобилей"
+        ordering = ("sort_order", "id")
 
     def __str__(self):
-        return f"{self.car} / {self.get_media_type_display()}"
+        label = self.name or self.primary_color
+        if self.secondary_color:
+            return f"{self.car}: {label} / {self.secondary_color}"
+        return f"{self.car}: {label}"
 
     def clean(self):
         super().clean()
-        if self.media_type == self.MediaType.IMAGE and not self.image:
-            raise ValidationError({"image": "Для типа 'Изображение' необходимо загрузить файл."})
-        if self.media_type == self.MediaType.VIDEO and not self.video_url:
-            raise ValidationError({"video_url": "Для типа 'Видео' необходимо указать ссылку."})
+        for field_name in ("primary_color", "secondary_color"):
+            value = getattr(self, field_name)
+            if not value:
+                continue
+            if len(value) != 7 or not value.startswith("#"):
+                raise ValidationError({field_name: "Цвет должен быть в формате HEX, например #FFFFFF"})
+
+    @property
+    def swatch_style(self):
+        if self.secondary_color:
+            return (
+                "background: linear-gradient(90deg, "
+                f"{self.primary_color} 0 50%, {self.secondary_color} 50% 100%);"
+            )
+        return f"background-color: {self.primary_color};"
