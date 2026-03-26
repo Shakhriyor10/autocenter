@@ -113,3 +113,43 @@ class Car(models.Model):
     @property
     def first_photo(self):
         return self.photo_1 or self.photo_2 or self.photo_3 or self.photo_4 or self.photo_5
+
+
+class CarBanner(models.Model):
+    class MediaType(models.TextChoices):
+        IMAGE = "image", "Изображение"
+        VIDEO = "video", "Видео"
+
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="banners",
+        verbose_name="Автомобиль",
+    )
+    media_type = models.CharField(
+        "Тип медиа",
+        max_length=10,
+        choices=MediaType.choices,
+        default=MediaType.IMAGE,
+    )
+    image = models.ImageField("Изображение", upload_to="car_banners/", null=True, blank=True)
+    video_url = models.URLField("Ссылка на видео", blank=True)
+    title = models.CharField("Заголовок", max_length=200, blank=True)
+    sort_order = models.PositiveIntegerField("Порядок", default=0)
+    is_active = models.BooleanField("Активный", default=True)
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Баннер автомобиля"
+        verbose_name_plural = "Баннеры автомобилей"
+        ordering = ("sort_order", "-created_at")
+
+    def __str__(self):
+        return f"{self.car} / {self.get_media_type_display()}"
+
+    def clean(self):
+        super().clean()
+        if self.media_type == self.MediaType.IMAGE and not self.image:
+            raise ValidationError({"image": "Для типа 'Изображение' необходимо загрузить файл."})
+        if self.media_type == self.MediaType.VIDEO and not self.video_url:
+            raise ValidationError({"video_url": "Для типа 'Видео' необходимо указать ссылку."})

@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from frontend.models import Banner, Brand, Car
+from frontend.models import Banner, Brand, Car, CarBanner
+
+
+class CarBannerInline(admin.TabularInline):
+    model = CarBanner
+    extra = 1
+    fields = ("media_type", "image", "video_url", "title", "sort_order", "is_active")
 
 
 @admin.register(Banner)
@@ -28,6 +34,14 @@ class CarAdmin(admin.ModelAdmin):
     )
     list_filter = ("brand", "engine_type", "transmission_type", "is_hot")
     search_fields = ("title", "model_name", "brand__name")
+    inlines = (CarBannerInline,)
+
+
+@admin.register(CarBanner)
+class CarBannerAdmin(admin.ModelAdmin):
+    list_display = ("car", "media_type", "sort_order", "is_active", "created_at")
+    list_filter = ("media_type", "is_active")
+    search_fields = ("car__title", "car__model_name", "title")
 
 
 admin.site.register(Brand)

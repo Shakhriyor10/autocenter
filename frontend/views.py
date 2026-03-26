@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.db.models import QuerySet
+from django.shortcuts import get_object_or_404, render
+
 from frontend.models import Banner, Car
 
 
@@ -21,5 +21,24 @@ def index(request):
             "banner": banner,
             "expensive_cars": expensive_cars,
             "popular_vehicles": popular_vehicles,
+        },
+    )
+
+
+def car_detail(request, car_id):
+    car = get_object_or_404(Car.objects.select_related("brand"), pk=car_id)
+    car_banners = car.banners.filter(is_active=True)
+
+    gallery_photos = [
+        photo for photo in [car.photo_1, car.photo_2, car.photo_3, car.photo_4, car.photo_5] if photo
+    ]
+
+    return render(
+        request,
+        "car_detail.html",
+        {
+            "car": car,
+            "car_banners": car_banners,
+            "gallery_photos": gallery_photos,
         },
     )

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ car.brand.name }} {{ car.model_name }}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container py-5">
+  <a href="{% url 'index' %}" class="btn btn-light mb-4">← Назад к списку</a>
+
+  {% if car_banners %}
+  <section class="mb-5">
+    <h2 class="mb-3">Баннеры автомобиля</h2>
+    <div class="row g-4">
+      {% for banner in car_banners %}
+      <div class="col-lg-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            {% if banner.media_type == 'video' %}
+              <div class="ratio ratio-16x9 mb-3">
+                <iframe src="{{ banner.video_url }}" title="{{ banner.title|default:car.title }}" allowfullscreen></iframe>
+              </div>
+            {% elif banner.image %}
+              <img src="{{ banner.image.url }}" alt="{{ banner.title|default:car.title }}" class="img-fluid rounded mb-3">
+            {% endif %}
+            <h5>{{ banner.title|default:'Медиа-баннер' }}</h5>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="mb-5">
+    <h1 class="mb-3">{{ car.brand.name }} {{ car.model_name }}</h1>
+    <div class="row g-4">
+      {% for photo in gallery_photos %}
+      <div class="col-md-4">
+        <img src="{{ photo.url }}" alt="{{ car.title }}" class="img-fluid rounded">
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <img src="{% static 'images/listing/1.jpg' %}" alt="{{ car.title }}" class="img-fluid rounded">
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h3 class="mb-3">Характеристики</h3>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Бренд:</strong> {{ car.brand.name }}</li>
+      <li class="list-group-item"><strong>Модель:</strong> {{ car.model_name }}</li>
+      <li class="list-group-item"><strong>Двигатель:</strong> {{ car.get_engine_type_display }} ({{ car.engine_volume }} л)</li>
+      <li class="list-group-item"><strong>КПП:</strong> {{ car.get_transmission_type_display }}</li>
+      <li class="list-group-item"><strong>Цена:</strong> ${{ car.discount_price|default:car.price }}</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
