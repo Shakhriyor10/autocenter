@@ -459,7 +459,7 @@
                   </div>
                   <div class="details">
                     <div class="wrapper">
-                      <h6 class="title"><a href="#">{{ car.brand.name }} {{ car.model_name }}</a></h6>
+                      <h6 class="title"><a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a></h6>
                     </div>
                     <div class="listing_footer">
                       <h5 class="price text-thm4 float-none float-sm-start">${{ car.discount_price|default:car.price }}</h5>
@@ -565,7 +565,7 @@
                       ${{ car.discount_price|default:car.price }}
                     </h5>
                     <h6 class="title">
-                      <a href="#">{{ car.brand.name }} {{ car.model_name }}</a>
+                      <a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a>
                     </h6>
                     <div class="listign_review">
                       <ul>
