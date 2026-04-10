@@ -83,6 +83,15 @@
 
   .car-features-wrap {
     margin-top: 60px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: #030303;
+    padding: 72px 24px;
+  }
+  .car-features-inner {
+    max-width: 1180px;
+    margin: 0 auto;
   }
   .feature-row {
     display: grid;
@@ -91,8 +100,9 @@
     align-items: center;
     margin-bottom: 34px;
     padding: 24px;
-    background: #f4f6fa;
+    background: #0f1115;
     border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
   .feature-row.feature-row-reverse {
     grid-template-columns: 1fr 1.08fr;
@@ -114,13 +124,13 @@
     font-size: 34px;
     line-height: 1.25;
     margin-bottom: 12px;
-    color: #1f2f46;
+    color: #f5f7ff;
   }
   .feature-description {
     margin: 0;
     font-size: 21px;
     line-height: 1.45;
-    color: #344760;
+    color: #b4bfd2;
     white-space: pre-line;
   }
   @media (max-width: 991px) {
@@ -205,17 +215,19 @@
 
     {% if features %}
     <section class="car-features-wrap">
-      {% for feature in features %}
-      <article class="feature-row {% if not forloop.first and forloop.counter|divisibleby:2 %}feature-row-reverse{% endif %}">
-        <div class="feature-image-box">
-          <img src="{{ feature.image.url }}" alt="{{ feature.title }}" class="feature-image">
-        </div>
-        <div class="feature-content">
-          <h3 class="feature-title">{{ feature.title }}</h3>
-          <p class="feature-description">{{ feature.description }}</p>
-        </div>
-      </article>
-      {% endfor %}
+      <div class="car-features-inner">
+        {% for feature in features %}
+        <article class="feature-row {% if not forloop.first and forloop.counter|divisibleby:2 %}feature-row-reverse{% endif %}">
+          <div class="feature-image-box">
+            <img src="{{ feature.image.url }}" alt="{{ feature.title }}" class="feature-image">
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">{{ feature.title }}</h3>
+            <p class="feature-description">{{ feature.description }}</p>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
     </section>
     {% endif %}
 
