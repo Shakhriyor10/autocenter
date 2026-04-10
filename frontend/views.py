@@ -27,13 +27,21 @@ def index(request):
 
 def car_detail(request, pk):
     car = get_object_or_404(
-        Car.objects.select_related("brand").prefetch_related("colors"),
+        Car.objects.select_related("brand").prefetch_related("colors", "banners"),
         pk=pk,
     )
+    banners = [banner for banner in car.banners.all() if banner.is_active][:5]
+    banner_slides = [
+        {"image": banner.image.url, "short_description": banner.short_description}
+        for banner in banners
+        if banner.image
+    ]
     color_images = [color for color in car.colors.all() if color.image]
 
     main_photo = None
-    if color_images:
+    if banners:
+        main_photo = banners[0].image
+    elif color_images:
         main_photo = color_images[0].image
     elif car.first_photo:
         main_photo = car.first_photo
@@ -43,6 +51,8 @@ def car_detail(request, pk):
         "car_detail.html",
         {
             "car": car,
+            "banners": banners,
+            "banner_slides": banner_slides,
             "color_images": color_images,
             "main_photo": main_photo,
         },

@@ -156,3 +156,33 @@ class CarColor(models.Model):
                 f"{self.primary_color} 0 50%, {self.secondary_color} 50% 100%);"
             )
         return f"background-color: {self.primary_color};"
+
+
+class CarBanner(models.Model):
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="banners",
+        verbose_name="Автомобиль",
+    )
+    image = models.ImageField("Фото баннера", upload_to="cars/banners/")
+    short_description = models.CharField("Короткое описание", max_length=160)
+    sort_order = models.PositiveIntegerField("Порядок", default=0)
+    is_active = models.BooleanField("Активный", default=True)
+
+    class Meta:
+        verbose_name = "Баннер автомобиля"
+        verbose_name_plural = "Баннеры автомобиля"
+        ordering = ("sort_order", "id")
+
+    def __str__(self):
+        return f"{self.car}: {self.short_description[:40]}"
+
+    def clean(self):
+        super().clean()
+        if not self.car_id:
+            return
+
+        banners_count = CarBanner.objects.filter(car_id=self.car_id).exclude(pk=self.pk).count()
+        if banners_count >= 5:
+            raise ValidationError("Для одного автомобиля можно добавить максимум 5 баннеров.")
