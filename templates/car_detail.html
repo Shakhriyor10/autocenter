@@ -73,6 +73,10 @@
     max-width: 1120px;
     margin: 0 auto;
   }
+  .car-overview-top {
+    text-align: center;
+    margin-bottom: 18px;
+  }
   .car-overview {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
@@ -85,13 +89,11 @@
     justify-content: center;
     align-items: center;
     min-height: 420px;
-    padding-top: 112px;
   }
   .color-swatch-overlay {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 3;
     padding: 12px 16px;
     border-radius: 18px;
@@ -219,8 +221,8 @@
     .car-overview {
       grid-template-columns: 1fr;
     }
-    .car-image-stage {
-      padding-top: 104px;
+    .car-overview-top {
+      margin-bottom: 14px;
     }
     .color-swatch-overlay {
       width: calc(100% - 16px);
@@ -285,27 +287,29 @@
   <div class="container">
 
     <div class="car-visual-center">
+      <div class="car-overview-top">
+        <div class="color-swatch-overlay">
+          <h2 class="car-heading">{{ car.brand.name }} {{ car.model_name }}</h2>
+          {% if color_images %}
+          <span class="car-swatches-title">Выберите цвет</span>
+          <div class="color-swatches" id="color-swatches">
+            {% for color in color_images %}
+            <button
+              type="button"
+              class="color-swatch {% if forloop.first %}active{% endif %}"
+              style="{{ color.swatch_style }}"
+              data-image="{{ color.image.url }}"
+              data-label="{{ color.name|default:'Цвет' }}"
+              title="{{ color.name|default:'Цвет' }}"
+            ></button>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
       <div class="car-overview">
         <div class="car-image-stage">
-          <div class="color-swatch-overlay">
-            <h2 class="car-heading">{{ car.brand.name }} {{ car.model_name }}</h2>
-            {% if color_images %}
-            <span class="car-swatches-title">Выберите цвет</span>
-            <div class="color-swatches" id="color-swatches">
-              {% for color in color_images %}
-              <button
-                type="button"
-                class="color-swatch {% if forloop.first %}active{% endif %}"
-                style="{{ color.swatch_style }}"
-                data-image="{{ color.image.url }}"
-                data-label="{{ color.name|default:'Цвет' }}"
-                title="{{ color.name|default:'Цвет' }}"
-              ></button>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-
           {% if main_photo %}
           <img
             id="main-car-image"
