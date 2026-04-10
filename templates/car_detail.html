@@ -8,6 +8,33 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <style>
     .main-photo-wrap { position: relative; }
+    .car-banner-list { margin: 18px 0 34px; }
+    .car-banner-item {
+      position: relative;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #eef1f5;
+    }
+    .car-banner-image {
+      width: 100%;
+      height: min(62vh, 620px);
+      object-fit: cover;
+      display: block;
+    }
+    .car-banner-description {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, .58);
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 16px;
+      text-align: center;
+      max-width: min(860px, 92%);
+      width: max-content;
+    }
     .color-swatches { display: flex; gap: 10px; flex-wrap: wrap; }
     .color-swatch {
       width: 28px;
@@ -26,26 +53,29 @@
       border-radius: 12px;
       background: #f7f7f7;
     }
-    .banner-overlay {
-      position: absolute;
-      left: 50%;
-      bottom: 20px;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, .6);
-      color: #fff;
-      border-radius: 10px;
-      padding: 10px 14px;
-      max-width: 80%;
-      text-align: center;
-      font-size: 14px;
-    }
   </style>
 </head>
 <body>
-<div class="container py-5">
+<div class="container-fluid px-3 px-md-4 px-xl-5 py-5">
   <a href="{% url 'index' %}" class="btn btn-link ps-0 mb-3">← На главную</a>
   <h1 class="mb-2">{{ car.brand.name }} {{ car.model_name }}</h1>
   <p class="text-muted">{{ car.get_engine_type_display }} • {{ car.engine_volume }}L • {{ car.get_transmission_type_display }}</p>
+
+  {% if banners %}
+  <section class="car-banner-list">
+    <h4 class="mb-3">Баннеры автомобиля</h4>
+    {% for banner in banners %}
+    <article class="car-banner-item">
+      <img
+        src="{{ banner.image.url }}"
+        alt="{{ car.title }} — баннер {{ forloop.counter }}"
+        class="car-banner-image"
+      >
+      <div class="car-banner-description">{{ banner.short_description }}</div>
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}
 
   <div class="row g-4 align-items-start">
     <div class="col-lg-8">
@@ -57,9 +87,6 @@
           src="{{ main_photo.url }}"
           alt="{{ car.title }}"
         >
-        {% if banner_slides %}
-        <div id="banner-description" class="banner-overlay">{{ banners.0.short_description }}</div>
-        {% endif %}
       </div>
       {% else %}
       <div class="p-5 bg-light rounded">Нет фотографии автомобиля.</div>
@@ -67,14 +94,7 @@
     </div>
 
     <div class="col-lg-4">
-      {% if banner_slides %}
-      <h5>Баннеры автомобиля</h5>
-      <p class="text-muted small mb-3">
-        Сначала показываются баннеры, затем автоматически включается просмотр цветов автомобиля.
-      </p>
-      {% endif %}
-
-      <h5>Доступные цвета</h5>
+      <h5>Выбор цвета автомобиля</h5>
       {% if color_images %}
       <p class="text-muted small mb-2">Наведи на кружок, чтобы увидеть фото этого цвета.</p>
       <div class="color-swatches" id="color-swatches">
@@ -100,53 +120,11 @@
   </div>
 </div>
 
-{{ banner_slides|json_script:"car-banners-data" }}
 <script>
   (function() {
     const imageEl = document.getElementById('main-car-image');
     const swatches = document.querySelectorAll('.color-swatch');
-    const bannerDescriptionEl = document.getElementById('banner-description');
     if (!imageEl) return;
-
-    const bannersDataNode = document.getElementById('car-banners-data');
-    const banners = bannersDataNode ? JSON.parse(bannersDataNode.textContent) : [];
-
-    const activateColorMode = () => {
-      if (!swatches.length) return;
-      const firstSwatch = swatches[0];
-      if (firstSwatch && firstSwatch.dataset.image) {
-        imageEl.src = firstSwatch.dataset.image;
-      }
-      swatches.forEach((item) => item.classList.remove('active'));
-      firstSwatch.classList.add('active');
-      if (bannerDescriptionEl) {
-        bannerDescriptionEl.style.display = 'none';
-      }
-    };
-
-    if (banners.length && bannerDescriptionEl) {
-      let index = 0;
-      const showBanner = () => {
-        const banner = banners[index];
-        if (!banner || !banner.image) {
-          activateColorMode();
-          return;
-        }
-        imageEl.src = banner.image;
-        bannerDescriptionEl.textContent = banner.short_description || '';
-      };
-
-      showBanner();
-      const intervalId = setInterval(() => {
-        index += 1;
-        if (index >= banners.length) {
-          clearInterval(intervalId);
-          activateColorMode();
-          return;
-        }
-        showBanner();
-      }, 2500);
-    }
 
     if (!swatches.length) return;
     swatches.forEach((swatch) => {
@@ -157,9 +135,6 @@
         }
         swatches.forEach((item) => item.classList.remove('active'));
         swatch.classList.add('active');
-        if (bannerDescriptionEl) {
-          bannerDescriptionEl.style.display = 'none';
-        }
       });
     });
   })();
