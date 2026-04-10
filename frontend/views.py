@@ -39,12 +39,15 @@ def car_detail(request, pk):
     color_images = [color for color in car.colors.all() if color.image]
 
     main_photo = None
-    if banners:
-        main_photo = banners[0].image
-    elif color_images:
+    if color_images:
+        # В детальном просмотре главная фотография должна соответствовать
+        # первому доступному цвету автомобиля.
         main_photo = color_images[0].image
     elif car.first_photo:
         main_photo = car.first_photo
+    elif banners:
+        # Баннер используем только как запасной вариант, когда нет обычных фото.
+        main_photo = banners[0].image
 
     return render(
         request,
