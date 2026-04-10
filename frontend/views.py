@@ -30,14 +30,25 @@ def car_detail(request, pk):
         Car.objects.select_related("brand").prefetch_related("colors", "banners", "features"),
         pk=pk,
     )
-    banners = [banner for banner in car.banners.all() if banner.is_active][:5]
+    banners = [
+        banner
+        for banner in car.banners.all()
+        if banner.is_active and (banner.image or banner.video)
+    ][:5]
     banner_slides = [
-        {"image": banner.image.url, "short_description": banner.short_description}
+        {
+            "image": banner.image.url if banner.image else None,
+            "video": banner.video.url if banner.video else None,
+            "short_description": banner.short_description,
+        }
         for banner in banners
-        if banner.image
     ]
     color_images = [color for color in car.colors.all() if color.image]
-    features = [feature for feature in car.features.all() if feature.is_active and feature.image][:8]
+    features = [
+        feature
+        for feature in car.features.all()
+        if feature.is_active and (feature.image or feature.video)
+    ][:8]
 
     main_photo = None
     if color_images:
@@ -46,7 +57,7 @@ def car_detail(request, pk):
         main_photo = color_images[0].image
     elif car.first_photo:
         main_photo = car.first_photo
-    elif banners:
+    elif banners and banners[0].image:
         # Баннер используем только как запасной вариант, когда нет обычных фото.
         main_photo = banners[0].image
 

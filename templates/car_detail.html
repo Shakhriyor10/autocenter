@@ -10,13 +10,29 @@
     padding-bottom: 70px;
   }
   .car-banner-section {
+    position: relative;
     margin-bottom: 22px;
     border-radius: 14px;
     overflow: hidden;
     background-position: center;
     background-size: cover;
   }
+  .car-banner-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  .car-banner-section .banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.34);
+  }
   .car-banner-section .banner-inner {
+    position: relative;
+    z-index: 2;
     min-height: 360px;
     display: flex;
     align-items: center;
@@ -117,6 +133,16 @@
     min-height: 220px;
     max-height: 320px;
   }
+  .feature-video {
+    width: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+    min-height: 220px;
+    max-height: 320px;
+    pointer-events: none;
+    background: #000;
+    display: block;
+  }
   .feature-title {
     font-size: 34px;
     line-height: 1.25;
@@ -154,7 +180,26 @@
 {% block content %}
 {% if banners %}
   {% for banner in banners %}
-  <section class="home-one home4_style bgc_home4_style car-banner-section" style="background-image: url('{{ banner.image.url }}');">
+  <section
+    class="home-one home4_style bgc_home4_style car-banner-section"
+    {% if banner.image %}style="background-image: url('{{ banner.image.url }}');"{% endif %}
+  >
+    {% if banner.video %}
+    <video
+      class="car-banner-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      disablepictureinpicture
+      controlslist="nodownload noplaybackrate nofullscreen"
+      aria-hidden="true"
+    >
+      <source src="{{ banner.video.url }}">
+    </video>
+    <div class="banner-overlay"></div>
+    {% endif %}
     <div class="banner-inner">
       <div class="home_content home1_style at_home4">
         <div class="home-text text-center mb30">
@@ -216,7 +261,23 @@
         {% for feature in features %}
         <article class="feature-row {% if not forloop.first and forloop.counter|divisibleby:2 %}feature-row-reverse{% endif %}">
           <div class="feature-image-box">
+            {% if feature.video %}
+            <video
+              class="feature-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              disablepictureinpicture
+              controlslist="nodownload noplaybackrate nofullscreen"
+              aria-label="{{ feature.title }}"
+            >
+              <source src="{{ feature.video.url }}">
+            </video>
+            {% else %}
             <img src="{{ feature.image.url }}" alt="{{ feature.title }}" class="feature-image">
+            {% endif %}
           </div>
           <div class="">
             <h3 class="feature-title">{{ feature.title }}</h3>
