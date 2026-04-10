@@ -72,9 +72,9 @@
         <ul id="respMenu3" class="ace-responsive-menu menu_list_custom_code wa float-start mt20 mr30" data-menu-style="horizontal">
           <li class="sidebar_panel"><a class="sidebar_switch pt0" href="#"><span></span></a></li>
         </ul>
-        <a href="car_detail.html" class="navbar_brand float-start dn-md">
-          <img class="logo1 img-fluid" src="images/header-logo3.svg" alt="header-logo.png">
-          <img class="logo2 img-fluid" src="images/header-logo2.svg" alt="header-logo2.svg">
+        <a href="{% url 'index' %}" class="navbar_brand float-start dn-md" style="margin-top: 25px">
+          <img class="logo1 img-fluid" src="{% static 'images/home/logo.png' %}" alt="header-logo.png" style="width: 80%;">
+          <img class="logo2 img-fluid" src="{% static 'images/home/logo.png' %}" alt="header-logo2.svg">
         </a>
         <!-- Responsive Menu Structure-->
         <ul id="respMenu" class="ace-responsive-menu menu_list_custom_code wa float-start" data-menu-style="horizontal">

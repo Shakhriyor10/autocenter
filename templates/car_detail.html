@@ -70,8 +70,18 @@
     margin: 0 auto;
   }
   .car-visual-center {
-    max-width: 920px;
+    max-width: 1120px;
     margin: 0 auto;
+  }
+  .car-overview-top {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .car-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+    gap: 28px;
+    align-items: center;
   }
   .car-image-stage {
     position: relative;
@@ -79,18 +89,70 @@
     justify-content: center;
     align-items: center;
     min-height: 420px;
-    padding-top: 56px;
   }
   .color-swatch-overlay {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 3;
-    padding: 8px 12px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
+    padding: 12px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(6px);
+    text-align: center;
+  }
+  .car-heading {
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0 0 10px;
+    color: #0f172a;
+  }
+  .car-swatches-title {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #4b5563;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .car-specs-panel {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e7ebf2;
+    box-shadow: 0 15px 32px rgba(8, 22, 45, 0.08);
+    padding: 22px;
+  }
+  .car-specs-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  .car-spec-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #f8fafc;
+  }
+  .car-spec-item span[class^="flaticon-"] {
+    font-size: 24px;
+    color: #1a3760;
+    line-height: 1;
+  }
+  .car-spec-item small {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  .car-spec-item strong {
+    color: #111827;
+    font-size: 16px;
+    line-height: 1.35;
   }
   .car-price-center {
     text-align: center;
@@ -156,6 +218,16 @@
     white-space: pre-line;
   }
   @media (max-width: 991px) {
+    .car-overview {
+      grid-template-columns: 1fr;
+    }
+    .car-overview-top {
+      margin-bottom: 14px;
+    }
+    .color-swatch-overlay {
+      width: calc(100% - 16px);
+      max-width: 460px;
+    }
     .feature-row,
     .feature-row.feature-row-reverse {
       grid-template-columns: 1fr;
@@ -215,9 +287,11 @@
   <div class="container">
 
     <div class="car-visual-center">
-      <div class="car-image-stage">
-        {% if color_images %}
+      <div class="car-overview-top">
         <div class="color-swatch-overlay">
+          <h2 class="car-heading">{{ car.brand.name }} {{ car.model_name }}</h2>
+          {% if color_images %}
+          <span class="car-swatches-title">Выберите цвет</span>
           <div class="color-swatches" id="color-swatches">
             {% for color in color_images %}
             <button
@@ -230,19 +304,56 @@
             ></button>
             {% endfor %}
           </div>
+          {% endif %}
         </div>
-        {% endif %}
+      </div>
 
-        {% if main_photo %}
-        <img
-          id="main-car-image"
-          class="car-main-image"
-          src="{{ main_photo.url }}"
-          alt="{{ car.title }}"
-        >
-        {% else %}
-        <div class="p-5 bg-light rounded">Нет фотографии автомобиля.</div>
-        {% endif %}
+      <div class="car-overview">
+        <div class="car-image-stage">
+          {% if main_photo %}
+          <img
+            id="main-car-image"
+            class="car-main-image"
+            src="{{ main_photo.url }}"
+            alt="{{ car.title }}"
+          >
+          {% else %}
+          <div class="p-5 bg-light rounded">Нет фотографии автомобиля.</div>
+          {% endif %}
+        </div>
+
+        <aside class="car-specs-panel" aria-label="Основные характеристики">
+          <ul class="car-specs-list">
+            <li class="car-spec-item">
+              <span class="flaticon-gas-station" aria-hidden="true"></span>
+              <div>
+                <small>Тип двигателя</small>
+                <strong>{{ car.get_engine_type_display }}</strong>
+              </div>
+            </li>
+            <li class="car-spec-item">
+              <span class="flaticon-road-perspective" aria-hidden="true"></span>
+              <div>
+                <small>Объём двигателя</small>
+                <strong>{{ car.engine_volume }} л</strong>
+              </div>
+            </li>
+            <li class="car-spec-item">
+              <span class="flaticon-gear" aria-hidden="true"></span>
+              <div>
+                <small>Коробка передач</small>
+                <strong>{{ car.get_transmission_type_display }}</strong>
+              </div>
+            </li>
+            <li class="car-spec-item">
+              <span class="flaticon-price-tag" aria-hidden="true"></span>
+              <div>
+                <small>Цена</small>
+                <strong>${{ car.discount_price|default:car.price }}</strong>
+              </div>
+            </li>
+          </ul>
+        </aside>
       </div>
 
       {% if not color_images %}
