@@ -1,79 +1,127 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ car.brand.name }} {{ car.model_name }}</title>
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <style>
-    .color-swatches { display: flex; gap: 10px; flex-wrap: wrap; }
-    .color-swatch {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid #fff;
-      box-shadow: 0 0 0 1px #d0d0d0;
-      cursor: pointer;
-      padding: 0;
-    }
-    .color-swatch.active { box-shadow: 0 0 0 2px #1a3760; }
-    .car-main-image {
-      width: 100%;
-      max-height: 520px;
-      object-fit: cover;
-      border-radius: 12px;
-      background: #f7f7f7;
-    }
-  </style>
-</head>
-<body>
-<div class="container py-5">
-  <a href="{% url 'index' %}" class="btn btn-link ps-0 mb-3">← На главную</a>
-  <h1 class="mb-2">{{ car.brand.name }} {{ car.model_name }}</h1>
-  <p class="text-muted">{{ car.get_engine_type_display }} • {{ car.engine_volume }}L • {{ car.get_transmission_type_display }}</p>
 
-  <div class="row g-4 align-items-start">
-    <div class="col-lg-8">
-      {% if main_photo %}
-      <img
-        id="main-car-image"
-        class="car-main-image"
-        src="{{ main_photo.url }}"
-        alt="{{ car.title }}"
-      >
-      {% else %}
-      <div class="p-5 bg-light rounded">Нет фотографии автомобиля.</div>
-      {% endif %}
-    </div>
+{% block title %}{{ car.brand.name }} {{ car.model_name }}{% endblock %}
 
-    <div class="col-lg-4">
-      <h5>Доступные цвета</h5>
-      {% if color_images %}
-      <p class="text-muted small mb-2">Наведи на кружок, чтобы увидеть фото этого цвета.</p>
-      <div class="color-swatches">
-        {% for color in color_images %}
-        <button
-          type="button"
-          class="color-swatch {% if forloop.first %}active{% endif %}"
-          style="{{ color.swatch_style }}"
-          data-image="{{ color.image.url }}"
-          data-label="{{ color.name|default:'Цвет' }}"
-          title="{{ color.name|default:'Цвет' }}"
-        ></button>
-        {% endfor %}
+{% block extra_css %}
+<style>
+  .car-detail-wrap {
+    padding-top: 40px;
+    padding-bottom: 70px;
+  }
+  .car-banner-section {
+    margin-bottom: 22px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+  }
+  .car-banner-section .banner-inner {
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(8, 16, 35, 0.45);
+    padding: 28px;
+  }
+  .car-banner-title {
+    color: #fff;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .car-banner-desc {
+    color: #f3f5f8;
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  .color-swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+  .color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #d0d0d0;
+    cursor: pointer;
+    padding: 0;
+  }
+  .color-swatch.active { box-shadow: 0 0 0 2px #1a3760; }
+  .car-main-image {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #f7f7f7;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% if banners %}
+  {% for banner in banners %}
+  <section class="home-one home4_style bgc_home4_style car-banner-section" style="background-image: url('{{ banner.image.url }}');">
+    <div class="banner-inner">
+      <div class="home_content home1_style at_home4">
+        <div class="home-text text-center mb30">
+          <h2 class="car-banner-title">{{ car.brand.name }} {{ car.model_name }}</h2>
+          <p class="car-banner-desc">{{ banner.short_description }}</p>
+        </div>
       </div>
-      {% else %}
-      <p class="text-muted">Для этой машины цвета пока не добавлены.</p>
-      {% endif %}
+    </div>
+  </section>
+  {% endfor %}
+{% endif %}
 
-      <div class="mt-4">
-        <h4>${{ car.discount_price|default:car.price }}</h4>
+<section class="car-detail-wrap">
+  <div class="container">
+    <a href="{% url 'index' %}" class="btn btn-link ps-0 mb-3">← На главную</a>
+    <h1 class="mb-2">{{ car.brand.name }} {{ car.model_name }}</h1>
+    <p class="text-muted mb-4">{{ car.get_engine_type_display }} • {{ car.engine_volume }}L • {{ car.get_transmission_type_display }}</p>
+
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-8">
+        {% if main_photo %}
+        <img
+          id="main-car-image"
+          class="car-main-image"
+          src="{{ main_photo.url }}"
+          alt="{{ car.title }}"
+        >
+        {% else %}
+        <div class="p-5 bg-light rounded">Нет фотографии автомобиля.</div>
+        {% endif %}
+      </div>
+
+      <div class="col-lg-4">
+        <h5>Выбор цвета автомобиля</h5>
+        {% if color_images %}
+        <p class="text-muted small mb-2">Наведи на кружок, чтобы увидеть фото этого цвета.</p>
+        <div class="color-swatches" id="color-swatches">
+          {% for color in color_images %}
+          <button
+            type="button"
+            class="color-swatch {% if forloop.first %}active{% endif %}"
+            style="{{ color.swatch_style }}"
+            data-image="{{ color.image.url }}"
+            data-label="{{ color.name|default:'Цвет' }}"
+            title="{{ color.name|default:'Цвет' }}"
+          ></button>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted">Для этой машины цвета пока не добавлены.</p>
+        {% endif %}
+
+        <div class="mt-4">
+          <h4>${{ car.discount_price|default:car.price }}</h4>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+{% endblock %}
 
+{% block extra_js %}
 <script>
   (function() {
     const imageEl = document.getElementById('main-car-image');
@@ -92,5 +140,4 @@
     });
   })();
 </script>
-</body>
-</html>
+{% endblock %}
