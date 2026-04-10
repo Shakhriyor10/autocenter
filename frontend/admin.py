@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from frontend.models import Banner, Brand, Car, CarBanner, CarColor
+from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature
 
 
 @admin.register(Banner)
@@ -24,6 +24,13 @@ class CarBannerInline(admin.TabularInline):
     fields = ("image", "short_description", "sort_order", "is_active")
 
 
+class CarFeatureInline(admin.TabularInline):
+    model = CarFeature
+    extra = 1
+    max_num = 8
+    fields = ("image", "title", "description", "position", "is_active")
+
+
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
     list_display = (
@@ -41,7 +48,7 @@ class CarAdmin(admin.ModelAdmin):
     )
     list_filter = ("brand", "engine_type", "transmission_type", "is_hot")
     search_fields = ("title", "model_name", "brand__name")
-    inlines = (CarBannerInline, CarColorInline)
+    inlines = (CarBannerInline, CarColorInline, CarFeatureInline)
 
 
 @admin.register(CarColor)
@@ -59,3 +66,10 @@ class CarBannerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Brand)
+
+
+@admin.register(CarFeature)
+class CarFeatureAdmin(admin.ModelAdmin):
+    list_display = ("car", "title", "position", "is_active")
+    list_filter = ("car__brand", "is_active")
+    search_fields = ("car__title", "car__model_name", "title", "description")

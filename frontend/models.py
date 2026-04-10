@@ -186,3 +186,34 @@ class CarBanner(models.Model):
         banners_count = CarBanner.objects.filter(car_id=self.car_id).exclude(pk=self.pk).count()
         if banners_count >= 5:
             raise ValidationError("Для одного автомобиля можно добавить максимум 5 баннеров.")
+
+
+class CarFeature(models.Model):
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="features",
+        verbose_name="Автомобиль",
+    )
+    image = models.ImageField("Фото характеристики", upload_to="cars/features/")
+    title = models.CharField("Название характеристики", max_length=180)
+    description = models.TextField("Описание характеристики")
+    position = models.PositiveIntegerField("Позиция", default=1)
+    is_active = models.BooleanField("Активный", default=True)
+
+    class Meta:
+        verbose_name = "Характеристика автомобиля"
+        verbose_name_plural = "Характеристики автомобилей"
+        ordering = ("position", "id")
+
+    def __str__(self):
+        return f"{self.car}: {self.title}"
+
+    def clean(self):
+        super().clean()
+        if not self.car_id:
+            return
+
+        features_count = CarFeature.objects.filter(car_id=self.car_id).exclude(pk=self.pk).count()
+        if features_count >= 8:
+            raise ValidationError("Для одного автомобиля можно добавить максимум 8 характеристик.")
