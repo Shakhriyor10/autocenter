@@ -165,7 +165,18 @@ class CarBanner(models.Model):
         related_name="banners",
         verbose_name="Автомобиль",
     )
-    image = models.ImageField("Фото баннера", upload_to="cars/banners/")
+    image = models.ImageField(
+        "Фото баннера",
+        upload_to="cars/banners/",
+        blank=True,
+        null=True,
+    )
+    video = models.FileField(
+        "Видео баннера",
+        upload_to="cars/banners/videos/",
+        blank=True,
+        null=True,
+    )
     short_description = models.CharField("Короткое описание", max_length=160)
     sort_order = models.PositiveIntegerField("Порядок", default=0)
     is_active = models.BooleanField("Активный", default=True)
@@ -180,6 +191,8 @@ class CarBanner(models.Model):
 
     def clean(self):
         super().clean()
+        if not self.image and not self.video:
+            raise ValidationError("Для баннера нужно добавить фото или видео.")
         if not self.car_id:
             return
 
@@ -195,7 +208,18 @@ class CarFeature(models.Model):
         related_name="features",
         verbose_name="Автомобиль",
     )
-    image = models.ImageField("Фото характеристики", upload_to="cars/features/")
+    image = models.ImageField(
+        "Фото характеристики",
+        upload_to="cars/features/",
+        blank=True,
+        null=True,
+    )
+    video = models.FileField(
+        "Видео характеристики",
+        upload_to="cars/features/videos/",
+        blank=True,
+        null=True,
+    )
     title = models.CharField("Название характеристики", max_length=180)
     description = models.TextField("Описание характеристики")
     position = models.PositiveIntegerField("Позиция", default=1)
@@ -211,6 +235,8 @@ class CarFeature(models.Model):
 
     def clean(self):
         super().clean()
+        if not self.image and not self.video:
+            raise ValidationError("Для характеристики нужно добавить фото или видео.")
         if not self.car_id:
             return
 

@@ -21,14 +21,14 @@ class CarBannerInline(admin.TabularInline):
     model = CarBanner
     extra = 1
     max_num = 5
-    fields = ("image", "short_description", "sort_order", "is_active")
+    fields = ("image", "video", "short_description", "sort_order", "is_active")
 
 
 class CarFeatureInline(admin.TabularInline):
     model = CarFeature
     extra = 1
     max_num = 8
-    fields = ("image", "title", "description", "position", "is_active")
+    fields = ("image", "video", "title", "description", "position", "is_active")
 
 
 @admin.register(Car)
