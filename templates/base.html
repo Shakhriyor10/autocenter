@@ -79,20 +79,17 @@
   .nav-cars-link {
     display: flex !important;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     height: 100%;
-    padding: 12px !important;
-    border-radius: 14px;
-    border: 1px solid #dbe6f4;
-    background: #fff;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    padding: 0 !important;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transition: transform .2s ease;
   }
   .nav-cars-link:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 28px rgba(15, 23, 42, 0.14);
-    border-color: #93c5fd;
+    transform: translateY(-3px);
   }
   .nav-cars-thumb {
     width: 100%;
@@ -106,8 +103,9 @@
     color: #0f172a;
     font-weight: 600;
     line-height: 1.3;
+    text-align: center;
+    width: 100%;
   }
-  .nav-cars-brand { display: block; color: #64748b; font-size: 12px; }
   @media (max-width: 1199px) {
     .nav-cars-dropdown {
       top: 82px;
@@ -194,10 +192,7 @@
               <div class="nav-cars-dropdown-item">
                 <a href="{% url 'car_detail' nav_car.pk %}" class="nav-cars-link">
                   <img src="{{ nav_car.navbar_photo.url }}" alt="{{ nav_car.title }}" class="nav-cars-thumb">
-                  <span>
-                    <span class="nav-cars-model">{{ nav_car.model_name }}</span>
-                    <span class="nav-cars-brand">{{ nav_car.brand.name }}</span>
-                  </span>
+                  <span class="nav-cars-model">{{ nav_car.brand.name }} {{ nav_car.model_name }}</span>
                 </a>
               </div>
               {% endfor %}
