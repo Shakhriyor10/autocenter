@@ -78,6 +78,13 @@ class Car(models.Model):
     photo_3 = models.ImageField("Фото 3", upload_to="cars/", null=True, blank=True)
     photo_4 = models.ImageField("Фото 4", upload_to="cars/", null=True, blank=True)
     photo_5 = models.ImageField("Фото 5", upload_to="cars/", null=True, blank=True)
+    navbar_photo = models.ImageField(
+        "Фото для навбара",
+        upload_to="cars/navbar/",
+        null=True,
+        blank=True,
+    )
+    navbar_position = models.PositiveIntegerField("Позиция в навбаре", default=0)
     price = models.DecimalField(
         "Цена",
         max_digits=12,

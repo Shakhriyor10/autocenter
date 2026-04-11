@@ -3,6 +3,15 @@ from django.shortcuts import get_object_or_404, render
 from frontend.models import Banner, Car
 
 
+def get_navbar_cars():
+    return (
+        Car.objects.select_related("brand")
+        .filter(navbar_photo__isnull=False)
+        .exclude(navbar_photo="")
+        .order_by("navbar_position", "brand__name", "model_name")[:3]
+    )
+
+
 def index(request):
     expensive_cars = Car.objects.select_related("brand").order_by("-price")[:8]
 
@@ -21,6 +30,7 @@ def index(request):
             "banner": banner,
             "expensive_cars": expensive_cars,
             "popular_vehicles": popular_vehicles,
+            "navbar_cars": get_navbar_cars(),
         },
     )
 
@@ -71,5 +81,6 @@ def car_detail(request, pk):
             "color_images": color_images,
             "main_photo": main_photo,
             "features": features,
+            "navbar_cars": get_navbar_cars(),
         },
     )
