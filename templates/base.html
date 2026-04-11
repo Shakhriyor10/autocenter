@@ -26,14 +26,14 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
-  .nav-cars-item { position: relative; }
+  .nav-cars-item { position: static; }
   .nav-cars-toggle { display: inline-flex; align-items: center; gap: 6px; }
   .nav-cars-toggle .fa-chevron-down { font-size: 12px; transition: transform .25s ease; }
   .nav-cars-item.is-open .nav-cars-toggle .fa-chevron-down,
   .nav-cars-item:hover .nav-cars-toggle .fa-chevron-down { transform: rotate(180deg); }
   .nav-cars-dropdown {
-    position: absolute;
-    top: calc(100% + 10px);
+    position: fixed;
+    top: 92px;
     left: 50%;
     width: min(980px, calc(100vw - 40px));
     max-height: 520px;
