@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404, render
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect, render
 
 from frontend.models import Banner, Car
 
@@ -33,6 +34,20 @@ def index(request):
             "navbar_cars": get_navbar_cars(),
         },
     )
+
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        if name and phone:
+            messages.success(request, "Успешно отправлено, скоро с вами свяжемся.")
+        else:
+            messages.error(request, "Заполните обязательные поля: имя и номер телефона.")
+
+        return redirect("contact")
+
+    return render(request, "contact.html", {"navbar_cars": get_navbar_cars()})
 
 
 def car_detail(request, pk):
