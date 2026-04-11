@@ -37,6 +37,7 @@ class CarAdmin(admin.ModelAdmin):
         "title",
         "brand",
         "model_name",
+        "navbar_position",
         "engine_type",
         "engine_volume",
         "transmission_type",
@@ -48,6 +49,7 @@ class CarAdmin(admin.ModelAdmin):
     )
     list_filter = ("brand", "engine_type", "transmission_type", "is_hot")
     search_fields = ("title", "model_name", "brand__name")
+    list_editable = ("navbar_position",)
     inlines = (CarBannerInline, CarColorInline, CarFeatureInline)
 
 

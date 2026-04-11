@@ -25,6 +25,65 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<style>
+  .nav-cars-item { position: relative; }
+  .nav-cars-toggle { display: inline-flex; align-items: center; gap: 6px; }
+  .nav-cars-toggle .fa-chevron-down { font-size: 12px; transition: transform .25s ease; }
+  .nav-cars-item.is-open .nav-cars-toggle .fa-chevron-down,
+  .nav-cars-item:hover .nav-cars-toggle .fa-chevron-down { transform: rotate(180deg); }
+  .nav-cars-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 360px;
+    max-height: 420px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 14px;
+    box-shadow: 0 16px 35px rgba(15, 23, 42, 0.18);
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+    z-index: 999;
+  }
+  .nav-cars-item:hover .nav-cars-dropdown,
+  .nav-cars-item.is-open .nav-cars-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-cars-link {
+    display: grid !important;
+    grid-template-columns: 72px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 8px !important;
+    border-radius: 10px;
+    transition: background-color .2s ease;
+  }
+  .nav-cars-link:hover { background: #f3f7fd; }
+  .nav-cars-thumb {
+    width: 72px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #f8fafc;
+  }
+  .nav-cars-model {
+    display: block;
+    color: #0f172a;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .nav-cars-brand { display: block; color: #64748b; font-size: 12px; }
+  @media (max-width: 1199px) {
+    .nav-cars-dropdown { width: 320px; }
+  }
+</style>
+
 {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -80,7 +139,27 @@
         <ul id="respMenu" class="ace-responsive-menu menu_list_custom_code wa float-start" data-menu-style="horizontal">
           <li><a href="{% url 'index' %}"><span class="title">Главная страница</span></a></li>
           <li><a href="#about-us"><span class="title">О нас</span></a></li>
-          <li><a href="#cars"><span class="title">Автомобили</span></a></li>
+          <li class="nav-cars-item">
+            <a href="#cars" class="nav-cars-toggle" aria-expanded="false">
+              <span class="title">Автомобили</span>
+              <i class="fas fa-chevron-down"></i>
+            </a>
+            {% if navbar_cars %}
+            <ul class="nav-cars-dropdown">
+              {% for nav_car in navbar_cars %}
+              <li>
+                <a href="{% url 'car_detail' nav_car.pk %}" class="nav-cars-link">
+                  <img src="{{ nav_car.navbar_photo.url }}" alt="{{ nav_car.title }}" class="nav-cars-thumb">
+                  <span>
+                    <span class="nav-cars-model">{{ nav_car.model_name }}</span>
+                    <span class="nav-cars-brand">{{ nav_car.brand.name }}</span>
+                  </span>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
           <li><a href="#test-drive"><span class="title">Тест-драйв</span></a></li>
           <li><a href="#contacts"><span class="title">Контакты</span></a></li>
         </ul>
@@ -196,7 +275,16 @@
       <ul>
         <li><a href="{% url 'index' %}">Главная страница</a></li>
         <li><a href="#about-us">О нас</a></li>
-        <li><a href="#cars">Автомобили</a></li>
+        <li>
+          <span>Автомобили</span>
+          {% if navbar_cars %}
+          <ul>
+            {% for nav_car in navbar_cars %}
+            <li><a href="{% url 'car_detail' nav_car.pk %}">{{ nav_car.brand.name }} {{ nav_car.model_name }}</a></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
         <li><a href="#test-drive">Тест-драйв</a></li>
         <li><a href="#contacts">Контакты</a></li>
         <!-- Only for Mobile View -->
@@ -326,6 +414,30 @@
 <script src="{% static 'js/timepicker.js' %}"></script>
 <!-- Custom script for all pages -->
 <script src="{% static 'js/script.js' %}"></script>
+<script>
+  (function () {
+    var navItem = document.querySelector('.nav-cars-item');
+    if (!navItem) return;
+
+    var toggle = navItem.querySelector('.nav-cars-toggle');
+
+    toggle.addEventListener('click', function (event) {
+      if (window.innerWidth > 991) {
+        event.preventDefault();
+      }
+      var isOpen = navItem.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!navItem.contains(event.target)) {
+        navItem.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
 {% block extra_js %}{% endblock %}
 </body>
 </html>
