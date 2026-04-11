@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature
+from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, ContactRequest
 
 
 @admin.register(Banner)
@@ -75,3 +75,11 @@ class CarFeatureAdmin(admin.ModelAdmin):
     list_display = ("car", "title", "position", "is_active")
     list_filter = ("car__brand", "is_active")
     search_fields = ("car__title", "car__model_name", "title", "description")
+
+
+@admin.register(ContactRequest)
+class ContactRequestAdmin(admin.ModelAdmin):
+    list_display = ("name", "phone", "created_at")
+    search_fields = ("name", "phone", "message")
+    readonly_fields = ("name", "phone", "message", "created_at")
+    ordering = ("-created_at",)

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
-from frontend.models import Banner, Car
+from frontend.models import Banner, Car, ContactRequest
 
 
 def get_navbar_cars():
@@ -40,7 +40,9 @@ def contact(request):
     if request.method == "POST":
         name = request.POST.get("name", "").strip()
         phone = request.POST.get("phone", "").strip()
+        message_text = request.POST.get("message", "").strip()
         if name and phone:
+            ContactRequest.objects.create(name=name, phone=phone, message=message_text)
             messages.success(request, "Успешно отправлено, скоро с вами свяжемся.")
         else:
             messages.error(request, "Заполните обязательные поля: имя и номер телефона.")
