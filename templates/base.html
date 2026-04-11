@@ -34,7 +34,7 @@
   .nav-cars-dropdown {
     position: absolute;
     top: calc(100% + 10px);
-    left: 0;
+    left: 50%;
     width: min(980px, calc(100vw - 40px));
     max-height: 520px;
     overflow-y: auto;
@@ -49,7 +49,7 @@
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(8px);
+    transform: translate(-50%, 8px);
     transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
     z-index: 999;
   }
@@ -57,7 +57,7 @@
   .nav-cars-item.is-open .nav-cars-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
   .nav-cars-link {
     display: flex !important;
