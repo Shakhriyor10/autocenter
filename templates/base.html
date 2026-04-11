@@ -32,26 +32,26 @@
   .nav-cars-item.is-open .nav-cars-toggle .fa-chevron-down,
   .nav-cars-item:hover .nav-cars-toggle .fa-chevron-down { transform: rotate(180deg); }
   .nav-cars-dropdown {
+    --nav-card-width: 280px;
     position: fixed;
     top: 92px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: min(980px, calc(100vw - 40px));
+    left: 50%;
+    width: min(calc((var(--nav-card-width) * 3) + 24px + 28px), calc(100vw - 40px));
     max-height: 520px;
-    overflow-y: auto;
     background: #fff;
     border: 1px solid #e8edf5;
     border-radius: 16px;
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
     padding: 14px;
+    margin: 0;
+    list-style: none;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(8px);
+    transform: translate(-50%, 8px);
     transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
     z-index: 999;
   }
@@ -59,7 +59,11 @@
   .nav-cars-item.is-open .nav-cars-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
+  }
+  .nav-cars-dropdown > li {
+    list-style: none;
+    min-width: 0;
   }
   .nav-cars-link {
     display: flex !important;
@@ -91,13 +95,13 @@
   .nav-cars-brand { display: block; color: #64748b; font-size: 12px; }
   @media (max-width: 1199px) {
     .nav-cars-dropdown {
-      width: min(700px, calc(100vw - 30px));
+      width: min(calc((var(--nav-card-width) * 2) + 12px + 28px), calc(100vw - 30px));
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   @media (max-width: 767px) {
     .nav-cars-dropdown {
-      width: min(360px, calc(100vw - 20px));
+      width: min(calc(var(--nav-card-width) + 28px), calc(100vw - 20px));
       max-height: 420px;
       grid-template-columns: 1fr;
     }
