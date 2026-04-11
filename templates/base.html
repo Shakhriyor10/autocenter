@@ -43,9 +43,10 @@
     border-radius: 16px;
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
     padding: 14px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
     gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
     opacity: 0;
     visibility: hidden;
     transform: translateY(8px);
@@ -57,6 +58,10 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+  }
+  .nav-cars-dropdown > li {
+    flex: 0 0 calc((100% - 24px) / 3);
+    min-width: 0;
   }
   .nav-cars-link {
     display: flex !important;
@@ -88,15 +93,19 @@
   .nav-cars-brand { display: block; color: #64748b; font-size: 12px; }
   @media (max-width: 1199px) {
     .nav-cars-dropdown {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       width: min(700px, calc(100vw - 30px));
+    }
+    .nav-cars-dropdown > li {
+      flex-basis: calc((100% - 12px) / 2);
     }
   }
   @media (max-width: 767px) {
     .nav-cars-dropdown {
-      grid-template-columns: 1fr;
       width: min(360px, calc(100vw - 20px));
       max-height: 420px;
+    }
+    .nav-cars-dropdown > li {
+      flex-basis: 100%;
     }
     .nav-cars-thumb { height: 140px; }
   }
