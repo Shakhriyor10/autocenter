@@ -44,6 +44,8 @@ share/python-wheels/
 MANIFEST
 
 **/migrations/*
+!frontend/migrations/
+!frontend/migrations/*.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

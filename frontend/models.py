@@ -250,3 +250,18 @@ class CarFeature(models.Model):
         features_count = CarFeature.objects.filter(car_id=self.car_id).exclude(pk=self.pk).count()
         if features_count >= 8:
             raise ValidationError("Для одного автомобиля можно добавить максимум 8 характеристик.")
+
+
+class ContactRequest(models.Model):
+    name = models.CharField("Имя", max_length=120)
+    phone = models.CharField("Номер телефона", max_length=40)
+    message = models.TextField("Сообщение", blank=True)
+    created_at = models.DateTimeField("Дата заявки", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Заявка"
+        verbose_name_plural = "Заявки"
+        ordering = ("-created_at",)
+
+    def __str__(self):
+        return f"{self.name} ({self.phone})"
