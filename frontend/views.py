@@ -8,7 +8,7 @@ def get_navbar_cars():
         Car.objects.select_related("brand")
         .filter(navbar_photo__isnull=False)
         .exclude(navbar_photo="")
-        .order_by("navbar_position", "brand__name", "model_name")[:3]
+        .order_by("navbar_position", "brand__name", "model_name")
     )
 
 
