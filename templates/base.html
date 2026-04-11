@@ -46,8 +46,9 @@
     margin: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, var(--nav-card-width)));
     gap: 12px;
+    justify-content: center;
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
@@ -171,7 +172,7 @@
             </a>
             {% if navbar_cars %}
             <ul class="nav-cars-dropdown">
-              {% for nav_car in navbar_cars %}
+              {% for nav_car in navbar_cars|slice:":3" %}
               <li>
                 <a href="{% url 'car_detail' nav_car.pk %}" class="nav-cars-link">
                   <img src="{{ nav_car.navbar_photo.url }}" alt="{{ nav_car.title }}" class="nav-cars-thumb">
