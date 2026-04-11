@@ -30,6 +30,18 @@
     background: linear-gradient(to bottom, #000000 0, #000000 92px, #ffffff 92px, #ffffff 100%);
     background-repeat: no-repeat;
   }
+  @media (max-width: 1199px) {
+    body {
+      background: linear-gradient(to bottom, #000000 0, #000000 82px, #ffffff 82px, #ffffff 100%);
+      background-repeat: no-repeat;
+    }
+  }
+  @media (max-width: 767px) {
+    body {
+      background: linear-gradient(to bottom, #000000 0, #000000 72px, #ffffff 72px, #ffffff 100%);
+      background-repeat: no-repeat;
+    }
+  }
   .nav-cars-item { position: static; }
   .nav-cars-toggle { display: inline-flex; align-items: center; gap: 6px; }
   .nav-cars-toggle .fa-chevron-down { font-size: 12px; transition: transform .25s ease; }
@@ -481,6 +493,21 @@
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+  })();
+</script>
+<script>
+  (function () {
+    function hidePreloader() {
+      var preloader = document.querySelector('.preloader');
+      if (preloader) {
+        preloader.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(hidePreloader, 1200);
+    });
+    window.addEventListener('load', hidePreloader);
   })();
 </script>
 
