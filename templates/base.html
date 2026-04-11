@@ -32,27 +32,22 @@
   .nav-cars-item.is-open .nav-cars-toggle .fa-chevron-down,
   .nav-cars-item:hover .nav-cars-toggle .fa-chevron-down { transform: rotate(180deg); }
   .nav-cars-dropdown {
-    --nav-card-width: 280px;
     position: fixed;
     top: 92px;
-    left: 50%;
-    width: min(calc((var(--nav-card-width) * 3) + 24px + 28px), calc(100vw - 40px));
-    max-height: 520px;
-    background: #fff;
-    border: 1px solid #e8edf5;
-    border-radius: 16px;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
-    padding: 14px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 92px);
     margin: 0;
+    padding: 28px 0 34px;
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, var(--nav-card-width)));
-    gap: 12px;
-    justify-content: center;
-    overflow: hidden;
+    display: block;
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid #e2e8f0;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.16);
     opacity: 0;
     visibility: hidden;
-    transform: translate(-50%, 8px);
+    transform: translateY(8px);
     transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
     z-index: 999;
   }
@@ -60,29 +55,48 @@
   .nav-cars-item.is-open .nav-cars-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, 0);
+    transform: translateY(0);
   }
-  .nav-cars-dropdown > li {
-    list-style: none;
-    min-width: 0;
+  .nav-cars-dropdown-track {
+    width: min(1360px, calc(100vw - 56px));
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px 8px 18px;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+  .nav-cars-dropdown-item {
+    min-width: 290px;
+    width: 290px;
+    flex: 0 0 290px;
   }
   .nav-cars-link {
     display: flex !important;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    padding: 10px !important;
-    border-radius: 12px;
-    border: 1px solid #eef2f7;
-    transition: background-color .2s ease, border-color .2s ease;
+    height: 100%;
+    padding: 12px !important;
+    border-radius: 14px;
+    border: 1px solid #dbe6f4;
+    background: #fff;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
   .nav-cars-link:hover {
-    background: #f3f7fd;
-    border-color: #d5e2f4;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 28px rgba(15, 23, 42, 0.14);
+    border-color: #93c5fd;
   }
   .nav-cars-thumb {
     width: 100%;
-    height: 120px;
+    height: 168px;
     border-radius: 10px;
     object-fit: cover;
     background: #f8fafc;
@@ -96,17 +110,20 @@
   .nav-cars-brand { display: block; color: #64748b; font-size: 12px; }
   @media (max-width: 1199px) {
     .nav-cars-dropdown {
-      width: min(calc((var(--nav-card-width) * 2) + 12px + 28px), calc(100vw - 30px));
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      top: 82px;
+      height: calc(100vh - 82px);
+      padding: 20px 0 24px;
     }
   }
   @media (max-width: 767px) {
     .nav-cars-dropdown {
-      width: min(calc(var(--nav-card-width) + 28px), calc(100vw - 20px));
-      max-height: 420px;
-      grid-template-columns: 1fr;
+      top: 72px;
+      height: calc(100vh - 72px);
+      padding: 14px 0 18px;
     }
-    .nav-cars-thumb { height: 140px; }
+    .nav-cars-dropdown-track { width: calc(100vw - 24px); gap: 12px; }
+    .nav-cars-dropdown-item { min-width: 250px; width: 250px; flex-basis: 250px; }
+    .nav-cars-thumb { height: 148px; }
   }
 </style>
 
@@ -171,9 +188,10 @@
               <i class="fas fa-chevron-down"></i>
             </a>
             {% if navbar_cars %}
-            <ul class="nav-cars-dropdown">
-              {% for nav_car in navbar_cars|slice:":3" %}
-              <li>
+            <div class="nav-cars-dropdown">
+              <div class="nav-cars-dropdown-track">
+              {% for nav_car in navbar_cars %}
+              <div class="nav-cars-dropdown-item">
                 <a href="{% url 'car_detail' nav_car.pk %}" class="nav-cars-link">
                   <img src="{{ nav_car.navbar_photo.url }}" alt="{{ nav_car.title }}" class="nav-cars-thumb">
                   <span>
@@ -181,9 +199,10 @@
                     <span class="nav-cars-brand">{{ nav_car.brand.name }}</span>
                   </span>
                 </a>
-              </li>
+              </div>
               {% endfor %}
-            </ul>
+              </div>
+            </div>
             {% endif %}
           </li>
           <li><a href="#test-drive"><span class="title">Тест-драйв</span></a></li>
