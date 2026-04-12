@@ -144,14 +144,21 @@
   }
   .nav-lang-item {
     float: none !important;
-    margin-left: auto;
-    padding-left: 14px;
+    margin-left: 0;
+    padding-left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
   }
   #respMenu {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
     gap: 0;
+    position: relative;
+    padding-right: 118px;
   }
   #respMenu > li {
     display: block;
@@ -202,10 +209,11 @@
   @media (max-width: 991px) {
     #respMenu {
       display: block;
+      padding-right: 0;
     }
     .nav-lang-item {
-      margin-left: 0;
-      padding-left: 0;
+      position: static;
+      transform: none;
     }
     .nav-lang-switch {
       margin-top: 0;
