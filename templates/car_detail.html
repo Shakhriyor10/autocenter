@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% load currency %}
 
 {% block title %}{{ car.brand.name }} {{ car.model_name }}{% endblock %}
 
@@ -351,7 +352,7 @@
               <span class="flaticon-price-tag" aria-hidden="true"></span>
               <div>
                 <small>{% trans "Цена" %}</small>
-                <strong>${{ car.discount_price|default:car.price }}</strong>
+                <strong>{{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}</strong>
               </div>
             </li>
           </ul>
