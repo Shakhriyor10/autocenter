@@ -707,15 +707,15 @@
             responsive: {
                 0: {
                     items: 1,
-                    center: true
+                    center: false
                 },
                 480:{
                     items:1,
-                    center: true
+                    center: false
                 },
                 600: {
                     items: 1,
-                    center: true
+                    center: false
                 },
                 768: {
                     items: 2,
