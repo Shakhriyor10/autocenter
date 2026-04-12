@@ -143,8 +143,18 @@
     .nav-cars-thumb { height: 148px; }
   }
   .nav-lang-item {
-    float: right !important;
-    margin-left: 10px;
+    float: none !important;
+    margin-left: auto;
+    padding-left: 14px;
+  }
+  #respMenu {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+  #respMenu > li {
+    display: block;
   }
   .nav-lang-form {
     margin: 0;
@@ -190,9 +200,12 @@
     }
   }
   @media (max-width: 991px) {
+    #respMenu {
+      display: block;
+    }
     .nav-lang-item {
-      float: none !important;
       margin-left: 0;
+      padding-left: 0;
     }
     .nav-lang-switch {
       margin-top: 0;
