@@ -145,13 +145,21 @@
   .nav-lang-item {
     position: relative;
   }
+  .header-nav nav .container {
+    position: relative;
+  }
   #respMenu2 {
-    float: right !important;
-    margin-top: 20px;
+    float: none !important;
+    margin-top: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
   }
   #respMenu2 > li {
     float: none;
@@ -213,7 +221,15 @@
   }
   @media (max-width: 1199px) {
     #respMenu2 {
-      margin-top: 14px;
+      right: 10px;
+    }
+  }
+  @media (max-width: 991px) {
+    #respMenu2 {
+      position: static;
+      transform: none;
+      margin-top: 10px;
+      justify-content: flex-start;
     }
   }
 </style>
