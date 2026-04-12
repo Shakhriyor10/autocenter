@@ -223,6 +223,27 @@
   .nav-lang-switch::-moz-focus-inner {
     border: 0;
   }
+  .mobile-nav-lang-form {
+    margin: 8px 0 0;
+  }
+  .mobile-nav-lang-switch {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #d6d6d6;
+    border-radius: 999px;
+    background: #f5f7fb;
+    color: #1A3760;
+    font-weight: 600;
+    padding: 10px 14px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .mobile-nav-lang-switch i {
+    font-size: 13px;
+  }
 </style>
 
 {% block extra_css %}{% endblock %}
@@ -457,6 +478,36 @@
         </li>
         <li><a href="#test-drive">{% trans "Тест-драйв" %}</a></li>
         <li><a href="{% url 'contact' %}">{% trans "Контакты" %}</a></li>
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% if CURRENT_LANGUAGE == 'uz' %}
+          {% with current_label='UZ' next_language='ru' %}
+          <li>
+            <form action="{% url 'set_language' %}" method="post" class="mobile-nav-lang-form">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.get_full_path }}">
+              <input name="language" type="hidden" value="{{ next_language }}">
+              <button type="submit" class="mobile-nav-lang-switch" aria-label="{% trans 'Сменить язык' %}">
+                <i class="fas fa-language"></i>
+                <span>{{ current_label }} → {{ next_language|upper }}</span>
+              </button>
+            </form>
+          </li>
+          {% endwith %}
+        {% else %}
+          {% with current_label='RU' next_language='uz' %}
+          <li>
+            <form action="{% url 'set_language' %}" method="post" class="mobile-nav-lang-form">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.get_full_path }}">
+              <input name="language" type="hidden" value="{{ next_language }}">
+              <button type="submit" class="mobile-nav-lang-switch" aria-label="{% trans 'Сменить язык' %}">
+                <i class="fas fa-language"></i>
+                <span>{{ current_label }} → {{ next_language|upper }}</span>
+              </button>
+            </form>
+          </li>
+          {% endwith %}
+        {% endif %}
         <!-- Only for Mobile View -->
         <li class="mm-add-listing">
           <span class="border-none">

@@ -205,6 +205,8 @@
                 <div class="thumb">
                   {% if car.first_photo %}
                   <img class="img-fluid" src="{{ car.first_photo.url }}" alt="{{ car.title }}">
+                  {% else %}
+                  <img class="img-fluid" src="{% static 'images/listing/1.jpg' %}" alt="{{ car.title }}">
                   {% endif %}
                 </div>
 
