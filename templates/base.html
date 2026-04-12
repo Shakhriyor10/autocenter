@@ -142,6 +142,64 @@
     .nav-cars-dropdown-item { min-width: 250px; width: 250px; flex-basis: 250px; }
     .nav-cars-thumb { height: 148px; }
   }
+  .nav-lang-item {
+    position: relative;
+  }
+  .nav-lang-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    color: #fff !important;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 8px 14px !important;
+    line-height: 1;
+    transition: all .2s ease;
+  }
+  .nav-lang-toggle:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .nav-lang-toggle .fa-language {
+    font-size: 15px;
+    opacity: .95;
+  }
+  .nav-lang-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    min-width: 88px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(2, 6, 23, 0.16);
+    border: 1px solid #e5e7eb;
+    padding: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    z-index: 1005;
+  }
+  .nav-lang-item:hover .nav-lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-lang-btn {
+    width: 100%;
+    border: 0;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-align: left;
+    color: #0f172a;
+    font-weight: 600;
+    transition: background .15s ease;
+  }
+  .nav-lang-btn:hover {
+    background: #f1f5f9;
+  }
 </style>
 
 {% block extra_css %}{% endblock %}
@@ -223,7 +281,46 @@
           <li><a href="{% url 'contact' %}"><span class="title">{% trans "Контакты" %}</span></a></li>
         </ul>
         <!-- Responsive Menu Structure-->
-        <ul id="respMenu2" class="ace-responsive-menu menu_list_custom_code wa text-end" data-menu-style="horizontal"></ul>
+        <ul id="respMenu2" class="ace-responsive-menu menu_list_custom_code wa text-end" data-menu-style="horizontal">
+          {% get_current_language as CURRENT_LANGUAGE %}
+          {% if CURRENT_LANGUAGE == 'uz' %}
+            {% with current_label='UZ' next_language='ru' next_label='RU' %}
+            <li class="nav-lang-item">
+              <a href="#" class="nav-lang-toggle" aria-label="{% trans 'Сменить язык' %}">
+                <i class="fas fa-language"></i>
+                <span>{{ current_label }}</span>
+                <i class="fas fa-chevron-down"></i>
+              </a>
+              <div class="nav-lang-dropdown">
+                <form action="{% url 'set_language' %}" method="post" class="m-0">
+                  {% csrf_token %}
+                  <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                  <input name="language" type="hidden" value="{{ next_language }}">
+                  <button type="submit" class="nav-lang-btn">{{ next_label }}</button>
+                </form>
+              </div>
+            </li>
+            {% endwith %}
+          {% else %}
+            {% with current_label='RU' next_language='uz' next_label='UZ' %}
+            <li class="nav-lang-item">
+              <a href="#" class="nav-lang-toggle" aria-label="{% trans 'Сменить язык' %}">
+                <i class="fas fa-language"></i>
+                <span>{{ current_label }}</span>
+                <i class="fas fa-chevron-down"></i>
+              </a>
+              <div class="nav-lang-dropdown">
+                <form action="{% url 'set_language' %}" method="post" class="m-0">
+                  {% csrf_token %}
+                  <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                  <input name="language" type="hidden" value="{{ next_language }}">
+                  <button type="submit" class="nav-lang-btn">{{ next_label }}</button>
+                </form>
+              </div>
+            </li>
+            {% endwith %}
+          {% endif %}
+        </ul>
       </div>
     </nav>
   </header>
