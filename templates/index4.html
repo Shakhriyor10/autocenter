@@ -16,7 +16,11 @@
               <span class="aminated-object1">
                 <img class="objects" src="images/home/title-bottom-border.svg" alt="">
               </span>
-              {{ banner.title|default:"Search Less. Live More." }}
+              {% if banner.title %}
+                {{ banner.title }}
+              {% else %}
+                {% trans "Ищите меньше. Живите больше." %}
+              {% endif %}
             </h2>
             <p class="para">{{ banner.short_description|default:"Мы упростим поиск подходящего автомобиля." }}</p>
           </div>
@@ -37,7 +41,7 @@
       <div class="row">
         <div class="col-lg-8 m-auto">
           <div class="main-title text-center">
-            <h2>Discover Our Featured Listings</h2>
+            <h2>{% trans "Наши рекомендуемые автомобили" %}</h2>
           </div>
         </div>
       </div>
@@ -49,7 +53,7 @@
               <div class="item">
                 <div class="car-listing home6_style">
                   <div class="thumb">
-                    <div class="tag">{% if car.is_hot %}TOP SALE{% else %}FEATURED{% endif %}</div>
+                    <div class="tag">{% if car.is_hot %}{% trans "ХИТ ПРОДАЖ" %}{% else %}{% trans "РЕКОМЕНДУЕМ" %}{% endif %}</div>
                     {% if car.first_photo %}
                     <img src="{{ car.first_photo.url }}" alt="{{ car.title }}">
                     {% else %}
@@ -63,7 +67,7 @@
                     <div class="listing_footer">
                       <h5 class="price text-thm4 float-none float-sm-start">${{ car.discount_price|default:car.price }}</h5>
                       <ul class="mb0 text-start text-sm-end">
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }}L</a></li>
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }} {% trans "л" %}</a></li>
                         <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>{{ car.get_engine_type_display }}</a></li>
                         <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>{{ car.get_transmission_type_display }}</a></li>
                       </ul>
@@ -72,7 +76,7 @@
                 </div>
               </div>
               {% empty %}
-              <div class="item"><p>Нет автомобилей для показа.</p></div>
+              <div class="item"><p>{% trans "Нет автомобилей для показа." %}</p></div>
               {% endfor %}
             </div>
           </div>
@@ -89,7 +93,7 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="main-title text-center">
-            <h2>Мы — лучшие</h2>
+            <h2>{% trans "Мы — лучшие" %}</h2>
           </div>
         </div>
       </div>
@@ -98,9 +102,9 @@
           <div class="iconbox_home4_style mb30-lg">
             <div class="icon one"><span class="flaticon-user-1"></span></div>
             <div class="details">
-              <h4 class="title">Высокая безопасность</h4>
-              <p>Надёжная работа сервиса и прозрачные условия на каждом этапе выбора автомобиля.</p>
-              <a href="page-list-v1.html" class="more_listing home4_style">Подробнее</a>
+              <h4 class="title">{% trans "Высокая безопасность" %}</h4>
+              <p>{% trans "Надёжная работа сервиса и прозрачные условия на каждом этапе выбора автомобиля." %}</p>
+              <a href="page-list-v1.html" class="more_listing home4_style">{% trans "Подробнее" %}</a>
             </div>
           </div>
         </div>
@@ -108,9 +112,9 @@
           <div class="iconbox_home4_style mb30-lg mt60 mt0-lg">
             <div class="icon two"><span class="flaticon-high-five"></span></div>
             <div class="details">
-              <h4 class="title">Проверенные специалисты</h4>
-              <p>Наши менеджеры помогают быстро подобрать авто и отвечают на все вопросы по покупке.</p>
-              <a href="page-list-v1.html" class="more_listing home4_style">Подробнее</a>
+              <h4 class="title">{% trans "Проверенные специалисты" %}</h4>
+              <p>{% trans "Наши менеджеры помогают быстро подобрать авто и отвечают на все вопросы по покупке." %}</p>
+              <a href="page-list-v1.html" class="more_listing home4_style">{% trans "Подробнее" %}</a>
             </div>
           </div>
         </div>
@@ -118,9 +122,9 @@
           <div class="iconbox_home4_style mb30-lg">
             <div class="icon three"><span class="flaticon-megaphone"></span></div>
             <div class="details">
-              <h4 class="title">Выгодные предложения</h4>
-              <p>Подбираем оптимальные варианты по цене и комплектации, чтобы вы не переплачивали.</p>
-              <a href="page-list-v1.html" class="more_listing home4_style">Подробнее</a>
+              <h4 class="title">{% trans "Выгодные предложения" %}</h4>
+              <p>{% trans "Подбираем оптимальные варианты по цене и комплектации, чтобы вы не переплачивали." %}</p>
+              <a href="page-list-v1.html" class="more_listing home4_style">{% trans "Подробнее" %}</a>
             </div>
           </div>
         </div>
@@ -128,9 +132,9 @@
           <div class="iconbox_home4_style mb30-lg mt60 mt0-lg">
             <div class="icon four"><span class="flaticon-headphones"></span></div>
             <div class="details">
-              <h4 class="title">Бесплатная поддержка</h4>
-              <p>Сопровождаем вас до и после покупки: консультации, помощь и обратная связь без доплат.</p>
-              <a href="page-list-v1.html" class="more_listing home4_style">Подробнее</a>
+              <h4 class="title">{% trans "Бесплатная поддержка" %}</h4>
+              <p>{% trans "Сопровождаем вас до и после покупки: консультации, помощь и обратная связь без доплат." %}</p>
+              <a href="page-list-v1.html" class="more_listing home4_style">{% trans "Подробнее" %}</a>
             </div>
           </div>
         </div>
@@ -145,7 +149,7 @@
     <div class="row">
       <div class="col-lg-6 offset-lg-3">
         <div class="main-title text-center">
-          <h2>Popular Vehicles</h2>
+          <h2>{% trans "Популярные автомобили" %}</h2>
         </div>
       </div>
     </div>
@@ -170,7 +174,7 @@
                       <ul>
                         <li class="list-inline-item">
                           <a href="#">
-                            {% if car.is_hot %}TOP SALE{% else %}Popular{% endif %}
+                            {% if car.is_hot %}{% trans "ХИТ ПРОДАЖ" %}{% else %}{% trans "Популярно" %}{% endif %}
                           </a>
                         </li>
                       </ul>
@@ -181,7 +185,7 @@
                     <ul>
                       <li class="list-inline-item">
                         <a href="#">
-                          <span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }}L
+                          <span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }} {% trans "л" %}
                         </a>
                       </li>
                       <li class="list-inline-item">
@@ -208,7 +212,7 @@
             </div>
             {% empty %}
             <div class="item">
-              <p>Нет популярных автомобилей.</p>
+              <p>{% trans "Нет популярных автомобилей." %}</p>
             </div>
             {% endfor %}
           </div>

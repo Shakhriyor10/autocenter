@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}{{ car.brand.name }} {{ car.model_name }}{% endblock %}
@@ -291,7 +292,8 @@
         <div class="color-swatch-overlay">
           <h2 class="car-heading">{{ car.brand.name }} {{ car.model_name }}</h2>
           {% if color_images %}
-          <span class="car-swatches-title">Выберите цвет</span>
+          <span class="car-swatches-title">{% trans "Выберите цвет" %}</span>
+          {% trans "Цвет" as default_color %}
           <div class="color-swatches" id="color-swatches">
             {% for color in color_images %}
             <button
@@ -299,8 +301,8 @@
               class="color-swatch {% if forloop.first %}active{% endif %}"
               style="{{ color.swatch_style }}"
               data-image="{{ color.image.url }}"
-              data-label="{{ color.name|default:'Цвет' }}"
-              title="{{ color.name|default:'Цвет' }}"
+              data-label="{{ color.name|default:default_color }}"
+              title="{{ color.name|default:default_color }}"
             ></button>
             {% endfor %}
           </div>
@@ -318,37 +320,37 @@
             alt="{{ car.title }}"
           >
           {% else %}
-          <div class="p-5 bg-light rounded">Нет фотографии автомобиля.</div>
+          <div class="p-5 bg-light rounded">{% trans "Нет фотографии автомобиля." %}</div>
           {% endif %}
         </div>
 
-        <aside class="car-specs-panel" aria-label="Основные характеристики">
+        <aside class="car-specs-panel" aria-label="{% trans 'Основные характеристики' %}">
           <ul class="car-specs-list">
             <li class="car-spec-item">
               <span class="flaticon-gas-station" aria-hidden="true"></span>
               <div>
-                <small>Тип двигателя</small>
+                <small>{% trans "Тип двигателя" %}</small>
                 <strong>{{ car.get_engine_type_display }}</strong>
               </div>
             </li>
             <li class="car-spec-item">
               <span class="flaticon-road-perspective" aria-hidden="true"></span>
               <div>
-                <small>Объём двигателя</small>
-                <strong>{{ car.engine_volume }} л</strong>
+                <small>{% trans "Объём двигателя" %}</small>
+                <strong>{{ car.engine_volume }} {% trans "л" %}</strong>
               </div>
             </li>
             <li class="car-spec-item">
               <span class="flaticon-gear" aria-hidden="true"></span>
               <div>
-                <small>Коробка передач</small>
+                <small>{% trans "Коробка передач" %}</small>
                 <strong>{{ car.get_transmission_type_display }}</strong>
               </div>
             </li>
             <li class="car-spec-item">
               <span class="flaticon-price-tag" aria-hidden="true"></span>
               <div>
-                <small>Цена</small>
+                <small>{% trans "Цена" %}</small>
                 <strong>${{ car.discount_price|default:car.price }}</strong>
               </div>
             </li>
@@ -357,7 +359,7 @@
       </div>
 
       {% if not color_images %}
-      <p class="text-muted text-center mt-3 mb-0">Для этой машины цвета пока не добавлены.</p>
+      <p class="text-muted text-center mt-3 mb-0">{% trans "Для этой машины цвета пока не добавлены." %}</p>
       {% endif %}
 
 <!--      <div class="mt-4 car-price-center">-->

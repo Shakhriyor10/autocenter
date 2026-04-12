@@ -17,6 +17,206 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+# Custom template translations
+
+msgid "Быстрая контактная информация"
+msgstr "Tezkor aloqa ma'lumotlari"
+
+msgid "Свяжитесь с нами для консультации по выбору автомобиля, комплектациям, ценам и доступным условиям покупки."
+msgstr "Avtomobil tanlash, komplektatsiya, narx va xarid shartlari bo'yicha maslahat uchun biz bilan bog'laning."
+
+msgid "О нас"
+msgstr "Biz haqimizda"
+
+msgid "Автомобили"
+msgstr "Avtomobillar"
+
+msgid "Тест-драйв"
+msgstr "Test-drayv"
+
+msgid "Контакты"
+msgstr "Kontaktlar"
+
+msgid "Вход"
+msgstr "Kirish"
+
+msgid "Регистрация"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Впервые на сайте?"
+msgstr "Saytda birinchimisiz?"
+
+msgid "Зарегистрироваться."
+msgstr "Ro'yxatdan o'tish."
+
+msgid "Вы дилер?"
+msgstr "Siz diler misiz?"
+
+msgid "Имя пользователя или email *"
+msgstr "Foydalanuvchi nomi yoki email *"
+
+msgid "Пароль *"
+msgstr "Parol *"
+
+msgid "Запомнить меня"
+msgstr "Meni eslab qol"
+
+msgid "Забыли пароль?"
+msgstr "Parolni unutdingizmi?"
+
+msgid "Войти"
+msgstr "Kirish"
+
+msgid "Уже есть профиль?"
+msgstr "Profilingiz bormi?"
+
+msgid "Войти."
+msgstr "Kirish."
+
+msgid "Имя"
+msgstr "Ism"
+
+msgid "Фамилия"
+msgstr "Familiya"
+
+msgid "Электронная почта"
+msgstr "Elektron pochta"
+
+msgid "Пароль"
+msgstr "Parol"
+
+msgid "Подтвердите пароль"
+msgstr "Parolni tasdiqlang"
+
+msgid "Зарегистрироваться"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Меню"
+msgstr "Menyu"
+
+msgid "Главная страница"
+msgstr "Bosh sahifa"
+
+msgid "Узбекистан, г. Самарканд, ул. Ибн Сины, 25"
+msgstr "O'zbekiston, Samarqand sh., Ibn Sino ko'chasi, 25"
+
+msgid "Пн - Пт 8:00 - 18:00"
+msgstr "Du - Ju 8:00 - 18:00"
+
+msgid "Major Motors Sam © 2026. Все права защищены."
+msgstr "Major Motors Sam © 2026. Barcha huquqlar himoyalangan."
+
+msgid "Автомобильный дилерский центр"
+msgstr "Avtomobil dilerlik markazi"
+
+msgid "Ищите меньше. Живите больше."
+msgstr "Kamroq qidiring. Ko'proq yashang."
+
+msgid "Наши рекомендуемые автомобили"
+msgstr "Tavsiya etilgan avtomobillarimiz"
+
+msgid "ХИТ ПРОДАЖ"
+msgstr "ENG KO'P SOTILGAN"
+
+msgid "РЕКОМЕНДУЕМ"
+msgstr "TAVSIYA ETILADI"
+
+msgid "л"
+msgstr "l"
+
+msgid "Нет автомобилей для показа."
+msgstr "Ko'rsatish uchun avtomobillar yo'q."
+
+msgid "Мы — лучшие"
+msgstr "Biz — eng yaxshimiz"
+
+msgid "Высокая безопасность"
+msgstr "Yuqori xavfsizlik"
+
+msgid "Надёжная работа сервиса и прозрачные условия на каждом этапе выбора автомобиля."
+msgstr "Xizmatning ishonchli ishlashi va avtomobil tanlashning har bosqichida shaffof shartlar."
+
+msgid "Подробнее"
+msgstr "Batafsil"
+
+msgid "Проверенные специалисты"
+msgstr "Ishonchli mutaxassislar"
+
+msgid "Наши менеджеры помогают быстро подобрать авто и отвечают на все вопросы по покупке."
+msgstr "Menejerlarimiz avtomobilni tez tanlashga yordam beradi va xarid bo'yicha barcha savollarga javob beradi."
+
+msgid "Выгодные предложения"
+msgstr "Foydali takliflar"
+
+msgid "Подбираем оптимальные варианты по цене и комплектации, чтобы вы не переплачивали."
+msgstr "Ortiqcha to'lamasligingiz uchun narx va komplektatsiya bo'yicha optimal variantlarni tanlaymiz."
+
+msgid "Бесплатная поддержка"
+msgstr "Bepul yordam"
+
+msgid "Сопровождаем вас до и после покупки: консультации, помощь и обратная связь без доплат."
+msgstr "Xariddan oldin va keyin sizni qo'llab-quvvatlaymiz: maslahat, yordam va fikr-mulohaza qo'shimcha to'lovsiz."
+
+msgid "Популярные автомобили"
+msgstr "Mashhur avtomobillar"
+
+msgid "Популярно"
+msgstr "Mashhur"
+
+msgid "Нет популярных автомобилей."
+msgstr "Mashhur avtomobillar yo'q."
+
+msgid "Выберите цвет"
+msgstr "Rangni tanlang"
+
+msgid "Цвет"
+msgstr "Rang"
+
+msgid "Нет фотографии автомобиля."
+msgstr "Avtomobil surati yo'q."
+
+msgid "Основные характеристики"
+msgstr "Asosiy xususiyatlar"
+
+msgid "Тип двигателя"
+msgstr "Dvigatel turi"
+
+msgid "Объём двигателя"
+msgstr "Dvigatel hajmi"
+
+msgid "Коробка передач"
+msgstr "Uzatmalar qutisi"
+
+msgid "Цена"
+msgstr "Narx"
+
+msgid "Для этой машины цвета пока не добавлены."
+msgstr "Bu avtomobil uchun ranglar hali qo'shilmagan."
+
+msgid "Карта"
+msgstr "Xarita"
+
+msgid "Узбекистан —"
+msgstr "O'zbekiston —"
+
+msgid "г. Самарканд, ул. Ибн Сины, 25"
+msgstr "Samarqand sh., Ibn Sino ko'chasi, 25"
+
+msgid "Оставить заявку"
+msgstr "Ariza qoldirish"
+
+msgid "Имя*"
+msgstr "Ism*"
+
+msgid "Номер телефона*"
+msgstr "Telefon raqami*"
+
+msgid "Сообщение"
+msgstr "Xabar"
+
+msgid "Отправить"
+msgstr "Yuborish"
+
 
 #: .\autocenter\settings.py:114
 msgid "Russian"
