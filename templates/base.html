@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="auto, car, car dealer, car dealership, car listing, cars, classified, dealership, directory, listing, modern, motors, responsive">
-<meta name="description" content="Voiture - Automotive & Car Dealer HTML Template">
+<meta name="description" content="{% trans 'Автомобильный дилерский центр' %}">
 <meta name="CreativeLayers" content="ATFN">
 <!-- css file -->
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -15,7 +15,7 @@
 <!-- Responsive stylesheet -->
 <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 <!-- Title -->
-<title>{% block title %}Voiture - Automotive & Car Dealer HTML Template{% endblock %}</title>
+<title>{% block title %}{% trans "Автомобильный дилерский центр" %}{% endblock %}</title>
 <!-- Favicon -->
 <link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
 <link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" />
@@ -154,8 +154,8 @@
     <div class="siderbar_left_home pt20">
       <a class="sidebar_switch sidebar_close_btn float-end" href="#">X</a>
       <div class="footer_contact_widget mt100">
-        <h3 class="title">Quick contact info</h3>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur.</p>
+        <h3 class="title">{% trans "Быстрая контактная информация" %}</h3>
+        <p>{% trans "Свяжитесь с нами для консультации по выбору автомобиля, комплектациям, ценам и доступным условиям покупки." %}</p>
       </div>
       <div class="footer_contact_widget">
         <h5 class="title">КОНТАКТЫ</h5>
@@ -198,10 +198,10 @@
         <!-- Responsive Menu Structure-->
         <ul id="respMenu" class="ace-responsive-menu menu_list_custom_code wa float-start" data-menu-style="horizontal">
           <li><a href="{% url 'index' %}"><span class="title">{% trans "Главная" %}</span></a></li>
-          <li><a href="#about-us"><span class="title">О нас</span></a></li>
+          <li><a href="#about-us"><span class="title">{% trans "О нас" %}</span></a></li>
           <li class="nav-cars-item">
             <a href="#cars" class="nav-cars-toggle" aria-expanded="false">
-              <span class="title">Автомобили</span>
+              <span class="title">{% trans "Автомобили" %}</span>
               <i class="fas fa-chevron-down"></i>
             </a>
             {% if navbar_cars %}
@@ -219,8 +219,8 @@
             </div>
             {% endif %}
           </li>
-          <li><a href="#test-drive"><span class="title">Тест-драйв</span></a></li>
-          <li><a href="{% url 'contact' %}"><span class="title">Контакты</span></a></li>
+          <li><a href="#test-drive"><span class="title">{% trans "Тест-драйв" %}</span></a></li>
+          <li><a href="{% url 'contact' %}"><span class="title">{% trans "Контакты" %}</span></a></li>
         </ul>
         <!-- Responsive Menu Structure-->
         <ul id="respMenu2" class="ace-responsive-menu menu_list_custom_code wa text-end" data-menu-style="horizontal"></ul>
@@ -239,10 +239,10 @@
             <div class="col-lg-12">
               <ul class="sign_up_tab nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login</a>
+                  <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{% trans "Вход" %}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Register</a>
+                  <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{% trans "Регистрация" %}</a>
                 </li>
               </ul>
             </div>
@@ -251,22 +251,22 @@
             <div class="row mt30 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
               <div class="col-lg-12">
                 <div class="login_form">
-                  <p>New to Cars.com? <a href="page-register.html">Sign up.</a> Are you a dealer?</p>
+                  <p>{% trans "Впервые на сайте?" %} <a href="page-register.html">{% trans "Зарегистрироваться." %}</a> {% trans "Вы дилер?" %}</p>
                   <form action="#">
                     <div class="mb-2 mr-sm-2">
-                      <label class="form-label">Username or email address  *</label>
+                      <label class="form-label">{% trans "Имя пользователя или email *" %}</label>
                       <input type="text" class="form-control">
                     </div>
                     <div class="form-group mb5">
-                      <label class="form-label">Password  *</label>
+                      <label class="form-label">{% trans "Пароль *" %}</label>
                       <input type="password" class="form-control">
                     </div>
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="exampleCheck3">
-                      <label class="custom-control-label" for="exampleCheck3">Remember me</label>
-                      <a class="btn-fpswd float-end" href="#">Lost your password?</a>
+                      <label class="custom-control-label" for="exampleCheck3">{% trans "Запомнить меня" %}</label>
+                      <a class="btn-fpswd float-end" href="#">{% trans "Забыли пароль?" %}</a>
                     </div>
-                    <button type="submit" class="btn btn-log btn-thm mt5">Sign in</button>
+                    <button type="submit" class="btn btn-log btn-thm mt5">{% trans "Войти" %}</button>
                   </form>
                 </div>
               </div>
@@ -274,41 +274,41 @@
             <div class="row mt30 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="col-lg-12">
                 <div class="sign_up_form">
-                  <p>Already have a profile? <a href="page-login.html">Sign in.</a></p>
+                  <p>{% trans "Уже есть профиль?" %} <a href="page-login.html">{% trans "Войти." %}</a></p>
                   <form action="#">
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-label">First Name</label>
+                          <label class="form-label">{% trans "Имя" %}</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-label">Last Name</label>
+                          <label class="form-label">{% trans "Фамилия" %}</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-lg-12">
                         <div class="form-group">
-                          <label class="form-label">Email</label>
+                          <label class="form-label">{% trans "Электронная почта" %}</label>
                           <input type="email" class="form-control">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group mb20">
-                          <label class="form-label">Password</label>
+                          <label class="form-label">{% trans "Пароль" %}</label>
                           <input type="password" class="form-control">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group mb20">
-                          <label class="form-label">Confirm Password</label>
+                          <label class="form-label">{% trans "Подтвердите пароль" %}</label>
                           <input type="password" class="form-control">
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-signup btn-thm mb0">Sign Up</button>
+                    <button type="submit" class="btn btn-signup btn-thm mb0">{% trans "Зарегистрироваться" %}</button>
                   </form>
                 </div>
               </div>
@@ -324,7 +324,7 @@
     <div class="mobile-menu">
       <div class="header stylehome1">
         <div class="mobile_menu_bar">
-          <a class="menubar" href="#menu"><small>Menu</small><span></span></a>
+          <a class="menubar" href="#menu"><small>{% trans "Меню" %}</small><span></span></a>
         </div>
         <div class="mobile_menu_main_logo"><img class="nav_logo_img img-fluid" src="{% static 'images/home/logoblack.png' %}" alt="images/header-logo2.png" style="width: 75%"></div>
       </div>
@@ -332,10 +332,10 @@
     <!-- /.mobile-menu -->
     <nav id="menu" class="stylehome1">
       <ul>
-        <li><a href="{% url 'index' %}">Главная страница</a></li>
-        <li><a href="#about-us">О нас</a></li>
+        <li><a href="{% url 'index' %}">{% trans "Главная страница" %}</a></li>
+        <li><a href="#about-us">{% trans "О нас" %}</a></li>
         <li>
-          <span>Автомобили</span>
+          <span>{% trans "Автомобили" %}</span>
           {% if navbar_cars %}
           <ul>
             {% for nav_car in navbar_cars %}
@@ -344,15 +344,15 @@
           </ul>
           {% endif %}
         </li>
-        <li><a href="#test-drive">Тест-драйв</a></li>
-        <li><a href="{% url 'contact' %}">Контакты</a></li>
+        <li><a href="#test-drive">{% trans "Тест-драйв" %}</a></li>
+        <li><a href="{% url 'contact' %}">{% trans "Контакты" %}</a></li>
         <!-- Only for Mobile View -->
         <li class="mm-add-listing">
           <span class="border-none">
             <span class="mmenu-contact-info">
-              <span class="phone-num"><i class="flaticon-map"></i> <a href="#">Узбекистан, г.Самарканд ул.Ибн Сины, 25</a></span>
+              <span class="phone-num"><i class="flaticon-map"></i> <a href="#">{% trans "Узбекистан, г. Самарканд, ул. Ибн Сины, 25" %}</a></span>
               <span class="phone-num"><i class="flaticon-phone-call"></i> <a href="#">+998-99-622-00-53</a></span>
-              <span class="phone-num"><i class="flaticon-clock"></i> <a href="#">Пон - Пят 8:00 - 18:00</a></span>
+              <span class="phone-num"><i class="flaticon-clock"></i> <a href="#">{% trans "Пн - Пт 8:00 - 18:00" %}</a></span>
             </span>
             <span class="social-links">
               <a href="#"><span class="fab fa-facebook-f"></span></a>
@@ -382,10 +382,10 @@
         <div class="col-md-8 col-xl-5">
           <div class="footer_menu_widget text-start text-md-end mt15">
             <ul>
-              <li class="list-inline-item"><a href="#">Главная страница</a></li>
-              <li class="list-inline-item"><a href="#">О нас</a></li>
-              <li class="list-inline-item"><a href="#">Тест драйф</a></li>
-              <li class="list-inline-item"><a href="#">Контакты</a></li>
+              <li class="list-inline-item"><a href="#">{% trans "Главная страница" %}</a></li>
+              <li class="list-inline-item"><a href="#">{% trans "О нас" %}</a></li>
+              <li class="list-inline-item"><a href="#">{% trans "Тест-драйв" %}</a></li>
+              <li class="list-inline-item"><a href="#">{% trans "Контакты" %}</a></li>
             </ul>
           </div>
         </div>
@@ -423,7 +423,7 @@
       <div class="row">
         <div class="col-md-6 col-lg-8 col-xl-9">
           <div class="copyright-widget mt5 text-start mb20-sm">
-            <p>Major Motors Sam © 2026. Все права защищены.</p>
+            <p>{% trans "Major Motors Sam © 2026. Все права защищены." %}</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">

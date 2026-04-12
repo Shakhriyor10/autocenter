@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-12 11:24+0500\n"
+"POT-Creation-Date: 2026-04-12 11:58+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,9 +28,300 @@ msgstr ""
 msgid "Uzbek"
 msgstr ""
 
+#: .\templates\base.html:10 .\templates\base.html:18
+msgid "Автомобильный дилерский центр"
+msgstr "Автомобильный дилерский центр"
+
+# Custom template translations
+#: .\templates\base.html:157
+msgid "Быстрая контактная информация"
+msgstr "Быстрая контактная информация"
+
+#: .\templates\base.html:158
+msgid ""
+"Свяжитесь с нами для консультации по выбору автомобиля, комплектациям, ценам "
+"и доступным условиям покупки."
+msgstr ""
+"Свяжитесь с нами для консультации по выбору автомобиля, комплектациям, ценам "
+"и доступным условиям покупки."
+
 #: .\templates\base.html:200 .\templates\index4.html:5
 msgid "Главная"
 msgstr "Главная"
+
+#: .\templates\base.html:201 .\templates\base.html:336
+#: .\templates\base.html:386
+msgid "О нас"
+msgstr "О нас"
+
+#: .\templates\base.html:204 .\templates\base.html:338
+msgid "Автомобили"
+msgstr "Автомобили"
+
+#: .\templates\base.html:222 .\templates\base.html:347
+#: .\templates\base.html:387
+msgid "Тест-драйв"
+msgstr "Тест-драйв"
+
+#: .\templates\base.html:223 .\templates\base.html:348
+#: .\templates\base.html:388 .\templates\contact.html:5
+#: .\templates\contact.html:47
+msgid "Контакты"
+msgstr "Контакты"
+
+#: .\templates\base.html:242
+msgid "Вход"
+msgstr "Вход"
+
+#: .\templates\base.html:245
+msgid "Регистрация"
+msgstr "Регистрация"
+
+#: .\templates\base.html:254
+msgid "Впервые на сайте?"
+msgstr "Впервые на сайте?"
+
+#: .\templates\base.html:254
+msgid "Зарегистрироваться."
+msgstr "Зарегистрироваться."
+
+#: .\templates\base.html:254
+msgid "Вы дилер?"
+msgstr "Вы дилер?"
+
+#: .\templates\base.html:257
+msgid "Имя пользователя или email *"
+msgstr "Имя пользователя или email *"
+
+#: .\templates\base.html:261
+msgid "Пароль *"
+msgstr "Пароль *"
+
+#: .\templates\base.html:266
+msgid "Запомнить меня"
+msgstr "Запомнить меня"
+
+#: .\templates\base.html:267
+msgid "Забыли пароль?"
+msgstr "Забыли пароль?"
+
+#: .\templates\base.html:269
+msgid "Войти"
+msgstr "Войти"
+
+#: .\templates\base.html:277
+msgid "Уже есть профиль?"
+msgstr "Уже есть профиль?"
+
+#: .\templates\base.html:277
+msgid "Войти."
+msgstr "Войти."
+
+#: .\templates\base.html:282
+msgid "Имя"
+msgstr "Имя"
+
+#: .\templates\base.html:288
+msgid "Фамилия"
+msgstr "Фамилия"
+
+#: .\templates\base.html:294
+msgid "Электронная почта"
+msgstr "Электронная почта"
+
+#: .\templates\base.html:300
+msgid "Пароль"
+msgstr "Пароль"
+
+#: .\templates\base.html:306
+msgid "Подтвердите пароль"
+msgstr "Подтвердите пароль"
+
+#: .\templates\base.html:311
+msgid "Зарегистрироваться"
+msgstr "Зарегистрироваться"
+
+#: .\templates\base.html:327
+msgid "Меню"
+msgstr "Меню"
+
+#: .\templates\base.html:335 .\templates\base.html:385
+msgid "Главная страница"
+msgstr "Главная страница"
+
+#: .\templates\base.html:353
+msgid "Узбекистан, г. Самарканд, ул. Ибн Сины, 25"
+msgstr "Узбекистан, г. Самарканд, ул. Ибн Сины, 25"
+
+#: .\templates\base.html:355
+msgid "Пн - Пт 8:00 - 18:00"
+msgstr "Пн - Пт 8:00 - 18:00"
+
+#: .\templates\base.html:426
+msgid "Major Motors Sam © 2026. Все права защищены."
+msgstr "Major Motors Sam © 2026. Все права защищены."
+
+#: .\templates\car_detail.html:295
+msgid "Выберите цвет"
+msgstr "Выберите цвет"
+
+#: .\templates\car_detail.html:296
+msgid "Цвет"
+msgstr "Цвет"
+
+#: .\templates\car_detail.html:323
+msgid "Нет фотографии автомобиля."
+msgstr "Нет фотографии автомобиля."
+
+#: .\templates\car_detail.html:327
+msgid "Основные характеристики"
+msgstr "Основные характеристики"
+
+#: .\templates\car_detail.html:332
+msgid "Тип двигателя"
+msgstr "Тип двигателя"
+
+#: .\templates\car_detail.html:339
+msgid "Объём двигателя"
+msgstr "Объём двигателя"
+
+#: .\templates\car_detail.html:340 .\templates\index4.html:70
+#: .\templates\index4.html:188
+msgid "л"
+msgstr "л"
+
+#: .\templates\car_detail.html:346
+msgid "Коробка передач"
+msgstr "Коробка передач"
+
+#: .\templates\car_detail.html:353
+msgid "Цена"
+msgstr "Цена"
+
+#: .\templates\car_detail.html:362
+msgid "Для этой машины цвета пока не добавлены."
+msgstr "Для этой машины цвета пока не добавлены."
+
+#: .\templates\contact.html:38
+msgid "Карта"
+msgstr "Карта"
+
+#: .\templates\contact.html:48
+msgid "Узбекистан —"
+msgstr "Узбекистан —"
+
+#: .\templates\contact.html:48
+msgid "г. Самарканд, ул. Ибн Сины, 25"
+msgstr "г. Самарканд, ул. Ибн Сины, 25"
+
+#: .\templates\contact.html:56
+msgid "Оставить заявку"
+msgstr "Оставить заявку"
+
+#: .\templates\contact.html:69
+msgid "Имя*"
+msgstr "Имя*"
+
+#: .\templates\contact.html:75
+msgid "Номер телефона*"
+msgstr "Номер телефона*"
+
+#: .\templates\contact.html:81
+msgid "Сообщение"
+msgstr "Сообщение"
+
+#: .\templates\contact.html:85
+msgid "Отправить"
+msgstr "Отправить"
+
+#: .\templates\index4.html:22
+msgid "Ищите меньше. Живите больше."
+msgstr "Ищите меньше. Живите больше."
+
+#: .\templates\index4.html:44
+msgid "Наши рекомендуемые автомобили"
+msgstr "Наши рекомендуемые автомобили"
+
+#: .\templates\index4.html:56 .\templates\index4.html:177
+msgid "ХИТ ПРОДАЖ"
+msgstr "ХИТ ПРОДАЖ"
+
+#: .\templates\index4.html:56
+msgid "РЕКОМЕНДУЕМ"
+msgstr "РЕКОМЕНДУЕМ"
+
+#: .\templates\index4.html:79
+msgid "Нет автомобилей для показа."
+msgstr "Нет автомобилей для показа."
+
+#: .\templates\index4.html:96
+msgid "Мы — лучшие"
+msgstr "Мы — лучшие"
+
+#: .\templates\index4.html:105
+msgid "Высокая безопасность"
+msgstr "Высокая безопасность"
+
+#: .\templates\index4.html:106
+msgid ""
+"Надёжная работа сервиса и прозрачные условия на каждом этапе выбора "
+"автомобиля."
+msgstr ""
+"Надёжная работа сервиса и прозрачные условия на каждом этапе выбора "
+"автомобиля."
+
+#: .\templates\index4.html:107 .\templates\index4.html:117
+#: .\templates\index4.html:127 .\templates\index4.html:137
+msgid "Подробнее"
+msgstr "Подробнее"
+
+#: .\templates\index4.html:115
+msgid "Проверенные специалисты"
+msgstr "Проверенные специалисты"
+
+#: .\templates\index4.html:116
+msgid ""
+"Наши менеджеры помогают быстро подобрать авто и отвечают на все вопросы по "
+"покупке."
+msgstr ""
+"Наши менеджеры помогают быстро подобрать авто и отвечают на все вопросы по "
+"покупке."
+
+#: .\templates\index4.html:125
+msgid "Выгодные предложения"
+msgstr "Выгодные предложения"
+
+#: .\templates\index4.html:126
+msgid ""
+"Подбираем оптимальные варианты по цене и комплектации, чтобы вы не "
+"переплачивали."
+msgstr ""
+"Подбираем оптимальные варианты по цене и комплектации, чтобы вы не "
+"переплачивали."
+
+#: .\templates\index4.html:135
+msgid "Бесплатная поддержка"
+msgstr "Бесплатная поддержка"
+
+#: .\templates\index4.html:136
+msgid ""
+"Сопровождаем вас до и после покупки: консультации, помощь и обратная связь "
+"без доплат."
+msgstr ""
+"Сопровождаем вас до и после покупки: консультации, помощь и обратная связь "
+"без доплат."
+
+#: .\templates\index4.html:152
+msgid "Популярные автомобили"
+msgstr "Популярные автомобили"
+
+#: .\templates\index4.html:177
+msgid "Популярно"
+msgstr "Популярно"
+
+#: .\templates\index4.html:215
+msgid "Нет популярных автомобилей."
+msgstr "Нет популярных автомобилей."
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
