@@ -247,6 +247,34 @@
       font-size: 18px;
     }
   }
+  @media (max-width: 767px) {
+    .car-banner-section {
+      z-index: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    .car-banner-video {
+      object-fit: cover;
+    }
+    .car-banner-section .banner-inner {
+      min-height: 92px;
+      padding: 0;
+      align-items: flex-end;
+    }
+    .car-banner-section .home-text {
+      margin-bottom: 0 !important;
+    }
+    .car-banner-section .home_content.home1_style.at_home4 {
+      padding: 0 !important;
+    }
+    .car-banner-title {
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+  }
 </style>
 {% endblock %}
 
