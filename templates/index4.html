@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
-{% block title %}Главная{% endblock %}
+{% block title %}{% trans "Главная" %}{% endblock %}
 
 {% block content %}
 <section class="home-one home4_style bgc_home4_style bg-home4"
@@ -17,7 +18,7 @@
               </span>
               {{ banner.title|default:"Search Less. Live More." }}
             </h2>
-            <p class="para">{{ banner.short_description|default:"We make finding the right car simple" }}</p>
+            <p class="para">{{ banner.short_description|default:"Мы упростим поиск подходящего автомобиля." }}</p>
           </div>
         </div> <!-- 🔥 ВОТ ЭТОГО НЕ ХВАТАЛО -->
       </div>
@@ -438,19 +439,19 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="posr">
-            <div class="home1_divider_video_pop">
-              <div class="video_popup_icon">
-                <a class="video_popup_btn popup-img popup-youtube" href="https://www.youtube.com/watch?v=R7xbhKIiw4Y">
-                  <span class="flaticon-play"></span>
-                </a>
-              </div>
-            </div>
+<!--            <div class="home1_divider_video_pop">-->
+<!--              <div class="video_popup_icon">-->
+<!--                <a class="video_popup_btn popup-img popup-youtube" href="https://www.youtube.com/watch?v=R7xbhKIiw4Y">-->
+<!--                  <span class="flaticon-play"></span>-->
+<!--                </a>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
         </div>
         <div class="col-md-9 col-xl-5">
           <div class="home1_divider_content">
-            <h2 class="title">We Make Finding The Right Car Simple</h2>
-            <p class="para">At Voiture what matters to us is making your car search and buying experience as simple as possible, so you can find the right car quickly and get on with making it yours.</p>
+            <h2 class="title">Мы упростим поиск подходящего автомобиля.</h2>
+            <p class="para">В Dongfeng Samarkand для нас важно максимально упростить процесс поиска и покупки автомобиля, чтобы вы могли быстро найти подходящий автомобиль и приступить к его приобретению.</p>
           </div>
         </div>
       </div>

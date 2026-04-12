@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -26,6 +27,22 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
+  body {
+    background: linear-gradient(to bottom, #000000 0, #000000 92px, #ffffff 92px, #ffffff 100%);
+    background-repeat: no-repeat;
+  }
+  @media (max-width: 1199px) {
+    body {
+      background: linear-gradient(to bottom, #000000 0, #000000 82px, #ffffff 82px, #ffffff 100%);
+      background-repeat: no-repeat;
+    }
+  }
+  @media (max-width: 767px) {
+    body {
+      background: linear-gradient(to bottom, #000000 0, #000000 72px, #ffffff 72px, #ffffff 100%);
+      background-repeat: no-repeat;
+    }
+  }
   .nav-cars-item { position: static; }
   .nav-cars-toggle { display: inline-flex; align-items: center; gap: 6px; }
   .nav-cars-toggle .fa-chevron-down { font-size: 12px; transition: transform .25s ease; }
@@ -141,17 +158,17 @@
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur.</p>
       </div>
       <div class="footer_contact_widget">
-        <h5 class="title">CONTACT</h5>
-        <div class="footer_phone">+1 670 936 46 70</div>
-        <p>hello@voiture.com</p>
+        <h5 class="title">КОНТАКТЫ</h5>
+        <div class="footer_phone">+998 99 622 00 53</div>
+        <p>dongfeng_samarkand@gmail.com</p>
       </div>
       <div class="footer_about_widget">
-        <h5 class="title">OFFICE</h5>
-        <p>Germany —<br>329 Queensberry Street,<br>North Melbourne VIC 3051</p>
+        <h5 class="title">ОФИС</h5>
+        <p>Узбекистан<br>Самарканд. ул. Ибн Сины<br>Дом 25</p>
       </div>
       <div class="footer_contact_widget">
-        <h5 class="title">OPENING HOURS</h5>
-        <p>Monday – Friday: 09:00AM – 09:00PM<br>Saturday: 09:00AM – 07:00PM<br>Sunday: Closed</p>
+        <h5 class="title">РЕЖИМ РАБОТЫ</h5>
+        <p>Понедельник – Пятница: 09:00 – 20:00<br>Суббота – Воскресенье: 09:00 – 19:00</p>
       </div>
     </div>
   </div>
@@ -180,7 +197,7 @@
         </a>
         <!-- Responsive Menu Structure-->
         <ul id="respMenu" class="ace-responsive-menu menu_list_custom_code wa float-start" data-menu-style="horizontal">
-          <li><a href="{% url 'index' %}"><span class="title">Главная страница</span></a></li>
+          <li><a href="{% url 'index' %}"><span class="title">{% trans "Главная" %}</span></a></li>
           <li><a href="#about-us"><span class="title">О нас</span></a></li>
           <li class="nav-cars-item">
             <a href="#cars" class="nav-cars-toggle" aria-expanded="false">
@@ -309,7 +326,7 @@
         <div class="mobile_menu_bar">
           <a class="menubar" href="#menu"><small>Menu</small><span></span></a>
         </div>
-        <div class="mobile_menu_main_logo"><img class="nav_logo_img img-fluid" src="{% static 'images/home/logo.png' %}" alt="images/header-logo2.png"></div>
+        <div class="mobile_menu_main_logo"><img class="nav_logo_img img-fluid" src="{% static 'images/home/logoblack.png' %}" alt="images/header-logo2.png" style="width: 75%"></div>
       </div>
     </div>
     <!-- /.mobile-menu -->
@@ -333,9 +350,9 @@
         <li class="mm-add-listing">
           <span class="border-none">
             <span class="mmenu-contact-info">
-              <span class="phone-num"><i class="flaticon-map"></i> <a href="#">47 Bakery Street, London, UK</a></span>
-              <span class="phone-num"><i class="flaticon-phone-call"></i> <a href="#">1-800-458-56987</a></span>
-              <span class="phone-num"><i class="flaticon-clock"></i> <a href="#">Mon - Fri 8:00 - 18:00</a></span>
+              <span class="phone-num"><i class="flaticon-map"></i> <a href="#">Узбекистан, г.Самарканд ул.Ибн Сины, 25</a></span>
+              <span class="phone-num"><i class="flaticon-phone-call"></i> <a href="#">+998-99-622-00-53</a></span>
+              <span class="phone-num"><i class="flaticon-clock"></i> <a href="#">Пон - Пят 8:00 - 18:00</a></span>
             </span>
             <span class="social-links">
               <a href="#"><span class="fab fa-facebook-f"></span></a>
@@ -359,18 +376,16 @@
       <div class="row">
         <div class="col-md-4 col-xl-7">
           <div class="footer_about_widget text-start">
-            <div class="logo mb40 mb0-sm"><img src="images/header-logo3.svg" alt="header-logo3.png"></div>
+            <div class="logo mb40 mb0-sm"><img src="{% static 'images/home/logo.png/' %}" alt="header-logo3.png"></div>
           </div>
         </div>
         <div class="col-md-8 col-xl-5">
           <div class="footer_menu_widget text-start text-md-end mt15">
             <ul>
-              <li class="list-inline-item"><a href="#">Home</a></li>
-              <li class="list-inline-item"><a href="#">Explore</a></li>
-              <li class="list-inline-item"><a href="#">Listings</a></li>
-              <li class="list-inline-item"><a href="#">Blog</a></li>
-              <li class="list-inline-item"><a href="#">Shop</a></li>
-              <li class="list-inline-item"><a href="#">Pages</a></li>
+              <li class="list-inline-item"><a href="#">Главная страница</a></li>
+              <li class="list-inline-item"><a href="#">О нас</a></li>
+              <li class="list-inline-item"><a href="#">Тест драйф</a></li>
+              <li class="list-inline-item"><a href="#">Контакты</a></li>
             </ul>
           </div>
         </div>
@@ -378,47 +393,37 @@
     </div>
     <hr>
     <div class="container pt80 pt20-sm pb70 pb0-sm">
-      <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
-          <div class="footer_about_widget">
-            <h5 class="title">OFFICE</h5>
-            <p>Germany —<br>329 Queensberry Street,<br>North Melbourne VIC 3051</p>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
-          <div class="footer_contact_widget">
-            <h5 class="title">NEED HELP</h5>
-            <div class="footer_phone">+1 670 936 46 70</div>
-            <p>hello@voiture.com</p>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
-          <div class="footer_contact_widget">
-            <h5 class="title">OPENING HOURS</h5>
-            <p>Monday – Friday: 09:00AM – 09:00PM<br>Saturday: 09:00AM – 07:00PM<br>Sunday: Closed</p>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-          <div class="footer_contact_widget">
-            <h5 class="title">KEEP IN TOUCH</h5>
-            <form class="footer_mailchimp_form">
-              <div class="wrapper">
-                <div class="col-auto">
-                  <input type="email" class="form-control" placeholder="Enter your email...">
-                  <button type="submit">GO</button>
-                </div>
-              </div>
-            </form>
-            <p>Get latest updates and offers.</p>
-          </div>
-        </div>
+  <div class="row text-center text-md-start">
+
+    <div class="col-md-4 text-md-start">
+      <div class="footer_about_widget">
+        <h5 class="title">ОФИС</h5>
+        <p>Узбекистан<br>Самарканд. ул. Ибн Сины<br>Дом 25</p>
       </div>
     </div>
+
+    <div class="col-md-4 text-center">
+      <div class="footer_contact_widget">
+        <h5 class="title">КОНТАКТЫ</h5>
+        <div class="footer_phone">+998 99 622 00 53</div>
+        <p>dongfeng_samarkand@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="col-md-4 text-md-end">
+      <div class="footer_contact_widget">
+        <h5 class="title">РЕЖИМ РАБОТЫ</h5>
+        <p>Понедельник – Пятница: 09:00 – 20:00<br>Суббота – Воскресенье: 09:00 – 19:00</p>
+      </div>
+    </div>
+
+  </div>
+</div>
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-lg-8 col-xl-9">
           <div class="copyright-widget mt5 text-start mb20-sm">
-            <p>CreativeLayers © 2022. All Rights Reserved.</p>
+            <p>Major Motors Sam © 2026. Все права защищены.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
@@ -477,6 +482,21 @@
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+  })();
+</script>
+<script>
+  (function () {
+    function hidePreloader() {
+      var preloader = document.querySelector('.preloader');
+      if (preloader) {
+        preloader.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(hidePreloader, 1200);
+    });
+    window.addEventListener('load', hidePreloader);
   })();
 </script>
 
