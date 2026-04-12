@@ -145,6 +145,17 @@
   .nav-lang-item {
     position: relative;
   }
+  #respMenu2 {
+    float: right !important;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0;
+  }
+  #respMenu2 > li {
+    float: none;
+  }
   .nav-lang-toggle {
     display: inline-flex !important;
     align-items: center;
@@ -199,6 +210,11 @@
   }
   .nav-lang-btn:hover {
     background: #f1f5f9;
+  }
+  @media (max-width: 1199px) {
+    #respMenu2 {
+      margin-top: 14px;
+    }
   }
 </style>
 
