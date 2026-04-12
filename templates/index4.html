@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% load currency %}
 
 {% block title %}{% trans "Главная" %}{% endblock %}
 
@@ -22,7 +23,7 @@
                 {% trans "Ищите меньше. Живите больше." %}
               {% endif %}
             </h2>
-            <p class="para">{{ banner.short_description|default:"Мы упростим поиск подходящего автомобиля." }}</p>
+            <p class="para">{{ banner.short_description }}</p>
           </div>
         </div> <!-- 🔥 ВОТ ЭТОГО НЕ ХВАТАЛО -->
       </div>
@@ -65,7 +66,7 @@
                       <h6 class="title"><a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a></h6>
                     </div>
                     <div class="listing_footer">
-                      <h5 class="price text-thm4 float-none float-sm-start">${{ car.discount_price|default:car.price }}</h5>
+                      <h5 class="price text-thm4 float-none float-sm-start">{{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}</h5>
                       <ul class="mb0 text-start text-sm-end">
                         <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }} {% trans "л" %}</a></li>
                         <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>{{ car.get_engine_type_display }}</a></li>
@@ -165,7 +166,7 @@
                 <div class="details text-center">
                   <div class="wrapper">
                     <h5 class="price text-thm4">
-                      ${{ car.discount_price|default:car.price }}
+                      {{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}
                     </h5>
                     <h6 class="title">
                       <a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a>
@@ -456,8 +457,10 @@
         </div>
         <div class="col-md-9 col-xl-5">
           <div class="home1_divider_content">
-            <h2 class="title">Мы упростим поиск подходящего автомобиля.</h2>
-            <p class="para">В Dongfeng Samarkand для нас важно максимально упростить процесс поиска и покупки автомобиля, чтобы вы могли быстро найти подходящий автомобиль и приступить к его приобретению.</p>
+            <h2 class="title">{% trans "Мы упростим поиск подходящего автомобиля." %}</h2>
+            <p class="para">
+              {% trans "В Dongfeng Samarkand для нас важно максимально упростить процесс поиска и покупки автомобиля, чтобы вы могли быстро найти подходящий автомобиль и приступить к его приобретению." %}
+            </p>
           </div>
         </div>
       </div>

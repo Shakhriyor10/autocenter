@@ -14,13 +14,13 @@ def get_navbar_cars():
 
 
 def index(request):
-    expensive_cars = Car.objects.select_related("brand").order_by("-price")[:8]
-
-    popular_vehicles = (
+    expensive_cars = (
         Car.objects.select_related("brand")
         .filter(is_hot=True)
-        .order_by("-price")[:8]
+        .order_by("-price")
     )
+
+    popular_vehicles = Car.objects.select_related("brand").order_by("-price")
 
     banner = Banner.objects.filter(is_active=True).order_by("?").first()
 
