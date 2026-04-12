@@ -5,6 +5,35 @@
 
 {% block title %}{% trans "Главная" %}{% endblock %}
 
+{% block extra_css %}
+<style>
+  @media (max-width: 767px) {
+    .home-one.home4_style.bg-home4 {
+      margin-top: 0;
+      padding: 0;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-position: center top;
+    }
+    .home-one.home4_style.bg-home4 .home_content.home1_style.at_home4 {
+      padding: 22px 0 6px !important;
+    }
+    .home-one.home4_style.bg-home4 .home-text {
+      margin-bottom: 0 !important;
+    }
+    .home-one.home4_style.bg-home4 .home-text .title {
+      font-size: 20px;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .home-one.home4_style.bg-home4 .home-text .para {
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <section class="home-one home4_style bgc_home4_style bg-home4"
          style="background-image: url('{{ banner.image.url }}');">
