@@ -45,7 +45,7 @@ msgstr ""
 
 #: .\templates\base.html:302 .\templates\index4.html:6
 msgid "Главная"
-msgstr "Bosh sahifa"
+msgstr "Bosh"
 
 #: .\templates\base.html:303 .\templates\base.html:468
 #: .\templates\base.html:548
