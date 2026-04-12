@@ -1644,27 +1644,29 @@
 }
 @media (max-width: 767px) {
 	.bg-home4 {
-		clip-path: none;
+		clip-path: none !important;
 	}
 	.listing_item_car_grid_slider.owl-theme .owl-item .carlisting-popular-vehicles .details,
 	.listing_item_car_grid_slider.owl-theme .owl-item.cloned .carlisting-popular-vehicles .details,
 	.listing_item_car_grid_slider.owl-theme .owl-item.active .carlisting-popular-vehicles .details {
-		opacity: 1;
+		opacity: 1 !important;
+		visibility: visible !important;
 	}
 	.listing_item_car_grid_slider.owl-theme .owl-item .carlisting-popular-vehicles .thumb,
 	.listing_item_car_grid_slider.owl-theme .owl-item.cloned .carlisting-popular-vehicles .thumb,
 	.listing_item_car_grid_slider.owl-theme .owl-item.active .carlisting-popular-vehicles .thumb {
-		opacity: 1;
+		opacity: 1 !important;
+		visibility: visible !important;
 	}
 	.listing_item_car_grid_slider.owl-theme .owl-item .carlisting-popular-vehicles .thumb img,
 	.listing_item_car_grid_slider.owl-theme .owl-item.cloned .carlisting-popular-vehicles .thumb img,
 	.listing_item_car_grid_slider.owl-theme .owl-item.active .carlisting-popular-vehicles .thumb img {
-		transform: scale(1);
+		transform: scale(1) !important;
 	}
 	.listing_item_car_grid_slider.owl-theme .owl-item.active.center .item {
-		margin: 0;
+		margin: 0 !important;
 	}
 	.carlisting-popular-vehicles .listing_footer ul {
-		margin-bottom: 20px;
+		margin-bottom: 20px !important;
 	}
 }
