@@ -145,24 +145,9 @@
   .nav-lang-item {
     position: relative;
   }
-  .header-nav nav .container {
-    position: relative;
-  }
-  #respMenu2 {
-    float: none !important;
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: auto;
-  }
-  #respMenu2 > li {
-    float: none;
+  .nav-lang-right {
+    float: right !important;
+    margin-left: 18px;
   }
   .nav-lang-toggle {
     display: inline-flex !important;
@@ -218,19 +203,6 @@
   }
   .nav-lang-btn:hover {
     background: #f1f5f9;
-  }
-  @media (max-width: 1199px) {
-    #respMenu2 {
-      right: 10px;
-    }
-  }
-  @media (max-width: 991px) {
-    #respMenu2 {
-      position: static;
-      transform: none;
-      margin-top: 10px;
-      justify-content: flex-start;
-    }
   }
 </style>
 
@@ -311,13 +283,10 @@
           </li>
           <li><a href="#test-drive"><span class="title">{% trans "Тест-драйв" %}</span></a></li>
           <li><a href="{% url 'contact' %}"><span class="title">{% trans "Контакты" %}</span></a></li>
-        </ul>
-        <!-- Responsive Menu Structure-->
-        <ul id="respMenu2" class="ace-responsive-menu menu_list_custom_code wa text-end" data-menu-style="horizontal">
           {% get_current_language as CURRENT_LANGUAGE %}
           {% if CURRENT_LANGUAGE == 'uz' %}
             {% with current_label='UZ' next_language='ru' next_label='RU' %}
-            <li class="nav-lang-item">
+            <li class="nav-lang-item nav-lang-right">
               <a href="#" class="nav-lang-toggle" aria-label="{% trans 'Сменить язык' %}">
                 <i class="fas fa-language"></i>
                 <span>{{ current_label }}</span>
@@ -335,7 +304,7 @@
             {% endwith %}
           {% else %}
             {% with current_label='RU' next_language='uz' next_label='UZ' %}
-            <li class="nav-lang-item">
+            <li class="nav-lang-item nav-lang-right">
               <a href="#" class="nav-lang-toggle" aria-label="{% trans 'Сменить язык' %}">
                 <i class="fas fa-language"></i>
                 <span>{{ current_label }}</span>
