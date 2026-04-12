@@ -689,10 +689,11 @@
 
     /*  Shop-Item-3-Grid-Slider-Owl-carousel  */
     if($('.listing_item_car_grid_slider').length){
+        var popularCarsCount = $('.listing_item_car_grid_slider .item').length;
         $('.listing_item_car_grid_slider').owlCarousel({
-            loop:true,
+            loop: popularCarsCount > 1,
             margin:30,
-            center:true,
+            center:false,
             dots:true,
             nav:true,
             rtl:false,
@@ -707,15 +708,15 @@
             responsive: {
                 0: {
                     items: 1,
-                    center: true
+                    center: false
                 },
                 480:{
                     items:1,
-                    center: true
+                    center: false
                 },
                 600: {
                     items: 1,
-                    center: true
+                    center: false
                 },
                 768: {
                     items: 2,
