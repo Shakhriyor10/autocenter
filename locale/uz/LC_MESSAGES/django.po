@@ -204,7 +204,7 @@ msgstr "Narx"
 #: .\templates\car_detail.html:355 .\templates\index4.html:69
 #: .\templates\index4.html:169
 msgid "сум"
-msgstr ""
+msgstr "so'm"
 
 #: .\templates\car_detail.html:363
 msgid "Для этой машины цвета пока не добавлены."

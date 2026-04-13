@@ -19,6 +19,20 @@ class Banner(models.Model):
     title = models.CharField("Название", max_length=200)
     short_description = models.CharField("Короткое описание", max_length=255)
     image = models.ImageField("Фото", upload_to="banners/")
+    mobile_image = models.ImageField(
+        "Фото для мобильной версии",
+        upload_to="banners/mobile/",
+        null=True,
+        blank=True,
+    )
+    car = models.ForeignKey(
+        "Car",
+        on_delete=models.SET_NULL,
+        related_name="homepage_banners",
+        verbose_name="Автомобиль для кнопки",
+        null=True,
+        blank=True,
+    )
     sort_order = models.PositiveIntegerField("Порядок сортировки", default=0)
     is_active = models.BooleanField("Активный", default=True)
     created_at = models.DateTimeField("Дата создания", auto_now_add=True)

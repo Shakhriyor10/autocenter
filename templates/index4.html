@@ -6,8 +6,43 @@
 {% block title %}{% trans "Главная" %}{% endblock %}
 
 {% block content %}
-<section class="home-one home4_style bgc_home4_style bg-home4"
-         style="background-image: url('{{ banner.image.url }}');">
+<style>
+  .banner-model-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    padding: 10px 26px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    backdrop-filter: blur(3px);
+    transition: all 0.2s ease;
+  }
+
+  .banner-model-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .home-banner-dynamic {
+    background-image: var(--banner-desktop-image);
+  }
+
+  @media (max-width: 767px) {
+    .home-banner-dynamic {
+      background-image: var(--banner-mobile-image, var(--banner-desktop-image));
+    }
+  }
+</style>
+<section class="home-one home4_style bgc_home4_style bg-home4 home-banner-dynamic"
+         {% if banner and banner.image %}
+         style="--banner-desktop-image: url('{{ banner.image.url }}'); --banner-mobile-image: url('{% if banner.mobile_image %}{{ banner.mobile_image.url }}{% else %}{{ banner.image.url }}{% endif %}');"
+         {% endif %}>
   <div class="container">
     <div class="row posr">
       <div class="col-xl-11 col-xxl-10 m-auto">
@@ -23,7 +58,12 @@
                 {% trans "Ищите меньше. Живите больше." %}
               {% endif %}
             </h2>
-            <p class="para">{{ banner.short_description }}</p>
+            <p class="para">{% if banner %}{{ banner.short_description }}{% endif %}</p>
+            {% if banner and banner.car %}
+              <a class="banner-model-btn" href="{% url 'car_detail' banner.car.pk %}">
+                {% trans "О модели" %}
+              </a>
+            {% endif %}
           </div>
         </div> <!-- 🔥 ВОТ ЭТОГО НЕ ХВАТАЛО -->
       </div>
@@ -55,11 +95,13 @@
                 <div class="car-listing home6_style">
                   <div class="thumb">
                     <div class="tag">{% if car.is_hot %}{% trans "ХИТ ПРОДАЖ" %}{% else %}{% trans "РЕКОМЕНДУЕМ" %}{% endif %}</div>
-                    {% if car.first_photo %}
-                    <img src="{{ car.first_photo.url }}" alt="{{ car.title }}">
-                    {% else %}
-                    <img src="{% static 'images/listing/1.jpg' %}" alt="{{ car.title }}">
-                    {% endif %}
+                    <a href="{% url 'car_detail' car.pk %}">
+                      {% if car.first_photo %}
+                      <img src="{{ car.first_photo.url }}" alt="{{ car.title }}">
+                      {% else %}
+                      <img src="{% static 'images/listing/1.jpg' %}" alt="{{ car.title }}">
+                      {% endif %}
+                    </a>
                   </div>
                   <div class="details">
                     <div class="wrapper">
@@ -204,11 +246,13 @@
                 </div>
 
                 <div class="thumb">
-                  {% if car.first_photo %}
-                  <img class="img-fluid" src="{{ car.first_photo.url }}" alt="{{ car.title }}">
-                  {% else %}
-                  <img class="img-fluid" src="{% static 'images/listing/1.jpg' %}" alt="{{ car.title }}">
-                  {% endif %}
+                  <a href="{% url 'car_detail' car.pk %}">
+                    {% if car.first_photo %}
+                    <img class="img-fluid" src="{{ car.first_photo.url }}" alt="{{ car.title }}">
+                    {% else %}
+                    <img class="img-fluid" src="{% static 'images/listing/1.jpg' %}" alt="{{ car.title }}">
+                    {% endif %}
+                  </a>
                 </div>
 
               </div>

@@ -6,7 +6,7 @@ from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature,
 
 @admin.register(Banner)
 class BannerAdmin(TranslationAdmin):
-    list_display = ("title", "sort_order", "is_active", "created_at")
+    list_display = ("title", "car", "sort_order", "is_active", "created_at")
     list_filter = ("is_active",)
     search_fields = ("title", "short_description")
     list_editable = ("sort_order", "is_active")
