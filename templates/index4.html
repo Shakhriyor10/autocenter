@@ -28,9 +28,21 @@
     color: #fff;
     transform: translateY(-1px);
   }
+
+  .home-banner-dynamic {
+    background-image: var(--banner-desktop-image);
+  }
+
+  @media (max-width: 767px) {
+    .home-banner-dynamic {
+      background-image: var(--banner-mobile-image, var(--banner-desktop-image));
+    }
+  }
 </style>
-<section class="home-one home4_style bgc_home4_style bg-home4"
-         {% if banner and banner.image %}style="background-image: url('{{ banner.image.url }}');"{% endif %}>
+<section class="home-one home4_style bgc_home4_style bg-home4 home-banner-dynamic"
+         {% if banner and banner.image %}
+         style="--banner-desktop-image: url('{{ banner.image.url }}'); --banner-mobile-image: url('{% if banner.mobile_image %}{{ banner.mobile_image.url }}{% else %}{{ banner.image.url }}{% endif %}');"
+         {% endif %}>
   <div class="container">
     <div class="row posr">
       <div class="col-xl-11 col-xxl-10 m-auto">
