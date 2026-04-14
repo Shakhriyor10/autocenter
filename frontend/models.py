@@ -198,7 +198,7 @@ class CarBanner(models.Model):
         blank=True,
         null=True,
     )
-    short_description = models.CharField("Короткое описание", max_length=160, blank=True, null=True)
+    short_description = models.CharField("Короткое описание", max_length=160, blank=True, default="")
     sort_order = models.PositiveIntegerField("Порядок", default=0)
     is_active = models.BooleanField("Активный", default=True)
 
