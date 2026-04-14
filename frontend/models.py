@@ -198,7 +198,7 @@ class CarBanner(models.Model):
         blank=True,
         null=True,
     )
-    short_description = models.CharField("Короткое описание", max_length=160)
+    short_description = models.CharField("Короткое описание", max_length=160, blank=True, default="")
     sort_order = models.PositiveIntegerField("Порядок", default=0)
     is_active = models.BooleanField("Активный", default=True)
 
@@ -208,7 +208,9 @@ class CarBanner(models.Model):
         ordering = ("sort_order", "id")
 
     def __str__(self):
-        return f"{self.car}: {self.short_description[:40]}"
+        if self.short_description:
+            return f"{self.car}: {self.short_description[:40]}"
+        return f"{self.car}: Баннер без описания"
 
     def clean(self):
         super().clean()
