@@ -208,7 +208,9 @@ class CarBanner(models.Model):
         ordering = ("sort_order", "id")
 
     def __str__(self):
-        return f"{self.car}: {self.short_description[:40]}"
+        if self.short_description:
+            return f"{self.car}: {self.short_description[:40]}"
+        return f"{self.car}: Баннер без описания"
 
     def clean(self):
         super().clean()
