@@ -22,13 +22,15 @@ def index(request):
 
     popular_vehicles = Car.objects.select_related("brand").order_by("-price")
 
-    banner = Banner.objects.filter(is_active=True).order_by("?").first()
+    banners = list(Banner.objects.filter(is_active=True).order_by("sort_order", "-created_at")[:6])
+    banner = banners[0] if banners else None
 
     return render(
         request,
         "index4.html",
         {
             "banner": banner,
+            "banners": banners,
             "expensive_cars": expensive_cars,
             "popular_vehicles": popular_vehicles,
             "navbar_cars": get_navbar_cars(),
