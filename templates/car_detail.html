@@ -444,6 +444,13 @@
                 <td class="car-specs-value">{{ car.electric_range_km }} {% trans "км" %}</td>
               </tr>
               {% endif %}
+              {% if car.battery_capacity_kwh %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-car-battery" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Объём батареи" %}</p></td>
+                <td class="car-specs-value">{{ car.battery_capacity_kwh }} {% trans "кВт⋅ч" %}</td>
+              </tr>
+              {% endif %}
               {% if car.total_range_km %}
               <tr>
                 <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-road" aria-hidden="true"></i></span></td>

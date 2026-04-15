@@ -61,6 +61,7 @@ class Car(models.Model):
         MANUAL = "manual", _("Механика")
         ROBOT = "robot", _("Робот")
         CVT = "cvt", _("Вариатор")
+        REDUCER = "reducer", _("Редуктор")
 
     class DriveType(models.TextChoices):
         RWD = "rwd", _("Задний (RWD)")
@@ -109,6 +110,13 @@ class Car(models.Model):
     )
     electric_range_km = models.PositiveIntegerField(
         "Запас хода на электричестве (км)",
+        blank=True,
+        null=True,
+    )
+    battery_capacity_kwh = models.DecimalField(
+        "Объём батареи (кВт⋅ч)",
+        max_digits=5,
+        decimal_places=1,
         blank=True,
         null=True,
     )

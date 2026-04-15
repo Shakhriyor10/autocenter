@@ -64,11 +64,15 @@ msgstr "Robot"
 msgid "Вариатор"
 msgstr "Variator"
 
-#: .\frontend\models.py:66
+#: .\frontend\models.py:64
+msgid "Редуктор"
+msgstr "Reduktor"
+
+#: .\frontend\models.py:67
 msgid "Задний (RWD)"
 msgstr "Orqa (RWD)"
 
-#: .\frontend\models.py:67
+#: .\frontend\models.py:68
 msgid "Передний (FWD)"
 msgstr "Old (FWD)"
 
@@ -260,41 +264,49 @@ msgstr "mm"
 msgid "Запас хода на электричестве"
 msgstr "Elektr yurish zaxirasi"
 
-#: .\templates\car_detail.html:444 .\templates\car_detail.html:451
+#: .\templates\car_detail.html:444 .\templates\car_detail.html:458
 #| msgid "Имя"
 msgid "км"
 msgstr "km"
 
-#: .\templates\car_detail.html:450
+#: .\templates\car_detail.html:451
+msgid "Объём батареи"
+msgstr "Batareya sig‘imi"
+
+#: .\templates\car_detail.html:452
+msgid "кВт⋅ч"
+msgstr "kWh"
+
+#: .\templates\car_detail.html:457
 msgid "Общий запас хода"
 msgstr "Umumiy yurish zaxirasi"
 
-#: .\templates\car_detail.html:457
+#: .\templates\car_detail.html:464
 msgid "Мощность"
 msgstr "Quvvat"
 
-#: .\templates\car_detail.html:458
+#: .\templates\car_detail.html:465
 msgid "л.с."
 msgstr "ot kuchi"
 
-#: .\templates\car_detail.html:464
+#: .\templates\car_detail.html:471
 msgid "Максимальная скорость"
 msgstr "Maksimal tezlik"
 
-#: .\templates\car_detail.html:465
+#: .\templates\car_detail.html:472
 msgid "км/ч"
 msgstr "km/s"
 
-#: .\templates\car_detail.html:470
+#: .\templates\car_detail.html:477
 msgid "Цена"
 msgstr "Narx"
 
-#: .\templates\car_detail.html:471 .\templates\index4.html:326
+#: .\templates\car_detail.html:478 .\templates\index4.html:326
 #: .\templates\index4.html:430
 msgid "сум"
 msgstr "so'm"
 
-#: .\templates\car_detail.html:479
+#: .\templates\car_detail.html:486
 msgid "Для этой машины цвета пока не добавлены."
 msgstr "Bu avtomobil uchun ranglar hali qo'shilmagan."
 
