@@ -64,11 +64,15 @@ msgstr "Robot"
 msgid "Вариатор"
 msgstr "Variator"
 
-#: .\frontend\models.py:66
+#: .\frontend\models.py:64
+msgid "Редуктор"
+msgstr "Reduktor"
+
+#: .\frontend\models.py:67
 msgid "Задний (RWD)"
 msgstr "Orqa (RWD)"
 
-#: .\frontend\models.py:67
+#: .\frontend\models.py:68
 msgid "Передний (FWD)"
 msgstr "Old (FWD)"
 

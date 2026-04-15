@@ -61,6 +61,7 @@ class Car(models.Model):
         MANUAL = "manual", _("Механика")
         ROBOT = "robot", _("Робот")
         CVT = "cvt", _("Вариатор")
+        REDUCER = "reducer", _("Редуктор")
 
     class DriveType(models.TextChoices):
         RWD = "rwd", _("Задний (RWD)")
