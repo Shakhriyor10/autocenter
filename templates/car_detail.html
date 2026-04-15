@@ -418,6 +418,13 @@
                 <td class="car-specs-value">{{ car.engine_volume }} {% trans "л" %}</td>
               </tr>
               {% endif %}
+              {% if car.fuel_consumption_l_100km %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-gas-pump" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Расход топлива" %}</p></td>
+                <td class="car-specs-value">{{ car.fuel_consumption_l_100km }} {% trans "л/100 км" %}</td>
+              </tr>
+              {% endif %}
               {% if car.drive_type %}
               <tr>
                 <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-car-side" aria-hidden="true"></i></span></td>

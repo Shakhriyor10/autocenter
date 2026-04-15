@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 00:30+0500\n"
+"POT-Creation-Date: 2026-04-16 01:08+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,68 +242,75 @@ msgid "л"
 msgstr "L"
 
 #: .\templates\car_detail.html:424
+msgid "Расход топлива"
+msgstr "Yoqilg‘i sarfi"
+
+#: .\templates\car_detail.html:425
+msgid "л/100 км"
+msgstr "l/100 km"
+
+#: .\templates\car_detail.html:431
 msgid "Привод"
 msgstr "Yuritma"
 
-#: .\templates\car_detail.html:430
+#: .\templates\car_detail.html:437
 msgid "Коробка передач"
 msgstr "Uzatmalar qutisi"
 
-#: .\templates\car_detail.html:436
+#: .\templates\car_detail.html:443
 msgid "Габариты"
 msgstr "O‘lchamlari"
 
-#: .\templates\car_detail.html:437
+#: .\templates\car_detail.html:444
 msgid "мм"
 msgstr "mm"
 
-#: .\templates\car_detail.html:443
+#: .\templates\car_detail.html:450
 msgid "Запас хода на электричестве"
 msgstr "Elektr yurish zaxirasi"
 
-#: .\templates\car_detail.html:444 .\templates\car_detail.html:458
+#: .\templates\car_detail.html:451 .\templates\car_detail.html:465
 msgid "км"
 msgstr "km"
 
-#: .\templates\car_detail.html:450
-#| msgid "Объём двигателя"
+#: .\templates\car_detail.html:457
 msgid "Объём батареи"
 msgstr "Batareya sig‘imi"
 
-#: .\templates\car_detail.html:451
+#: .\templates\car_detail.html:458
 msgid "кВт⋅ч"
 msgstr "kVt⋅s"
 
-#: .\templates\car_detail.html:457
+#: .\templates\car_detail.html:464
 msgid "Общий запас хода"
 msgstr "Umumiy yurish zaxirasi"
 
-#: .\templates\car_detail.html:464
+#: .\templates\car_detail.html:471
 msgid "Мощность"
 msgstr "Quvvat"
 
-#: .\templates\car_detail.html:465
+#: .\templates\car_detail.html:472
 msgid "л.с."
 msgstr "ot kuchi"
 
-#: .\templates\car_detail.html:471
+#: .\templates\car_detail.html:478
 msgid "Максимальная скорость"
 msgstr "Maksimal tezlik"
 
-#: .\templates\car_detail.html:472
+#: .\templates\car_detail.html:479
 msgid "км/ч"
 msgstr "km/s"
 
-#: .\templates\car_detail.html:477
+#: .\templates\car_detail.html:484
 msgid "Цена"
 msgstr "Narx"
 
-#: .\templates\car_detail.html:478 .\templates\index4.html:326
+#: .\templates\car_detail.html:485 .\templates\index4.html:326
 #: .\templates\index4.html:430
 msgid "сум"
 msgstr "so'm"
 
-#: .\templates\car_detail.html:486
+#: .\templates\car_detail.html:493
 msgid "Для этой машины цвета пока не добавлены."
 msgstr "Bu avtomobil uchun ranglar hali qo'shilmagan."
 

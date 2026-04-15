@@ -70,6 +70,7 @@ class CarAdmin(TranslationAdmin):
         "navbar_position",
         "engine_types_display",
         "engine_volume",
+        "fuel_consumption_l_100km",
         "battery_capacity_kwh",
         "drive_type",
         "transmission_type",

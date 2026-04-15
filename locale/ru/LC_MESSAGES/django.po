@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 00:30+0500\n"
+"POT-Creation-Date: 2026-04-16 01:08+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,73 +248,81 @@ msgid "л"
 msgstr "Л"
 
 #: .\templates\car_detail.html:424
+msgid "Расход топлива"
+msgstr ""
+
+#: .\templates\car_detail.html:425
+msgid "л/100 км"
+msgstr ""
+
+#: .\templates\car_detail.html:431
 msgid "Привод"
 msgstr ""
 
-#: .\templates\car_detail.html:430
+#: .\templates\car_detail.html:437
 msgid "Коробка передач"
 msgstr "Коробка передач"
 
-#: .\templates\car_detail.html:436
+#: .\templates\car_detail.html:443
 msgid "Габариты"
 msgstr ""
 
-#: .\templates\car_detail.html:437
+#: .\templates\car_detail.html:444
 #, fuzzy
 #| msgid "Имя"
 msgid "мм"
 msgstr "Имя"
 
-#: .\templates\car_detail.html:443
+#: .\templates\car_detail.html:450
 msgid "Запас хода на электричестве"
 msgstr ""
 
-#: .\templates\car_detail.html:444 .\templates\car_detail.html:458
+#: .\templates\car_detail.html:451 .\templates\car_detail.html:465
 #, fuzzy
 #| msgid "Имя"
 msgid "км"
 msgstr "Имя"
 
-#: .\templates\car_detail.html:450
+#: .\templates\car_detail.html:457
 #, fuzzy
 #| msgid "Объём двигателя"
 msgid "Объём батареи"
 msgstr "Объём двигателя"
 
-#: .\templates\car_detail.html:451
+#: .\templates\car_detail.html:458
 msgid "кВт⋅ч"
 msgstr ""
 
-#: .\templates\car_detail.html:457
+#: .\templates\car_detail.html:464
 msgid "Общий запас хода"
 msgstr ""
 
-#: .\templates\car_detail.html:464
+#: .\templates\car_detail.html:471
 msgid "Мощность"
 msgstr ""
 
-#: .\templates\car_detail.html:465
+#: .\templates\car_detail.html:472
 msgid "л.с."
 msgstr ""
 
-#: .\templates\car_detail.html:471
+#: .\templates\car_detail.html:478
 msgid "Максимальная скорость"
 msgstr ""
 
-#: .\templates\car_detail.html:472
+#: .\templates\car_detail.html:479
 msgid "км/ч"
 msgstr ""
 
-#: .\templates\car_detail.html:477
+#: .\templates\car_detail.html:484
 msgid "Цена"
 msgstr "Цена"
 
-#: .\templates\car_detail.html:478 .\templates\index4.html:326
+#: .\templates\car_detail.html:485 .\templates\index4.html:326
 #: .\templates\index4.html:430
 msgid "сум"
 msgstr ""
 
-#: .\templates\car_detail.html:486
+#: .\templates\car_detail.html:493
 msgid "Для этой машины цвета пока не добавлены."
 msgstr "Для этой машины цвета пока не добавлены."
 
