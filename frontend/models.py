@@ -80,6 +80,8 @@ class Car(models.Model):
         max_digits=4,
         decimal_places=1,
         validators=[MinValueValidator(0.1)],
+        blank=True,
+        default=0,
     )
     transmission_type = models.CharField(
         "Коробка передач",
