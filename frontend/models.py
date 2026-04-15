@@ -113,6 +113,13 @@ class Car(models.Model):
         blank=True,
         null=True,
     )
+    battery_capacity_kwh = models.DecimalField(
+        "Объём батареи (кВт⋅ч)",
+        max_digits=5,
+        decimal_places=1,
+        blank=True,
+        null=True,
+    )
     total_range_km = models.PositiveIntegerField(
         "Общий запас хода (км)",
         blank=True,
