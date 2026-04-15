@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 
 from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, ContactRequest
@@ -34,13 +35,42 @@ class CarFeatureInline(TranslationTabularInline):
 
 @admin.register(Car)
 class CarAdmin(TranslationAdmin):
+    class CarAdminForm(forms.ModelForm):
+        engine_type_multi = forms.MultipleChoiceField(
+            label="Тип двигателя",
+            choices=Car.EngineType.choices,
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+        )
+
+        class Meta:
+            model = Car
+            fields = "__all__"
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields["engine_type_multi"].initial = self.instance.engine_type_values
+            self.fields["engine_type"].widget = forms.HiddenInput()
+            self.fields["engine_types"].widget = forms.HiddenInput()
+
+        def clean_engine_type_multi(self):
+            return ",".join(self.cleaned_data["engine_type_multi"])
+
+        def save(self, commit=True):
+            self.instance.engine_types = self.cleaned_data.get("engine_type_multi", "")
+            if not self.instance.engine_type and self.instance.engine_type_values:
+                self.instance.engine_type = self.instance.engine_type_values[0]
+            return super().save(commit=commit)
+
+    form = CarAdminForm
     list_display = (
         "title",
         "brand",
         "model_name",
         "navbar_position",
-        "engine_type",
+        "engine_types_display",
         "engine_volume",
+        "drive_type",
         "transmission_type",
         "price",
         "discount_price",
@@ -48,10 +78,14 @@ class CarAdmin(TranslationAdmin):
         "is_hot",
         "created_at",
     )
-    list_filter = ("brand", "engine_type", "transmission_type", "is_hot")
+    list_filter = ("brand", "drive_type", "transmission_type", "is_hot")
     search_fields = ("title", "model_name", "brand__name")
     list_editable = ("navbar_position",)
     inlines = (CarBannerInline, CarColorInline, CarFeatureInline)
+
+    def engine_types_display(self, obj):
+        return obj.engine_types_display
+    engine_types_display.short_description = "Тип двигателя"
 
 
 @admin.register(CarColor)

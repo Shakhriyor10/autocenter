@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Brand(models.Model):
@@ -49,17 +50,21 @@ class Banner(models.Model):
 
 class Car(models.Model):
     class EngineType(models.TextChoices):
-        TURBO = "turbo", "Турбина"
-        ELECTRIC = "electric", "Электрический"
-        HYBRID = "hybrid", "Гибрид"
-        ATMOSPHERIC = "atmospheric", "Атмосферный"
-        DIESEL = "diesel", "Дизель"
+        TURBO = "turbo", _("Турбина")
+        ELECTRIC = "electric", _("Электрический")
+        HYBRID = "hybrid", _("Гибрид")
+        ATMOSPHERIC = "atmospheric", _("Атмосферный")
+        DIESEL = "diesel", _("Дизель")
 
     class TransmissionType(models.TextChoices):
-        AUTOMATIC = "automatic", "Автомат"
-        MANUAL = "manual", "Механика"
-        ROBOT = "robot", "Робот"
-        CVT = "cvt", "Вариатор"
+        AUTOMATIC = "automatic", _("Автомат")
+        MANUAL = "manual", _("Механика")
+        ROBOT = "robot", _("Робот")
+        CVT = "cvt", _("Вариатор")
+
+    class DriveType(models.TextChoices):
+        RWD = "rwd", _("Задний (RWD)")
+        FWD = "fwd", _("Передний (FWD)")
 
     title = models.CharField("Название", max_length=180)
     brand = models.ForeignKey(
@@ -73,14 +78,54 @@ class Car(models.Model):
         "Тип двигателя",
         max_length=20,
         choices=EngineType.choices,
-        default=EngineType.ATMOSPHERIC,
+        blank=True,
+        default="",
+    )
+    engine_types = models.CharField(
+        "Типы двигателя (множественный выбор)",
+        max_length=120,
+        blank=True,
+        default="",
     )
     engine_volume = models.DecimalField(
         "Объем двигателя (л)",
         max_digits=4,
         decimal_places=1,
         blank=True,
-        default=0,
+        null=True,
+    )
+    drive_type = models.CharField(
+        "Привод",
+        max_length=10,
+        choices=DriveType.choices,
+        blank=True,
+        default="",
+    )
+    dimensions_mm = models.CharField(
+        "Габариты (мм)",
+        max_length=120,
+        blank=True,
+        help_text="Например: 4890 × 1900 × 1450",
+    )
+    electric_range_km = models.PositiveIntegerField(
+        "Запас хода на электричестве (км)",
+        blank=True,
+        null=True,
+    )
+    total_range_km = models.PositiveIntegerField(
+        "Общий запас хода (км)",
+        blank=True,
+        null=True,
+    )
+    horsepower_hp = models.PositiveIntegerField(
+        "Мощность (л.с.)",
+        blank=True,
+        null=True,
+    )
+    max_speed_kmh = models.PositiveIntegerField(
+        "Максимальная скорость (км/ч)",
+        blank=True,
+        null=True,
     )
     transmission_type = models.CharField(
         "Коробка передач",
@@ -129,12 +174,36 @@ class Car(models.Model):
 
     def clean(self):
         super().clean()
+        if self.engine_types:
+            selected_values = [value for value in self.engine_types.split(",") if value]
+            valid_values = {choice[0] for choice in self.EngineType.choices}
+            invalid_values = [value for value in selected_values if value not in valid_values]
+            if invalid_values:
+                raise ValidationError({"engine_types": "Выбраны некорректные типы двигателя."})
+            self.engine_types = ",".join(dict.fromkeys(selected_values))
         if self.discount_price and self.discount_price > self.price:
             raise ValidationError("Цена со скидкой не может быть больше основной цены.")
 
     @property
     def first_photo(self):
         return self.photo_1 or self.photo_2 or self.photo_3 or self.photo_4 or self.photo_5
+
+    @property
+    def engine_type_values(self):
+        if self.engine_types:
+            return [value for value in self.engine_types.split(",") if value]
+        if self.engine_type:
+            return [self.engine_type]
+        return []
+
+    @property
+    def engine_type_labels(self):
+        labels_map = dict(self.EngineType.choices)
+        return [labels_map[value] for value in self.engine_type_values if value in labels_map]
+
+    @property
+    def engine_types_display(self):
+        return ", ".join(str(label) for label in self.engine_type_labels)
 
 
 class CarColor(models.Model):

@@ -76,7 +76,7 @@
   .color-swatch.active { box-shadow: 0 0 0 2px #1a3760; }
   .car-main-image {
     width: 100%;
-    max-height: 620px;
+    max-height: 530px;
     object-fit: contain;
     border-radius: 12px;
     background: transparent;
@@ -90,12 +90,6 @@
   .car-overview-top {
     text-align: center;
     margin-bottom: 18px;
-  }
-  .car-overview {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-    gap: 28px;
-    align-items: center;
   }
   .car-image-stage {
     position: relative;
@@ -131,42 +125,74 @@
     text-transform: uppercase;
   }
   .car-specs-panel {
+    margin-top: 26px;
     background: #fff;
     border-radius: 16px;
     border: 1px solid #e7ebf2;
     box-shadow: 0 15px 32px rgba(8, 22, 45, 0.08);
-    padding: 22px;
+    padding: 0;
+    overflow: hidden;
   }
-  .car-specs-list {
+  .car-specs-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .car-specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 280px;
+  }
+  .car-specs-table tbody tr {
+    border-bottom: 1px solid #edf1f6;
+  }
+  .car-specs-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+  .car-specs-table td {
+    padding: 14px 16px;
+    vertical-align: middle;
+  }
+  .car-specs-icon-cell {
+    width: 56px;
+    text-align: center;
+  }
+  .car-specs-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef4ff;
+    color: #1a3760;
+    font-size: 14px;
+  }
+  .car-specs-label {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .car-specs-value {
+    color: #111827;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .car-specs-heading {
+    margin: 0;
+    padding: 16px 18px;
+    background: #f8fafc;
+    border-bottom: 1px solid #edf1f6;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  .car-specs-list-legacy {
     margin: 0;
     padding: 0;
     list-style: none;
-    display: grid;
-    gap: 14px;
-  }
-  .car-spec-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border-radius: 12px;
-    background: #f8fafc;
-  }
-  .car-spec-item span[class^="flaticon-"] {
-    font-size: 24px;
-    color: #1a3760;
-    line-height: 1;
-  }
-  .car-spec-item small {
-    display: block;
-    color: #64748b;
-    font-size: 12px;
-    margin-bottom: 2px;
-  }
-  .car-spec-item strong {
-    color: #111827;
-    font-size: 16px;
-    line-height: 1.35;
   }
   .car-price-center {
     text-align: center;
@@ -232,9 +258,6 @@
     white-space: pre-line;
   }
   @media (max-width: 991px) {
-    .car-overview {
-      grid-template-columns: 1fr;
-    }
     .car-overview-top {
       margin-bottom: 14px;
     }
@@ -288,6 +311,15 @@
       font-size: 14px !important;
       line-height: 1.25;
       margin-bottom: 0;
+    }
+    .car-specs-table td {
+      padding: 12px 10px;
+    }
+    .car-specs-label {
+      font-size: 12px;
+    }
+    .car-specs-value {
+      font-size: 14px;
     }
   }
 </style>
@@ -354,53 +386,94 @@
         </div>
       </div>
 
-      <div class="car-overview">
-        <div class="car-image-stage">
-          {% if main_photo %}
-          <img
-            id="main-car-image"
-            class="car-main-image"
-            src="{{ main_photo.url }}"
-            alt="{{ car.title }}"
-          >
-          {% else %}
-          <div class="p-5 bg-light rounded">{% trans "Нет фотографии автомобиля." %}</div>
-          {% endif %}
-        </div>
-
-        <aside class="car-specs-panel" aria-label="{% trans 'Основные характеристики' %}">
-          <ul class="car-specs-list">
-            <li class="car-spec-item">
-              <span class="flaticon-gas-station" aria-hidden="true"></span>
-              <div>
-                <small>{% trans "Тип двигателя" %}</small>
-                <strong>{{ car.get_engine_type_display }}</strong>
-              </div>
-            </li>
-            <li class="car-spec-item">
-              <span class="flaticon-road-perspective" aria-hidden="true"></span>
-              <div>
-                <small>{% trans "Объём двигателя" %}</small>
-                <strong>{{ car.engine_volume }} {% trans "л" %}</strong>
-              </div>
-            </li>
-            <li class="car-spec-item">
-              <span class="flaticon-gear" aria-hidden="true"></span>
-              <div>
-                <small>{% trans "Коробка передач" %}</small>
-                <strong>{{ car.get_transmission_type_display }}</strong>
-              </div>
-            </li>
-            <li class="car-spec-item">
-              <span class="flaticon-price-tag" aria-hidden="true"></span>
-              <div>
-                <small>{% trans "Цена" %}</small>
-                <strong>{{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}</strong>
-              </div>
-            </li>
-          </ul>
-        </aside>
+      <div class="car-image-stage">
+        {% if main_photo %}
+        <img
+          id="main-car-image"
+          class="car-main-image"
+          src="{{ main_photo.url }}"
+          alt="{{ car.title }}"
+        >
+        {% else %}
+        <div class="p-5 bg-light rounded">{% trans "Нет фотографии автомобиля." %}</div>
+        {% endif %}
       </div>
+
+      <aside class="car-specs-panel" aria-label="{% trans 'Основные характеристики' %}">
+        <h3 class="car-specs-heading">{% trans "Основные характеристики" %}</h3>
+        <div class="car-specs-table-wrap">
+          <table class="car-specs-table">
+            <tbody>
+              {% if car.engine_types_display %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-gas-pump" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Тип двигателя" %}</p></td>
+                <td class="car-specs-value">{{ car.engine_types_display }}</td>
+              </tr>
+              {% endif %}
+              {% if car.engine_volume %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-oil-can" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Объём двигателя" %}</p></td>
+                <td class="car-specs-value">{{ car.engine_volume }} {% trans "л" %}</td>
+              </tr>
+              {% endif %}
+              {% if car.drive_type %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-car-side" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Привод" %}</p></td>
+                <td class="car-specs-value">{{ car.get_drive_type_display }}</td>
+              </tr>
+              {% endif %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-cogs" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Коробка передач" %}</p></td>
+                <td class="car-specs-value">{{ car.get_transmission_type_display }}</td>
+              </tr>
+              {% if car.dimensions_mm %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-ruler-combined" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Габариты" %}</p></td>
+                <td class="car-specs-value">{{ car.dimensions_mm }} {% trans "мм" %}</td>
+              </tr>
+              {% endif %}
+              {% if car.electric_range_km %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-bolt" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Запас хода на электричестве" %}</p></td>
+                <td class="car-specs-value">{{ car.electric_range_km }} {% trans "км" %}</td>
+              </tr>
+              {% endif %}
+              {% if car.total_range_km %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-road" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Общий запас хода" %}</p></td>
+                <td class="car-specs-value">{{ car.total_range_km }} {% trans "км" %}</td>
+              </tr>
+              {% endif %}
+              {% if car.horsepower_hp %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-tools" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Мощность" %}</p></td>
+                <td class="car-specs-value">{{ car.horsepower_hp }} {% trans "л.с." %}</td>
+              </tr>
+              {% endif %}
+              {% if car.max_speed_kmh %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Максимальная скорость" %}</p></td>
+                <td class="car-specs-value">{{ car.max_speed_kmh }} {% trans "км/ч" %}</td>
+              </tr>
+              {% endif %}
+              <tr>
+                <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-tags" aria-hidden="true"></i></span></td>
+                <td><p class="car-specs-label">{% trans "Цена" %}</p></td>
+                <td class="car-specs-value">{{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
 
       {% if not color_images %}
       <p class="text-muted text-center mt-3 mb-0">{% trans "Для этой машины цвета пока не добавлены." %}</p>
@@ -469,3 +542,6 @@
   })();
 </script>
 {% endblock %}
+    .car-specs-list {
+      grid-template-columns: 1fr;
+    }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 12:43+0500\n"
+"POT-Creation-Date: 2026-04-16 00:03+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,52 @@ msgstr ""
 #: .\autocenter\settings.py:114
 msgid "Uzbek"
 msgstr ""
+
+#: .\frontend\models.py:53
+msgid "Турбина"
+msgstr "Turbo"
+
+#: .\frontend\models.py:54
+#| msgid "Электронная почта"
+msgid "Электрический"
+msgstr "Elektr"
+
+#: .\frontend\models.py:55
+msgid "Гибрид"
+msgstr "Gibrid"
+
+#: .\frontend\models.py:56
+msgid "Атмосферный"
+msgstr "Atmosferniy"
+
+#: .\frontend\models.py:57
+msgid "Дизель"
+msgstr "Dizel"
+
+#: .\frontend\models.py:60
+#| msgid "Автомобили"
+msgid "Автомат"
+msgstr "Avtomat"
+
+#: .\frontend\models.py:61
+msgid "Механика"
+msgstr "Mexanika"
+
+#: .\frontend\models.py:62
+msgid "Робот"
+msgstr "Robot"
+
+#: .\frontend\models.py:63
+msgid "Вариатор"
+msgstr "Variator"
+
+#: .\frontend\models.py:66
+msgid "Задний (RWD)"
+msgstr "Orqa (RWD)"
+
+#: .\frontend\models.py:67
+msgid "Передний (FWD)"
+msgstr "Old (FWD)"
 
 #: .\templates\base.html:10 .\templates\base.html:18
 msgid "Автомобильный дилерский центр"
@@ -164,49 +210,91 @@ msgstr "Du - Ju 8:00 - 18:00"
 msgid "Major Motors Sam © 2026. Все права защищены."
 msgstr "Major Motors Sam © 2026. Barcha huquqlar himoyalangan."
 
-#: .\templates\car_detail.html:326
+#: .\templates\car_detail.html:371
 msgid "Выберите цвет"
 msgstr "Rangni tanlang"
 
-#: .\templates\car_detail.html:327
+#: .\templates\car_detail.html:372
 msgid "Цвет"
 msgstr "Rang"
 
-#: .\templates\car_detail.html:354
+#: .\templates\car_detail.html:398
 msgid "Нет фотографии автомобиля."
 msgstr "Avtomobil surati yo'q."
 
-#: .\templates\car_detail.html:358
+#: .\templates\car_detail.html:402 .\templates\car_detail.html:403
 msgid "Основные характеристики"
 msgstr "Asosiy xususiyatlar"
 
-#: .\templates\car_detail.html:363
+#: .\templates\car_detail.html:410
 msgid "Тип двигателя"
 msgstr "Dvigatel turi"
 
-#: .\templates\car_detail.html:370
+#: .\templates\car_detail.html:417
 msgid "Объём двигателя"
 msgstr "Dvigatel hajmi"
 
-#: .\templates\car_detail.html:371 .\templates\index4.html:113
-#: .\templates\index4.html:231
+#: .\templates\car_detail.html:418 .\templates\index4.html:329
+#: .\templates\index4.html:451
 msgid "л"
-msgstr "l"
+msgstr "L"
 
-#: .\templates\car_detail.html:377
+#: .\templates\car_detail.html:424
+msgid "Привод"
+msgstr ""
+
+#: .\templates\car_detail.html:430
 msgid "Коробка передач"
 msgstr "Uzatmalar qutisi"
 
-#: .\templates\car_detail.html:384
+#: .\templates\car_detail.html:436
+msgid "Габариты"
+msgstr "O‘lchamlari"
+
+#: .\templates\car_detail.html:437
+#| msgid "Имя"
+msgid "мм"
+msgstr "mm"
+
+#: .\templates\car_detail.html:443
+msgid "Запас хода на электричестве"
+msgstr "Elektr yurish zaxirasi"
+
+#: .\templates\car_detail.html:444 .\templates\car_detail.html:451
+#| msgid "Имя"
+msgid "км"
+msgstr "km"
+
+#: .\templates\car_detail.html:450
+msgid "Общий запас хода"
+msgstr "Umumiy yurish zaxirasi"
+
+#: .\templates\car_detail.html:457
+msgid "Мощность"
+msgstr "Quvvat"
+
+#: .\templates\car_detail.html:458
+msgid "л.с."
+msgstr "ot kuchi"
+
+#: .\templates\car_detail.html:464
+msgid "Максимальная скорость"
+msgstr "Maksimal tezlik"
+
+#: .\templates\car_detail.html:465
+msgid "км/ч"
+msgstr "km/s"
+
+#: .\templates\car_detail.html:470
 msgid "Цена"
 msgstr "Narx"
 
-#: .\templates\car_detail.html:385 .\templates\index4.html:111
-#: .\templates\index4.html:211
+#: .\templates\car_detail.html:471 .\templates\index4.html:326
+#: .\templates\index4.html:430
 msgid "сум"
 msgstr "so'm"
 
-#: .\templates\car_detail.html:393
+#: .\templates\car_detail.html:479
 msgid "Для этой машины цвета пока не добавлены."
 msgstr "Bu avtomobil uchun ranglar hali qo'shilmagan."
 
@@ -242,39 +330,51 @@ msgstr "Xabar"
 msgid "Отправить"
 msgstr "Yuborish"
 
-#: .\templates\index4.html:58
+#: .\templates\index4.html:184
 msgid "Ищите меньше. Живите больше."
 msgstr "Kamroq qidiring. Ko'proq yashang."
 
-#: .\templates\index4.html:64
+#: .\templates\index4.html:191
 msgid "О модели"
 msgstr "Model haqida"
 
-#: .\templates\index4.html:85
+#: .\templates\index4.html:200
+msgid "Предыдущий баннер"
+msgstr ""
+
+#: .\templates\index4.html:202
+msgid "Баннер"
+msgstr ""
+
+#: .\templates\index4.html:204
+msgid "Следующий баннер"
+msgstr ""
+
+#: .\templates\index4.html:300
 msgid "Наши рекомендуемые автомобили"
 msgstr "Tavsiya etilgan avtomobillarimiz"
 
-#: .\templates\index4.html:97 .\templates\index4.html:220
+#: .\templates\index4.html:312 .\templates\index4.html:439
 msgid "ХИТ ПРОДАЖ"
 msgstr "ENG KO'P SOTILGAN"
 
-#: .\templates\index4.html:97
+#: .\templates\index4.html:312
 msgid "РЕКОМЕНДУЕМ"
 msgstr "TAVSIYA ETILADI"
 
-#: .\templates\index4.html:122
+#: .\templates\index4.html:341
 msgid "Нет автомобилей для показа."
 msgstr "Ko'rsatish uchun avtomobillar yo'q."
 
-#: .\templates\index4.html:139
+#: .\templates\index4.html:358
 msgid "Мы — лучшие"
 msgstr "Biz — eng yaxshimiz"
 
-#: .\templates\index4.html:148
+#: .\templates\index4.html:367
 msgid "Высокая безопасность"
 msgstr "Yuqori xavfsizlik"
 
-#: .\templates\index4.html:149
+#: .\templates\index4.html:368
 msgid ""
 "Надёжная работа сервиса и прозрачные условия на каждом этапе выбора "
 "автомобиля."
@@ -282,16 +382,16 @@ msgstr ""
 "Xizmatning ishonchli ishlashi va avtomobil tanlashning har bosqichida "
 "shaffof shartlar."
 
-#: .\templates\index4.html:150 .\templates\index4.html:160
-#: .\templates\index4.html:170 .\templates\index4.html:180
+#: .\templates\index4.html:369 .\templates\index4.html:379
+#: .\templates\index4.html:389 .\templates\index4.html:399
 msgid "Подробнее"
 msgstr "Batafsil"
 
-#: .\templates\index4.html:158
+#: .\templates\index4.html:377
 msgid "Проверенные специалисты"
 msgstr "Ishonchli mutaxassislar"
 
-#: .\templates\index4.html:159
+#: .\templates\index4.html:378
 msgid ""
 "Наши менеджеры помогают быстро подобрать авто и отвечают на все вопросы по "
 "покупке."
@@ -299,11 +399,11 @@ msgstr ""
 "Menejerlarimiz avtomobilni tez tanlashga yordam beradi va xarid bo'yicha "
 "barcha savollarga javob beradi."
 
-#: .\templates\index4.html:168
+#: .\templates\index4.html:387
 msgid "Выгодные предложения"
 msgstr "Foydali takliflar"
 
-#: .\templates\index4.html:169
+#: .\templates\index4.html:388
 msgid ""
 "Подбираем оптимальные варианты по цене и комплектации, чтобы вы не "
 "переплачивали."
@@ -311,11 +411,11 @@ msgstr ""
 "Ortiqcha to'lamasligingiz uchun narx va komplektatsiya bo'yicha optimal "
 "variantlarni tanlaymiz."
 
-#: .\templates\index4.html:178
+#: .\templates\index4.html:397
 msgid "Бесплатная поддержка"
 msgstr "Bepul yordam"
 
-#: .\templates\index4.html:179
+#: .\templates\index4.html:398
 msgid ""
 "Сопровождаем вас до и после покупки: консультации, помощь и обратная связь "
 "без доплат."
@@ -323,23 +423,23 @@ msgstr ""
 "Xariddan oldin va keyin sizni qo'llab-quvvatlaymiz: maslahat, yordam va fikr-"
 "mulohaza qo'shimcha to'lovsiz."
 
-#: .\templates\index4.html:195
+#: .\templates\index4.html:414
 msgid "Популярные автомобили"
 msgstr "Mashhur avtomobillar"
 
-#: .\templates\index4.html:220
+#: .\templates\index4.html:439
 msgid "Популярно"
 msgstr "Mashhur"
 
-#: .\templates\index4.html:262
+#: .\templates\index4.html:485
 msgid "Нет популярных автомобилей."
 msgstr "Mashhur avtomobillar yo'q."
 
-#: .\templates\index4.html:504
+#: .\templates\index4.html:727
 msgid "Мы упростим поиск подходящего автомобиля."
 msgstr "Biz sizga to'g'ri mashinani topishni osonlashtiramiz."
 
-#: .\templates\index4.html:506
+#: .\templates\index4.html:729
 msgid ""
 "В Dongfeng Samarkand для нас важно максимально упростить процесс поиска и "
 "покупки автомобиля, чтобы вы могли быстро найти подходящий автомобиль и "

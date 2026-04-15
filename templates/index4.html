@@ -325,8 +325,12 @@
                     <div class="listing_footer">
                       <h5 class="price text-thm4 float-none float-sm-start">{{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}</h5>
                       <ul class="mb0 text-start text-sm-end">
+                        {% if car.engine_volume %}
                         <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }} {% trans "л" %}</a></li>
-                        <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>{{ car.get_engine_type_display }}</a></li>
+                        {% endif %}
+                        {% if car.engine_types_display %}
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-gas-station me-2"></span>{{ car.engine_types_display }}</a></li>
+                        {% endif %}
                         <li class="list-inline-item"><a href="#"><span class="flaticon-gear me-2"></span>{{ car.get_transmission_type_display }}</a></li>
                       </ul>
                     </div>
@@ -441,16 +445,20 @@
 
                   <div class="listing_footer">
                     <ul>
+                      {% if car.engine_volume %}
                       <li class="list-inline-item">
                         <a href="#">
                           <span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }} {% trans "л" %}
                         </a>
                       </li>
+                      {% endif %}
+                      {% if car.engine_types_display %}
                       <li class="list-inline-item">
                         <a href="#">
-                          <span class="flaticon-gas-station me-2"></span>{{ car.get_engine_type_display }}
+                          <span class="flaticon-gas-station me-2"></span>{{ car.engine_types_display }}
                         </a>
                       </li>
+                      {% endif %}
                       <li class="list-inline-item">
                         <a href="#">
                           <span class="flaticon-gear me-2"></span>{{ car.get_transmission_type_display }}
