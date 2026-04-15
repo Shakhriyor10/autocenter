@@ -1644,7 +1644,10 @@
 }
 @media (max-width: 767px) {
 	.bg-home4 {
-		clip-path: none !important;
+		/* Keep a smooth decorative bottom edge on mobile instead of a hard cut */
+		clip-path: ellipse(165% 82% at 50% 18%) !important;
+		border-bottom-left-radius: 28px;
+		border-bottom-right-radius: 28px;
 	}
 	.listing_item_car_grid_slider.owl-theme .owl-item .carlisting-popular-vehicles .details,
 	.listing_item_car_grid_slider.owl-theme .owl-item.cloned .carlisting-popular-vehicles .details,
