@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 00:03+0500\n"
+"POT-Creation-Date: 2026-04-16 00:30+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,6 @@ msgid "Турбина"
 msgstr "Turbo"
 
 #: .\frontend\models.py:54
-#| msgid "Электронная почта"
 msgid "Электрический"
 msgstr "Elektr"
 
@@ -48,7 +47,6 @@ msgid "Дизель"
 msgstr "Dizel"
 
 #: .\frontend\models.py:60
-#| msgid "Автомобили"
 msgid "Автомат"
 msgstr "Avtomat"
 
@@ -64,11 +62,15 @@ msgstr "Robot"
 msgid "Вариатор"
 msgstr "Variator"
 
-#: .\frontend\models.py:66
+#: .\frontend\models.py:64
+msgid "Редуктор"
+msgstr "Reductor"
+
+#: .\frontend\models.py:67
 msgid "Задний (RWD)"
 msgstr "Orqa (RWD)"
 
-#: .\frontend\models.py:67
+#: .\frontend\models.py:68
 msgid "Передний (FWD)"
 msgstr "Old (FWD)"
 
@@ -116,7 +118,7 @@ msgstr "Kontaktlar"
 #: .\templates\base.html:334 .\templates\base.html:349
 #: .\templates\base.html:489 .\templates\base.html:503
 msgid "Сменить язык"
-msgstr ""
+msgstr "Tilni o‘zgartirish"
 
 #: .\templates\base.html:374
 msgid "Вход"
@@ -241,7 +243,7 @@ msgstr "L"
 
 #: .\templates\car_detail.html:424
 msgid "Привод"
-msgstr ""
+msgstr "Yuritma"
 
 #: .\templates\car_detail.html:430
 msgid "Коробка передач"
@@ -252,7 +254,6 @@ msgid "Габариты"
 msgstr "O‘lchamlari"
 
 #: .\templates\car_detail.html:437
-#| msgid "Имя"
 msgid "мм"
 msgstr "mm"
 
@@ -260,41 +261,49 @@ msgstr "mm"
 msgid "Запас хода на электричестве"
 msgstr "Elektr yurish zaxirasi"
 
-#: .\templates\car_detail.html:444 .\templates\car_detail.html:451
-#| msgid "Имя"
+#: .\templates\car_detail.html:444 .\templates\car_detail.html:458
 msgid "км"
 msgstr "km"
 
 #: .\templates\car_detail.html:450
+#| msgid "Объём двигателя"
+msgid "Объём батареи"
+msgstr "Batareya sig‘imi"
+
+#: .\templates\car_detail.html:451
+msgid "кВт⋅ч"
+msgstr "kVt⋅s"
+
+#: .\templates\car_detail.html:457
 msgid "Общий запас хода"
 msgstr "Umumiy yurish zaxirasi"
 
-#: .\templates\car_detail.html:457
+#: .\templates\car_detail.html:464
 msgid "Мощность"
 msgstr "Quvvat"
 
-#: .\templates\car_detail.html:458
+#: .\templates\car_detail.html:465
 msgid "л.с."
 msgstr "ot kuchi"
 
-#: .\templates\car_detail.html:464
+#: .\templates\car_detail.html:471
 msgid "Максимальная скорость"
 msgstr "Maksimal tezlik"
 
-#: .\templates\car_detail.html:465
+#: .\templates\car_detail.html:472
 msgid "км/ч"
 msgstr "km/s"
 
-#: .\templates\car_detail.html:470
+#: .\templates\car_detail.html:477
 msgid "Цена"
 msgstr "Narx"
 
-#: .\templates\car_detail.html:471 .\templates\index4.html:326
+#: .\templates\car_detail.html:478 .\templates\index4.html:326
 #: .\templates\index4.html:430
 msgid "сум"
 msgstr "so'm"
 
-#: .\templates\car_detail.html:479
+#: .\templates\car_detail.html:486
 msgid "Для этой машины цвета пока не добавлены."
 msgstr "Bu avtomobil uchun ranglar hali qo'shilmagan."
 
