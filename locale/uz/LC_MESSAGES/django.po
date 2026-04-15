@@ -244,40 +244,48 @@ msgid "л"
 msgstr "L"
 
 #: .\templates\car_detail.html:424
+msgid "Расход топлива"
+msgstr "Yoqilg‘i sarfi"
+
+#: .\templates\car_detail.html:425
+msgid "л/100 км"
+msgstr "l/100 km"
+
+#: .\templates\car_detail.html:431
 msgid "Привод"
 msgstr ""
 
-#: .\templates\car_detail.html:430
+#: .\templates\car_detail.html:437
 msgid "Коробка передач"
 msgstr "Uzatmalar qutisi"
 
-#: .\templates\car_detail.html:436
+#: .\templates\car_detail.html:443
 msgid "Габариты"
 msgstr "O‘lchamlari"
 
-#: .\templates\car_detail.html:437
+#: .\templates\car_detail.html:444
 #| msgid "Имя"
 msgid "мм"
 msgstr "mm"
 
-#: .\templates\car_detail.html:443
+#: .\templates\car_detail.html:450
 msgid "Запас хода на электричестве"
 msgstr "Elektr yurish zaxirasi"
 
-#: .\templates\car_detail.html:444 .\templates\car_detail.html:458
+#: .\templates\car_detail.html:451 .\templates\car_detail.html:465
 #| msgid "Имя"
 msgid "км"
 msgstr "km"
 
-#: .\templates\car_detail.html:451
+#: .\templates\car_detail.html:458
 msgid "Объём батареи"
 msgstr "Batareya sig‘imi"
 
-#: .\templates\car_detail.html:452
+#: .\templates\car_detail.html:459
 msgid "кВт⋅ч"
 msgstr "kWh"
 
-#: .\templates\car_detail.html:457
+#: .\templates\car_detail.html:464
 msgid "Общий запас хода"
 msgstr "Umumiy yurish zaxirasi"
 

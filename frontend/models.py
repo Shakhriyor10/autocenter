@@ -95,6 +95,13 @@ class Car(models.Model):
         blank=True,
         null=True,
     )
+    fuel_consumption_l_100km = models.DecimalField(
+        "Расход топлива (л/100 км)",
+        max_digits=4,
+        decimal_places=1,
+        blank=True,
+        null=True,
+    )
     drive_type = models.CharField(
         "Привод",
         max_length=10,
