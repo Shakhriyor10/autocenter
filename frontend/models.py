@@ -366,3 +366,30 @@ class ContactRequest(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.phone})"
+
+
+class Employee(models.Model):
+    class Status(models.TextChoices):
+        ACTIVE = "active", _("Активный")
+        INACTIVE = "inactive", _("Неактивный")
+
+    full_name = models.CharField("Имя и фамилия", max_length=180)
+    position = models.CharField("Должность", max_length=180)
+    photo = models.ImageField("Фото", upload_to="employees/")
+    short_description = models.TextField("Короткое описание", blank=True, default="")
+    status = models.CharField(
+        "Статус",
+        max_length=12,
+        choices=Status.choices,
+        default=Status.ACTIVE,
+    )
+    sort_order = models.PositiveIntegerField("Позиция", default=0)
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Сотрудник"
+        verbose_name_plural = "Сотрудники"
+        ordering = ("sort_order", "id")
+
+    def __str__(self):
+        return f"{self.full_name} — {self.position}"
