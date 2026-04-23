@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
-from frontend.models import Banner, Car, ContactRequest
+from frontend.models import Banner, Car, ContactRequest, Employee
 
 
 def get_navbar_cars():
@@ -52,6 +52,18 @@ def contact(request):
         return redirect("contact")
 
     return render(request, "contact.html", {"navbar_cars": get_navbar_cars()})
+
+
+def about(request):
+    employees = Employee.objects.filter(status=Employee.Status.ACTIVE).order_by("sort_order", "id")
+    return render(
+        request,
+        "page-about.html",
+        {
+            "employees": employees,
+            "navbar_cars": get_navbar_cars(),
+        },
+    )
 
 
 def car_detail(request, pk):

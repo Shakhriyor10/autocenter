@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 
-from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, ContactRequest
+from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, ContactRequest, Employee
 
 
 @admin.register(Banner)
@@ -122,3 +122,11 @@ class ContactRequestAdmin(admin.ModelAdmin):
     search_fields = ("name", "phone", "message")
     readonly_fields = ("name", "phone", "message", "created_at")
     ordering = ("-created_at",)
+
+
+@admin.register(Employee)
+class EmployeeAdmin(TranslationAdmin):
+    list_display = ("full_name", "position", "status", "sort_order", "created_at")
+    list_filter = ("status",)
+    search_fields = ("full_name", "position", "short_description")
+    list_editable = ("status", "sort_order")
