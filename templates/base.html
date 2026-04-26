@@ -300,7 +300,7 @@
         <!-- Responsive Menu Structure-->
         <ul id="respMenu" class="ace-responsive-menu menu_list_custom_code wa float-start" data-menu-style="horizontal">
           <li><a href="{% url 'index' %}"><span class="title">{% trans "Главная" %}</span></a></li>
-          <li><a href="#about-us"><span class="title">{% trans "О нас" %}</span></a></li>
+          <li><a href="{% url 'about' %}"><span class="title">{% trans "О нас" %}</span></a></li>
           <li class="nav-cars-item">
             <a href="#cars" class="nav-cars-toggle" aria-expanded="false">
               <span class="title">{% trans "Автомобили" %}</span>
@@ -465,7 +465,7 @@
     <nav id="menu" class="stylehome1">
       <ul>
         <li><a href="{% url 'index' %}">{% trans "Главная страница" %}</a></li>
-        <li><a href="#about-us">{% trans "О нас" %}</a></li>
+        <li><a href="{% url 'about' %}">{% trans "О нас" %}</a></li>
         <li>
           <span>{% trans "Автомобили" %}</span>
           {% if navbar_cars %}
@@ -545,7 +545,7 @@
           <div class="footer_menu_widget text-start text-md-end mt15">
             <ul>
               <li class="list-inline-item"><a href="#">{% trans "Главная страница" %}</a></li>
-              <li class="list-inline-item"><a href="#">{% trans "О нас" %}</a></li>
+              <li class="list-inline-item"><a href="{% url 'about' %}">{% trans "О нас" %}</a></li>
               <li class="list-inline-item"><a href="#">{% trans "Тест-драйв" %}</a></li>
               <li class="list-inline-item"><a href="#">{% trans "Контакты" %}</a></li>
             </ul>
