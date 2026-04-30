@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 01:08+0500\n"
+"POT-Creation-Date: 2026-04-30 14:08+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,11 +98,13 @@ msgstr ""
 "и доступным условиям покупки."
 
 #: .\templates\base.html:302 .\templates\index4.html:6
+#: .\templates\page-about.html:77
 msgid "Главная"
 msgstr "Главная"
 
 #: .\templates\base.html:303 .\templates\base.html:468
-#: .\templates\base.html:548
+#: .\templates\base.html:548 .\templates\page-about.html:5
+#: .\templates\page-about.html:74 .\templates\page-about.html:78
 msgid "О нас"
 msgstr "О нас"
 
@@ -472,6 +474,32 @@ msgid ""
 "В Dongfeng Samarkand для нас важно максимально упростить процесс поиска и "
 "покупки автомобиля, чтобы вы могли быстро найти подходящий автомобиль и "
 "приступить к его приобретению."
+msgstr ""
+
+#: .\templates\page-about.html:98
+msgid "Добро пожаловать в Dongfeng Samarkand"
+msgstr ""
+
+#: .\templates\page-about.html:99
+msgid ""
+"Мы помогаем подобрать и купить автомобиль быстро, безопасно и с прозрачными "
+"условиями."
+msgstr ""
+
+#: .\templates\page-about.html:100
+#, fuzzy
+#| msgid ""
+#| "Надёжная работа сервиса и прозрачные условия на каждом этапе выбора "
+#| "автомобиля."
+msgid ""
+"Наша команда сопровождает вас на каждом этапе: от выбора модели до "
+"оформления сделки."
+msgstr ""
+"Надёжная работа сервиса и прозрачные условия на каждом этапе выбора "
+"автомобиля."
+
+#: .\templates\page-about.html:112
+msgid "Наша команда"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16

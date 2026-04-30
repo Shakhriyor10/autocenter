@@ -71,11 +71,11 @@
 			<div class="row">
 				<div class="col-xl-12">
 					<div class="breadcrumb_content">
-						<h2 class="breadcrumb_title">About Us</h2>
-            <p class="subtitle">Listings</p>
+						<h2 class="breadcrumb_title">{% trans "О нас" %}</h2>
+                        <br>
 						<ol class="breadcrumb">
-					    <li class="breadcrumb-item"><a href="#">Home</a></li>
-					    <li class="breadcrumb-item active" aria-current="page"><a href="#">Cars for Sale</a></li>
+					    <li class="breadcrumb-item"><a href="{% url 'index' %}">{% trans "Главная" %}</a></li>
+					    <li class="breadcrumb-item active" aria-current="page"><a href="#">{% trans "О нас" %}</a></li>
 						</ol>
 					</div>
 				</div>
@@ -95,9 +95,9 @@
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="about_content">
-            <h2 class="title">Welcome To The Voiture</h2>
-            <p class="mb30">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur.</p>
-            <p class="mb50">Vel illum dolore eu feugiat nulla facilisis at vero eros et accu qui blandit praesent luptatum zzril delenit.</p>
+            <h2 class="title">{% trans "Добро пожаловать в Dongfeng Samarkand" %}</h2>
+            <p class="mb30">{% trans "Мы помогаем подобрать и купить автомобиль быстро, безопасно и с прозрачными условиями." %}</p>
+            <p class="mb50">{% trans "Наша команда сопровождает вас на каждом этапе: от выбора модели до оформления сделки." %}</p>
 					</div>
 				</div>
 			</div>
@@ -109,7 +109,7 @@
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="main-title text-center">
-            <h2>Our Team</h2>
+            <h2>{% trans "Наша команда" %}</h2>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 01:08+0500\n"
+"POT-Creation-Date: 2026-04-30 14:08+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,11 +92,13 @@ msgstr ""
 "uchun biz bilan bog'laning."
 
 #: .\templates\base.html:302 .\templates\index4.html:6
+#: .\templates\page-about.html:77
 msgid "Главная"
 msgstr "Bosh"
 
 #: .\templates\base.html:303 .\templates\base.html:468
-#: .\templates\base.html:548
+#: .\templates\base.html:548 .\templates\page-about.html:5
+#: .\templates\page-about.html:74 .\templates\page-about.html:78
 msgid "О нас"
 msgstr "Biz haqimizda"
 
@@ -464,6 +466,27 @@ msgstr ""
 "Dongfeng Samarqandda biz avtomobil qidirish va sotib olish jarayonini imkon "
 "qadar sodda qilishga intilamiz, shunda siz tezda kerakli mashinani topib, "
 "uni sotib olishni boshlashingiz mumkin."
+
+#: .\templates\page-about.html:98
+msgid "Добро пожаловать в Dongfeng Samarkand"
+msgstr "Dongfeng Samarqandga xush kelibsiz"
+
+#: .\templates\page-about.html:99
+msgid ""
+"Мы помогаем подобрать и купить автомобиль быстро, безопасно и с прозрачными "
+"условиями."
+msgstr "Biz sizga mashinani tez, xavfsiz va shaffof shartlar bilan topish va sotib olishda yordam beramiz."
+
+#: .\templates\page-about.html:100
+msgid ""
+"Наша команда сопровождает вас на каждом этапе: от выбора модели до "
+"оформления сделки."
+msgstr ""
+"Bizning jamoamiz model tanlashdan tortib tranzaktsiyani yakunlashgacha bo'lgan har qadamda siz bilan birga bo'ladi."
+
+#: .\templates\page-about.html:112
+msgid "Наша команда"
+msgstr "Bizning jamoamiz"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
