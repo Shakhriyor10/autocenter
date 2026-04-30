@@ -353,6 +353,23 @@ class CarFeature(models.Model):
             raise ValidationError("Для одного автомобиля можно добавить максимум 8 характеристик.")
 
 
+class TeamMember(models.Model):
+    full_name = models.CharField("Имя и фамилия", max_length=160)
+    position = models.CharField("Должность", max_length=160)
+    photo = models.ImageField("Фото", upload_to="team/")
+    short_description = models.TextField("Короткое описание", blank=True)
+    is_active = models.BooleanField("Активный", default=True)
+    sort_order = models.PositiveIntegerField("Порядок", default=0)
+
+    class Meta:
+        verbose_name = "Сотрудник"
+        verbose_name_plural = "Сотрудники"
+        ordering = ("sort_order", "id")
+
+    def __str__(self):
+        return f"{self.full_name} — {self.position}"
+
+
 class ContactRequest(models.Model):
     name = models.CharField("Имя", max_length=120)
     phone = models.CharField("Номер телефона", max_length=40)
