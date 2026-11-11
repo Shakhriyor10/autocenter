@@ -323,7 +323,7 @@
                       <h6 class="title"><a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a></h6>
                     </div>
                     <div class="listing_footer">
-                      <h5 class="price text-thm4 float-none float-sm-start">{{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}</h5>
+                      <h5 class="price text-thm4 float-none float-sm-start">{% if car.has_multiple_prices %}{% blocktrans with price=car.min_price|sum_humanize %}от {{ price }} сум{% endblocktrans %}{% else %}{{ car.min_price|sum_humanize }} {% trans "сум" %}{% endif %}</h5>
                       <ul class="mb0 text-start text-sm-end">
                         {% if car.engine_volume %}
                         <li class="list-inline-item"><a href="#"><span class="flaticon-road-perspective me-2"></span>{{ car.engine_volume }} {% trans "л" %}</a></li>
@@ -427,7 +427,7 @@
                 <div class="details text-center">
                   <div class="wrapper">
                     <h5 class="price text-thm4">
-                      {{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}
+                      {% if car.has_multiple_prices %}{% blocktrans with price=car.min_price|sum_humanize %}от {{ price }} сум{% endblocktrans %}{% else %}{{ car.min_price|sum_humanize }} {% trans "сум" %}{% endif %}
                     </h5>
                     <h6 class="title">
                       <a href="{% url 'car_detail' car.pk %}">{{ car.brand.name }} {{ car.model_name }}</a>

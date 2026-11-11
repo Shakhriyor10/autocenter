@@ -1,6 +1,6 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, TeamMember
+from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, CarPosition, TeamMember
 
 
 @register(Brand)
@@ -16,6 +16,11 @@ class BannerTranslationOptions(TranslationOptions):
 @register(Car)
 class CarTranslationOptions(TranslationOptions):
     fields = ("title", "model_name")
+
+
+@register(CarPosition)
+class CarPositionTranslationOptions(TranslationOptions):
+    fields = ("name",)
 
 
 @register(CarColor)

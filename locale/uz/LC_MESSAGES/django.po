@@ -74,6 +74,10 @@ msgstr "Orqa (RWD)"
 msgid "Передний (FWD)"
 msgstr "Old (FWD)"
 
+#: .rontend\models.py:69
+msgid "Полный (AWD)"
+msgstr "To‘liq (AWD)"
+
 #: .\templates\base.html:10 .\templates\base.html:18
 msgid "Автомобильный дилерский центр"
 msgstr "Avtomobil dilerlik markazi"
@@ -1766,3 +1770,12 @@ msgstr ""
 #: .\venv\Lib\site-packages\modeltranslation\widgets.py:32
 msgid "None"
 msgstr ""
+
+#: .\templates\car_detail.html
+#, python-format
+msgid "от %(price)s сум"
+msgstr "%(price)s so'mdan"
+
+#: .\templates\car_detail.html
+msgid "Позиции и цены"
+msgstr "Pozitsiyalar va narxlar"

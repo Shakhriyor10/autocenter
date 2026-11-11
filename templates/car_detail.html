@@ -197,6 +197,42 @@
   .car-price-center {
     text-align: center;
   }
+  .car-positions {
+    border-top: 1px solid #edf1f6;
+  }
+  .car-positions-list {
+    margin: 0;
+    padding: 8px 16px 14px;
+    list-style: none;
+  }
+  .car-position-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  .car-position-item:last-child {
+    border-bottom: 0;
+  }
+  .car-position-name {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .car-position-price {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #eef4ff;
+    color: #1a3760;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
 
   .car-features-wrap {
     margin-top: 60px;
@@ -482,11 +518,24 @@
               <tr>
                 <td class="car-specs-icon-cell"><span class="car-specs-icon"><i class="fas fa-tags" aria-hidden="true"></i></span></td>
                 <td><p class="car-specs-label">{% trans "Цена" %}</p></td>
-                <td class="car-specs-value">{{ car.discount_price|default:car.price|sum_humanize }} {% trans "сум" %}</td>
+                <td class="car-specs-value">{% if car.has_multiple_prices %}{% blocktrans with price=car.min_price|sum_humanize %}от {{ price }} сум{% endblocktrans %}{% else %}{{ car.min_price|sum_humanize }} {% trans "сум" %}{% endif %}</td>
               </tr>
             </tbody>
           </table>
         </div>
+        {% if car.has_multiple_prices %}
+        <div class="car-positions">
+          <h3 class="car-specs-heading">{% trans "Позиции и цены" %}</h3>
+          <ul class="car-positions-list">
+            {% for position in car.active_positions %}
+            <li class="car-position-item">
+              <span class="car-position-name">{{ position.name }}</span>
+              <span class="car-position-price">{{ position.price|sum_humanize }} {% trans "сум" %}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
       </aside>
 
       {% if not color_images %}

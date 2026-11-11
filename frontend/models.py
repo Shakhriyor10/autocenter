@@ -66,6 +66,7 @@ class Car(models.Model):
     class DriveType(models.TextChoices):
         RWD = "rwd", _("Задний (RWD)")
         FWD = "fwd", _("Передний (FWD)")
+        AWD = "awd", _("Полный (AWD)")
 
     title = models.CharField("Название", max_length=180)
     brand = models.ForeignKey(
@@ -219,6 +220,52 @@ class Car(models.Model):
     @property
     def engine_types_display(self):
         return ", ".join(str(label) for label in self.engine_type_labels)
+
+    @property
+    def base_price(self):
+        return self.discount_price or self.price
+
+    @property
+    def active_positions(self):
+        # Используем .all(), чтобы работал prefetch_related("positions").
+        return [position for position in self.positions.all() if position.is_active]
+
+    @property
+    def has_multiple_prices(self):
+        return len(self.active_positions) > 1
+
+    @property
+    def min_price(self):
+        positions = self.active_positions
+        if positions:
+            return min(position.price for position in positions)
+        return self.base_price
+
+
+class CarPosition(models.Model):
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="positions",
+        verbose_name="Автомобиль",
+    )
+    name = models.CharField("Название позиции", max_length=120, help_text="Например: Позиция 1, Comfort, Premium")
+    price = models.DecimalField(
+        "Цена",
+        max_digits=12,
+        decimal_places=2,
+        validators=[MinValueValidator(0)],
+    )
+    sort_order = models.PositiveIntegerField("Порядок", default=0)
+    is_active = models.BooleanField("Активный", default=True)
+
+    class Meta:
+        verbose_name = "Позиция автомобиля"
+        verbose_name_plural = "Позиции и цены"
+        ordering = ("sort_order", "price", "id")
+
+    def __str__(self):
+        return f"{self.car}: {self.name}"
 
 
 class CarColor(models.Model):

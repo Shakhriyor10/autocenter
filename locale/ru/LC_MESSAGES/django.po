@@ -80,6 +80,10 @@ msgstr ""
 msgid "Передний (FWD)"
 msgstr ""
 
+#: .rontend\models.py:69
+msgid "Полный (AWD)"
+msgstr ""
+
 #: .\templates\base.html:10 .\templates\base.html:18
 msgid "Автомобильный дилерский центр"
 msgstr "Автомобильный дилерский центр"
@@ -1779,4 +1783,13 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\modeltranslation\widgets.py:32
 msgid "None"
+msgstr ""
+
+#: .\templates\car_detail.html
+#, python-format
+msgid "от %(price)s сум"
+msgstr ""
+
+#: .\templates\car_detail.html
+msgid "Позиции и цены"
 msgstr ""

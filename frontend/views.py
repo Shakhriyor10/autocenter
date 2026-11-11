@@ -16,11 +16,12 @@ def get_navbar_cars():
 def index(request):
     expensive_cars = (
         Car.objects.select_related("brand")
+        .prefetch_related("positions")
         .filter(is_hot=True)
         .order_by("-price")
     )
 
-    popular_vehicles = Car.objects.select_related("brand").order_by("-price")
+    popular_vehicles = Car.objects.select_related("brand").prefetch_related("positions").order_by("-price")
 
     banners = list(Banner.objects.filter(is_active=True).order_by("sort_order", "-created_at")[:6])
     banner = banners[0] if banners else None
@@ -68,7 +69,7 @@ def about(request):
 
 def car_detail(request, pk):
     car = get_object_or_404(
-        Car.objects.select_related("brand").prefetch_related("colors", "banners", "features"),
+        Car.objects.select_related("brand").prefetch_related("colors", "banners", "features", "positions"),
         pk=pk,
     )
     banners = [

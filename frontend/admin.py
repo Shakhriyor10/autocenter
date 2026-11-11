@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 
-from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, ContactRequest, TeamMember
+from frontend.models import Banner, Brand, Car, CarBanner, CarColor, CarFeature, CarPosition, ContactRequest, TeamMember
 
 
 @admin.register(Banner)
@@ -11,6 +11,12 @@ class BannerAdmin(TranslationAdmin):
     list_filter = ("is_active",)
     search_fields = ("title", "short_description")
     list_editable = ("sort_order", "is_active")
+
+
+class CarPositionInline(TranslationTabularInline):
+    model = CarPosition
+    extra = 1
+    fields = ("name", "price", "sort_order", "is_active")
 
 
 class CarColorInline(TranslationTabularInline):
@@ -83,7 +89,7 @@ class CarAdmin(TranslationAdmin):
     list_filter = ("brand", "drive_type", "transmission_type", "is_hot")
     search_fields = ("title", "model_name", "brand__name")
     list_editable = ("navbar_position",)
-    inlines = (CarBannerInline, CarColorInline, CarFeatureInline)
+    inlines = (CarPositionInline, CarBannerInline, CarColorInline, CarFeatureInline)
 
     def engine_types_display(self, obj):
         return obj.engine_types_display
