@@ -80,7 +80,7 @@ msgstr ""
 msgid "Передний (FWD)"
 msgstr ""
 
-#: .rontend\models.py:69
+#: .\frontend\models.py:69
 msgid "Полный (AWD)"
 msgstr ""
 
